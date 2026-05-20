@@ -1,0 +1,657 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Proyectos | Álvaro Fernández";
+const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y desarrollo de software seguro.";
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <BaseHead title={title} description={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:        #080b0f;
+            --surface:   #0d1117;
+            --surface-2: #161b22;
+            --border:    rgba(255,255,255,0.07);
+            --border-hi: rgba(255,255,255,0.14);
+            --accent:    #3b82f6;
+            --accent-dim:rgba(59,130,246,0.12);
+            --accent-glow:rgba(59,130,246,0.25);
+            --green:     #10b981;
+            --green-dim: rgba(16,185,129,0.1);
+            --amber:     #f59e0b;
+            --text:      #e6edf3;
+            --text-2:    #8b949e;
+            --text-3:    #484f58;
+            --mono:      'IBM Plex Mono', monospace;
+            --sans:      'Syne', sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* — NOISE TEXTURE OVERLAY — */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        /* — SCANLINE — */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0,0,0,0.03) 2px,
+                rgba(0,0,0,0.03) 4px
+            );
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .layout-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 5rem 2.5rem 6rem;
+        }
+
+        /* — PAGE HEADER — */
+        .page-header {
+            margin-bottom: 5rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-2);
+            text-decoration: none;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 3rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--accent); }
+        .back-link .arrow { transform: translateX(0); transition: transform 0.2s; }
+        .back-link:hover .arrow { transform: translateX(-3px); }
+
+        .header-label {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .header-label::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+        h1 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: var(--text-2);
+            max-width: 560px;
+            line-height: 1.7;
+            font-family: var(--mono);
+            font-weight: 400;
+        }
+
+        /* — STATS ROW — */
+        .stats-row {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--border);
+        }
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .stat-num {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -0.04em;
+        }
+        .stat-label {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--text-3);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* — GRID — */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        /* — CARD BASE — */
+        .card {
+            background: var(--surface);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .card:hover { background: var(--surface-2); }
+
+        /* Shimmer accent on hover */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .card:hover::before { opacity: 1; }
+
+        /* — GRID SPANS — */
+        .card-full    { grid-column: span 12; }
+        .card-8       { grid-column: span 8; }
+        .card-4       { grid-column: span 4; }
+        .card-6       { grid-column: span 6; }
+
+        /* — CARD TOP — */
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .card-index {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--text-3);
+            letter-spacing: 0.05em;
+        }
+
+        .card-status {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            padding: 0.25rem 0.7rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .status-tfg      { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(59,130,246,0.2); }
+        .status-done     { background: var(--green-dim); color: var(--green); border: 1px solid rgba(16,185,129,0.2); }
+        .status-active   { background: rgba(245,158,11,0.1); color: var(--amber); border: 1px solid rgba(245,158,11,0.2); }
+
+        /* — ICON LARGE — */
+        .card-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1.25rem;
+            display: block;
+            filter: grayscale(0.2);
+        }
+
+        /* — TITLE — */
+        .card-title {
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+        .card-full .card-title { font-size: 2rem; }
+
+        /* — DESC — */
+        .card-desc {
+            font-family: var(--mono);
+            font-size: 0.875rem;
+            color: var(--text-2);
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        /* — FEATURES — */
+        .features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+            margin-bottom: 2rem;
+        }
+        .card-full .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.55rem 2rem;
+        }
+        .features li {
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            color: var(--text-2);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            line-height: 1.5;
+        }
+        .features li::before {
+            content: '›';
+            color: var(--accent);
+            font-size: 1rem;
+            line-height: 1.3;
+            flex-shrink: 0;
+        }
+
+        /* — CARD BOTTOM — */
+        .card-bottom {
+            margin-top: auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .tech-pill {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--text-3);
+            border: 1px solid var(--border-hi);
+            padding: 0.2rem 0.55rem;
+            border-radius: 4px;
+            letter-spacing: 0.05em;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .card:hover .tech-pill {
+            border-color: rgba(59,130,246,0.3);
+            color: var(--text-2);
+        }
+
+        /* — GITHUB BUTTON — */
+        .btn-group { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .gh-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.45rem 0.9rem;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.2s;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+        }
+        .gh-btn-primary {
+            background: var(--accent);
+            color: #fff;
+            border: 1px solid var(--accent);
+        }
+        .gh-btn-primary:hover { background: #2563eb; border-color: #2563eb; }
+        .gh-btn-secondary {
+            background: transparent;
+            color: var(--text-2);
+            border: 1px solid var(--border-hi);
+        }
+        .gh-btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* — FEATURED GLOW — */
+        .card-featured {
+            position: relative;
+        }
+        .card-featured::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 0;
+            box-shadow: inset 0 0 60px -20px var(--accent-glow);
+            pointer-events: none;
+        }
+
+        /* — CORNER LABEL (decorative) — */
+        .corner-label {
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--text-3);
+            letter-spacing: 0.08em;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            text-transform: uppercase;
+            display: none; /* show only on larger cards */
+        }
+        .card-full .corner-label,
+        .card-8 .corner-label { display: block; }
+
+        /* — VIEW MORE — */
+        .view-more {
+            text-align: center;
+            margin-top: 4rem;
+        }
+        .view-more p {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--text-3);
+            margin-bottom: 1.5rem;
+        }
+
+        /* — ANIMATIONS — */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .page-header { animation: fadeUp 0.6s ease both; }
+        .projects-grid { animation: fadeUp 0.6s 0.15s ease both; }
+
+        /* — RESPONSIVE — */
+        @media (max-width: 900px) {
+            .card-8, .card-4, .card-6, .card-full { grid-column: span 12; }
+            .stats-row { gap: 2rem; flex-wrap: wrap; }
+            h1 { font-size: 2.5rem; }
+        }
+        @media (max-width: 600px) {
+            .layout-wrapper { padding: 3rem 1.25rem 4rem; }
+            .card { padding: 1.75rem; }
+            .card-bottom { flex-direction: column; align-items: flex-start; }
+            .stats-row { gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <Header />
+
+    <main class="layout-wrapper">
+
+        <!-- ── PAGE HEADER ── -->
+        <header class="page-header">
+            <a href="/" class="back-link">
+                <span class="arrow">←</span> cd ~/inicio
+            </a>
+            <p class="header-label">investigación & desarrollo</p>
+            <h1>Herramientas que<br><em>construí</em> para entender.</h1>
+            <p class="subtitle">
+                Arquitecturas defensivas, tooling ofensivo y proyectos académicos.
+                Cada línea escrita para aprender más de lo que enseña.
+            </p>
+            <div class="stats-row">
+                <div class="stat">
+                    <span class="stat-num">6</span>
+                    <span class="stat-label">Proyectos</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">4</span>
+                    <span class="stat-label">Lenguajes</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">2</span>
+                    <span class="stat-label">EDRs construidos</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">1</span>
+                    <span class="stat-label">TFG en curso</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ── PROJECTS GRID ── -->
+        <div class="projects-grid">
+
+            <!-- 01 · SECURECHAIN · featured, full width -->
+            <article class="card card-full card-featured">
+                <span class="corner-label">securechain · tfg · 2024</span>
+                <div class="card-top">
+                    <span class="card-index">01</span>
+                    <span class="card-status status-tfg">TFG</span>
+                </div>
+                <span class="card-icon">⛓️</span>
+                <h2 class="card-title">SecureChain</h2>
+                <p class="card-desc">
+                    Arquitectura distribuida para el análisis avanzado de la Cadena de Suministro de Software (SSC).
+                    Ingesta masiva de metadatos, resolución de árboles de dependencias complejos y detección de
+                    vulnerabilidades cruzando múltiples ecosistemas de paquetes.
+                </p>
+                <ul class="features">
+                    <li>Microservicios orientados a eventos con FastAPI, Redis y orquestación Dagster</li>
+                    <li>Resolución formal de restricciones de versiones mediante Z3 Theorem Prover (SMT)</li>
+                    <li>Motor DepEx compatible con Cargo, npm, PyPI, Go y Maven</li>
+                    <li>Generación de SBOMs en CycloneDX y SPDX a partir de manifiestos</li>
+                </ul>
+                <div class="card-bottom">
+                    <div class="tech-stack">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">FastAPI</span>
+                        <span class="tech-pill">Dagster</span>
+                        <span class="tech-pill">Redis</span>
+                        <span class="tech-pill">Z3</span>
+                        <span class="tech-pill">Docker</span>
+                        <span class="tech-pill">SBOM</span>
+                    </div>
+                    <div class="btn-group">
+                        <a href="https://github.com/alvarofdezr/securechain-ssc-ingestion" target="_blank" class="gh-btn gh-btn-primary">
+                            ↗ Ingestion
+                        </a>
+                        <a href="https://github.com/alvarofdezr/securechain-depex" target="_blank" class="gh-btn gh-btn-secondary">
+                            ↗ DepEx
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 02 · AEGIS SENTINEL · 8 cols -->
+            <article class="card card-8">
+                <span class="corner-label">aegis · edr · next-gen</span>
+                <div class="card-top">
+                    <span class="card-index">02</span>
+                    <span class="card-status status-active">Active</span>
+                </div>
+                <span class="card-icon">🛡️</span>
+                <h2 class="card-title">Aegis Sentinel</h2>
+                <p class="card-desc">
+                    Plataforma EDR de próxima generación. Evoluciona la base de Basilisk añadiendo
+                    respuesta automatizada ante incidentes, inteligencia de amenazas en tiempo real y
+                    un C2 HTTPS con control de acceso basado en roles.
+                </p>
+                <ul class="features">
+                    <li>Monitorización mejorada: procesos, red, FIM y USB</li>
+                    <li>Escaneo YARA + inteligencia de VirusTotal integrada</li>
+                    <li>Respuesta automatizada ante incidentes y C2 HTTPS con RBAC</li>
+                </ul>
+                <div class="card-bottom">
+                    <div class="tech-stack">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">EDR</span>
+                        <span class="tech-pill">Docker</span>
+                        <span class="tech-pill">RBAC</span>
+                    </div>
+                    <a href="https://github.com/alvarofdezr/Aegis-sentinel" target="_blank" class="gh-btn gh-btn-secondary">↗ Repo</a>
+                </div>
+            </article>
+
+            <!-- 03 · BASILISK · 4 cols -->
+            <article class="card card-4">
+                <div class="card-top">
+                    <span class="card-index">03</span>
+                    <span class="card-status status-done">Completed</span>
+                </div>
+                <span class="card-icon">🐍</span>
+                <h2 class="card-title">Basilisk</h2>
+                <p class="card-desc">
+                    EDR modular base. Agente de bajo nivel, servidor C2 y dashboard web en tiempo real.
+                    Germen de Aegis Sentinel.
+                </p>
+                <ul class="features">
+                    <li>Monitorización: red, procesos, FIM y registro</li>
+                    <li>Integración de escaneo con reglas YARA</li>
+                </ul>
+                <div class="card-bottom">
+                    <div class="tech-stack">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">FastAPI</span>
+                        <span class="tech-pill">YARA</span>
+                    </div>
+                    <a href="https://github.com/alvarofdezr/Basilisk" target="_blank" class="gh-btn gh-btn-secondary">↗ Repo</a>
+                </div>
+            </article>
+
+            <!-- 04 · HARPOCRATES · 4 cols -->
+            <article class="card card-4">
+                <div class="card-top">
+                    <span class="card-index">04</span>
+                    <span class="card-status status-done">v2.0.0</span>
+                </div>
+                <span class="card-icon">🔐</span>
+                <h2 class="card-title">Harpocrates</h2>
+                <p class="card-desc">
+                    Gestor de contraseñas CLI/GUI con arquitectura local Zero-Trust.
+                    Seguridad de grado militar sin depender de la nube.
+                </p>
+                <ul class="features">
+                    <li>Doble factor: Master Password + 128-bit Secret Key</li>
+                    <li>AES-256-GCM + Argon2id + log antimanipulación</li>
+                </ul>
+                <div class="card-bottom">
+                    <div class="tech-stack">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">Cryptography</span>
+                        <span class="tech-pill">CI/CD</span>
+                    </div>
+                    <a href="https://github.com/alvarofdezr/Harpocrates" target="_blank" class="gh-btn gh-btn-secondary">↗ Repo</a>
+                </div>
+            </article>
+
+            <!-- 05 · ARES · 4 cols -->
+            <article class="card card-4">
+                <div class="card-top">
+                    <span class="card-index">05</span>
+                    <span class="card-status status-active">Ofensivo</span>
+                </div>
+                <span class="card-icon">⚔️</span>
+                <h2 class="card-title">Ares</h2>
+                <p class="card-desc">
+                    Toolkit ofensivo de alto rendimiento para reconocimiento de redes,
+                    descubrimiento de vulnerabilidades y automatización de payloads.
+                </p>
+                <ul class="features">
+                    <li>Motor de escaneo de puertos altamente concurrente</li>
+                    <li>Arquitectura modular para nuevos exploits</li>
+                </ul>
+                <div class="card-bottom">
+                    <div class="tech-stack">
+                        <span class="tech-pill">Go</span>
+                        <span class="tech-pill">Networking</span>
+                        <span class="tech-pill">Concurrency</span>
+                    </div>
+                    <a href="https://github.com/alvarofdezr/Ares" target="_blank" class="gh-btn gh-btn-secondary">↗ Repo</a>
+                </div>
+            </article>
+
+            <!-- 06 · CRIPT · 8 cols -->
+            <article class="card card-8">
+                <span class="corner-label">cript · e2ee · didáctico</span>
+                <div class="card-top">
+                    <span class="card-index">06</span>
+                    <span class="card-status status-done">Completed</span>
+                </div>
+                <span class="card-icon">💬</span>
+                <h2 class="card-title">Cript</h2>
+                <p class="card-desc">
+                    Framework didáctico de simulación de protocolos criptográficos seguros.
+                    Demuestra visualmente canales E2EE, derivación de claves y cifrado continuo.
+                    Construido como soporte práctico de aprendizaje.
+                </p>
+                <ul class="features">
+                    <li>Simulación completa de comunicación segura End-to-End</li>
+                    <li>Derivación de claves con HKDF</li>
+                    <li>Mecanismo de cifrado continuo Double Ratchet</li>
+                </ul>
+                <div class="card-bottom">
+                    <div class="tech-stack">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">Cryptography</span>
+                        <span class="tech-pill">E2EE</span>
+                        <span class="tech-pill">Double Ratchet</span>
+                    </div>
+                    <a href="https://github.com/alvarofdezr/cript" target="_blank" class="gh-btn gh-btn-secondary">↗ Repo</a>
+                </div>
+            </article>
+
+        </div>
+
+        <!-- ── VIEW MORE ── -->
+        <div class="view-more">
+            <p>// scripts menores, dotfiles y actividad diaria</p>
+            <a href="https://github.com/alvarofdezr" target="_blank" class="gh-btn gh-btn-secondary" style="font-size:0.85rem; padding: 0.6rem 1.25rem;">
+                Ver todos los repositorios →
+            </a>
+        </div>
+
+    </main>
+
+    <Footer />
+</body>
+</html>

@@ -1,13 +1,251 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Álvaro Fernández Ramos | Portfolio";
+const description = "Computer Engineering student specializing in secure software development and offensive security research.";
+---
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0;url=/cv" />
-    <title>Álvaro Fernández - CV</title>
+    <BaseHead title={title} description={description} />
+    <style>
+        /* =========================================
+           VARIABLES GLOBALES Y RESET
+           ========================================= */
+        :root {
+            --primary: #0e75b6; 
+            --primary-dark: #0b5b8e;
+            --bg-color: #fafbfc;
+            --text-main: #24292e;
+            --text-muted: #586069;
+            --card-bg: #ffffff;
+            --border-color: #e1e4e8;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .layout-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            min-height: calc(100vh - 160px); /* Ajuste para header y footer */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* =========================================
+           HERO SECTION (Alineada a la izquierda)
+           ========================================= */
+        .hero-section {
+            max-width: 800px;
+            margin-bottom: 5rem;
+        }
+
+        .greeting {
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hero-section h1 {
+            font-size: 4rem;
+            margin: 0 0 1rem 0;
+            color: #111827;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+        }
+
+        .hero-section .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            max-width: 600px;
+            line-height: 1.4;
+        }
+
+        .hero-section .bio {
+            font-size: 1.125rem;
+            color: #4b5563;
+            max-width: 650px;
+            margin-bottom: 3rem;
+            border-left: 3px solid var(--primary);
+            padding-left: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .social-link {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-link:hover {
+            color: var(--primary);
+        }
+
+        /* =========================================
+           NAVEGACIÓN A SUBPÁGINAS (Tarjetas Elegantes)
+           ========================================= */
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .nav-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            border-color: transparent;
+        }
+
+        .nav-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .nav-card h2 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1.5rem;
+            color: #111827;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .arrow {
+            color: var(--text-muted);
+            font-weight: 300;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-card:hover .arrow {
+            transform: translateX(5px);
+            color: var(--primary);
+        }
+
+        .nav-card p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* =========================================
+           RESPONSIVE
+           ========================================= */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+            .hero-section .subtitle {
+                font-size: 1.2rem;
+            }
+            .layout-wrapper {
+                padding: 2rem 1.5rem;
+            }
+            .nav-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <script>
-        window.location.href = "/cv";
-    </script>
+    <Header />
+    
+    <main class="layout-wrapper">
+        <!-- SECCIÓN INTRODUCTORIA (Alineada a la izquierda) -->
+        <section class="hero-section">
+            <h1>Álvaro Fernández</h1>
+            <p class="subtitle">Ingeniería Informática. Tecnologías Informáticas</p>
+            
+            <p class="bio">
+                Construyo software seguro y rompo sistemas para entender cómo defenderlos. 
+                Investigación en seguridad ofensiva, análisis de malware y desarrollo de arquitecturas Zero-Trust.
+            </p>
+
+            <div class="social-links">
+                <a href="https://github.com/alvarofdezr" target="_blank" class="social-link">
+                    <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                    GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/%C3%A1lvaro-fern%C3%A1ndez-71b25a404" target="_blank" class="social-link">
+                    <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor"><path d="M14.82 0H1.18A1.17 1.17 0 000 1.15v13.7A1.17 1.17 0 001.18 16h13.64A1.18 1.18 0 0016 14.85V1.15A1.18 1.18 0 0014.82 0zM4.74 13.68H2.3V5.9h2.45v7.78zM3.52 4.84h-.02a1.22 1.22 0 01-1.23-1.22c0-.68.56-1.23 1.25-1.23s1.23.54 1.24 1.23a1.22 1.22 0 01-1.24 1.22zm10.16 8.84h-2.44V9.82c0-1-.36-1.68-1.26-1.68-.69 0-1.1.46-1.28.91-.07.16-.08.38-.08.61v4.02H6.18s.03-7.05 0-7.78h2.44v1.1c.32-.5 1-1.22 2.24-1.22 1.63 0 2.86 1.07 2.86 3.37v4.51z"></path></svg>
+                    LinkedIn
+                </a>
+            </div>
+        </section>
+
+        <!-- NAVEGACIÓN (Tarjetas) -->
+        <nav class="nav-grid">
+            <a href="/proyectos" class="nav-card">
+                <h2>Proyectos Destacados <span class="arrow">→</span></h2>
+                <p>Explora Harpocrates, Basilisk, Ares y otros desarrollos centrados en seguridad local, EDR y herramientas ofensivas.</p>
+            </a>
+
+            <a href="/stack" class="nav-card">
+                <h2>Stack & Certificaciones <span class="arrow">→</span></h2>
+                <p>Descubre mi arsenal tecnológico, entornos de desarrollo y el progreso de mis certificaciones eJPT y OSCP.</p>
+            </a>
+
+            <a href="/perfil" class="nav-card">
+                <h2>Sobre Mí <span class="arrow">→</span></h2>
+                <p>Conoce mi trayectoria académica, filosofía de seguridad y objetivos profesionales dentro de la industria.</p>
+            </a>
+        </nav>
+    </main>
+    
+    <Footer />
 </body>
 </html>
