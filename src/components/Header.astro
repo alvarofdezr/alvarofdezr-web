@@ -64,13 +64,27 @@ import HeaderLink from './HeaderLink.astro';
 		justify-content: space-between;
 		max-width: 1100px;
 		margin: 0 auto;
-		padding: 0 1em;
+		padding: 0.5em 1em;
+		flex-wrap: wrap;
+		gap: 1em;
 	}
+	
+	h2 {
+		min-width: fit-content;
+	}
+	
+	.internal-links {
+		display: flex;
+		gap: 0;
+		flex: 1;
+	}
+	
 	nav a {
-		padding: 1em 0.5em;
+		padding: 0.75em 0.5em;
 		color: var(--black);
 		border-bottom: 4px solid transparent;
 		text-decoration: none;
+		font-size: 0.95em;
 	}
 	nav a.active {
 		text-decoration: none;
@@ -79,10 +93,57 @@ import HeaderLink from './HeaderLink.astro';
 	.social-links,
 	.social-links a {
 		display: flex;
+		gap: 0.5em;
 	}
-	@media (max-width: 720px) {
+	
+	@media (max-width: 768px) {
+		nav {
+			padding: 0.5em 0.75em;
+			gap: 0.5em;
+		}
+		
+		h2 {
+			font-size: 0.9em;
+		}
+		
+		.internal-links {
+			flex-basis: 100%;
+			gap: 0;
+		}
+		
+		nav a {
+			padding: 0.5em 0.4em;
+			font-size: 0.85em;
+		}
+		
+		.social-links a svg {
+			width: 20px;
+			height: 20px;
+		}
+	}
+	
+	@media (max-width: 480px) {
+		nav {
+			padding: 0.4em 0.5em;
+			gap: 0.3em;
+		}
+		
+		h2 {
+			font-size: 0.8em;
+		}
+		
+		nav a {
+			padding: 0.4em 0.25em;
+			font-size: 0.75em;
+		}
+		
 		.social-links {
-			display: none;
+			gap: 0.3em;
+		}
+		
+		.social-links a svg {
+			width: 16px;
+			height: 16px;
 		}
 	}
 </style>
