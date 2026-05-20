@@ -80,7 +80,7 @@ const description = "Arsenal tecnológico, entornos de desarrollo, aplicaciones 
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
         }
 
@@ -156,6 +156,15 @@ const description = "Arsenal tecnológico, entornos de desarrollo, aplicaciones 
         @media (max-width: 600px) {
             .layout-wrapper { padding: 2rem 1.5rem; }
             .card { padding: 1.5rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+                opacity: 1 !important;
+            }
         }
     </style>
 </head>

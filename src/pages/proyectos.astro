@@ -213,7 +213,7 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
             padding: 0;
             margin: 0 0 1.75rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 0.5rem 2rem;
         }
         .features.one-col { grid-template-columns: 1fr; }
@@ -380,6 +380,16 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
             .stat-item { flex: 1; padding: 0.7rem 1rem; }
             .card-footer { flex-direction: column; align-items: flex-start; }
             .view-more { flex-direction: column; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+                opacity: 1 !important;
+            }
         }
     </style>
 </head>
