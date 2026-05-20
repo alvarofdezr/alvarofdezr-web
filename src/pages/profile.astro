@@ -1,0 +1,252 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const title = "Sobre Mí | Álvaro Fernández Ramos";
+const description = "Trayectoria académica, filosofía de seguridad y objetivos profesionales de Álvaro Fernández Ramos.";
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <BaseHead title={title} description={description} />
+    <style>
+        /* =========================================
+           VARIABLES GLOBALES Y RESET
+           ========================================= */
+        :root {
+            --primary: #0e75b6;
+            --primary-light: #e8f4fc;
+            --bg-color: #fafbfc;
+            --text-main: #24292e;
+            --text-muted: #586069;
+            --card-bg: #ffffff;
+            --border-color: #e1e4e8;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .layout-wrapper {
+            width: auto;
+            max-width: 900px; /* Un poco más estrecho para facilitar la lectura de texto */
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            min-height: calc(100vh - 160px);
+        }
+
+        .page-header {
+            margin-bottom: 3.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            margin: 0 0 0.5rem 0;
+            color: #111827;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--primary);
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* =========================================
+           CONTENIDO Y PROSA
+           ========================================= */
+        .prose-section {
+            margin-bottom: 4rem;
+        }
+
+        .prose-section h2 {
+            font-size: 1.6rem;
+            color: #111827;
+            margin: 0 0 1.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .prose-section p {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+        }
+
+        .prose-section strong {
+            color: #111827;
+            font-weight: 600;
+        }
+
+        /* =========================================
+           TIMELINE (Trayectoria)
+           ========================================= */
+        .timeline {
+            position: relative;
+            margin-top: 2rem;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem; /* Centrado con la línea */
+            top: 0.4rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--bg-color);
+            box-shadow: 0 0 0 2px var(--primary-light);
+        }
+
+        .time-date {
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace, sans-serif;
+            font-size: 0.85rem;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .timeline-item h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.25rem;
+            color: #111827;
+        }
+
+        .timeline-item p {
+            margin: 0;
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .layout-wrapper { padding: 2.5rem 1.5rem; }
+            .timeline { padding-left: 1.5rem; }
+            .timeline-item::before { left: -1.85rem; }
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-2);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2.5rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--primary); }
+
+    </style>
+</head>
+<body>
+    <Header />
+    
+    <main class="layout-wrapper">
+
+        <a href="/" class="back-link">← Volver al inicio</a>
+
+        <header class="page-header">
+            <h1>Álvaro Fernández Ramos</h1>
+            <p class="subtitle">Ingeniería, seguridad ofensiva y desarrollo de sistemas.</p>
+        </header>
+
+        <section class="prose-section">
+            <h2>Sobre mi filosofía</h2>
+            <p>
+                Soy estudiante de último año de <strong>Ingeniería Informática (Tecnologías Informáticas)</strong> en la Universidad de Sevilla (ETSII), perteneciente a la promoción de 2026. 
+                Mi pasión por la tecnología siempre ha estado ligada a una curiosidad fundamental: entender cómo funcionan los sistemas a su nivel más profundo para descubrir cómo protegerlos.
+            </p>
+            <p>
+                Creo firmemente en la filosofía de <em>"romper para defender"</em>. Por eso, mi trabajo no se limita a la teoría; 
+                me dedico a investigar en <strong>seguridad ofensiva, análisis de vulnerabilidades y arquitecturas Zero-Trust</strong>.
+                Esta mentalidad es la que me impulsa a desarrollar mis propias herramientas en lugar de depender exclusivamente de soluciones de terceros, 
+                construyendo desde sistemas EDR como Basilisk hasta gestores de contraseñas seguros como Harpocrates.
+            </p>
+        </section>
+
+        <section class="prose-section">
+            <h2>Trayectoria académica y proyectos</h2>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <span class="time-date">Actualidad</span>
+                    <h3>Trabajo de Fin de Grado (TFG)</h3>
+                    <p>Actualmente me encuentro focalizado en el desarrollo de mi TFG, que consiste en un análisis de seguridad profundo y exhaustivo del ecosistema de dependencias y la arquitectura de Go.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-date">Etapa Internacional - Septiembre 2024 a Junio 2025</span>
+                    <h3>Programa Erasmus+ en Emden, Alemania</h3>
+                    <p>Durante mi formación universitaria tuve la oportunidad de realizar una estancia académica en Emden. 
+                        Esta experiencia no solo me permitió fortalecer mis habilidades interpersonales y mi dominio del inglés en entornos técnicos, 
+                        sino que también me aportó adaptabilidad y una perspectiva global sobre el desarrollo de software y la resolución de problemas.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-date">Promoción 2022-2026 (Actualidad)</span>
+                    <h3>Universidad de Sevilla (ETSII)</h3>
+                    <p>Formación integral en Tecnologías Informáticas, donde he consolidado mis bases en programación de sistemas, análisis de algoritmos e ingeniería de software segura.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-date">Promoción 2019 - 2021</span>
+                    <h3>I.E.S. Professor Juan Antonio Carrillo Salcedo (Morón de la Frontera)</h3>
+                    <p>Dos años de formación orientados a las ciencias y la tecnología, asentando los fundamentos lógicos y 
+                        matemáticos clave para afrontar los retos académicos de la ingeniería informática.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="time-date">2006 - 2019</span>
+                    <h3>Colegio Salesiano San Juan Bosco (Morón de la Frontera)</h3>
+                    <p>Toda mi trayectoria escolar desde los 3 años de edad, abarcando las etapas de Educación Infantil, Primaria y Educación Secundaria Obligatoria (ESO). 
+                        Un periodo formativo extenso que sembró los hábitos de constancia, resolución de problemas y trabajo en equipo indispensables en mi día a día.</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+    
+    <Footer />
+</body>
+</html>
