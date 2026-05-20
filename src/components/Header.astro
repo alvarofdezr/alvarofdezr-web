@@ -45,7 +45,7 @@ import HeaderLink from './HeaderLink.astro';
 <style>
 	header {
 		margin: 0;
-		padding: 0 1em;
+		padding: 0;
 		background: white;
 		box-shadow: 0 2px 8px rgba(var(--black), 5%);
 	}
@@ -62,6 +62,9 @@ import HeaderLink from './HeaderLink.astro';
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 0 1em;
 	}
 	nav a {
 		padding: 1em 0.5em;
