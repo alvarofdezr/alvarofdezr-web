@@ -13,97 +13,76 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
     <BaseHead title={title} description={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        /* Page-specific styles — common styles in global.css */
         *, *::before, *::after { box-sizing: border-box; }
 
-        :root {
-            --primary:      #0e75b6;
-            --primary-light:#e8f4fc;
-            --bg:           #fafbfc;
-            --surface:      #ffffff;
-            --border:       #e1e4e8;
-            --border-med:   #d0d7de;
-            --text:         #24292e;
-            --text-2:       #586069;
-            --text-3:       #959da5;
-            --green:        #1a7f37;
-            --green-bg:     #dafbe1;
-            --amber:        #9a6700;
-            --amber-bg:     #fff8c5;
-            --mono:         'IBM Plex Mono', monospace;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
         .wrapper {
-            width: auto;
-            box-sizing: border-box; 
             max-width: 1100px;
             margin: 0 auto;
-            padding: 4rem 2rem 6rem;
+            padding: 4rem 2rem 7rem;
         }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            color: var(--text-2);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 2.5rem;
-            transition: color 0.2s;
-        }
-        .back-link:hover { color: var(--primary); }
+        /* ── Back link ── */
 
+        /* ── Page header ── */
         .page-header {
-            margin-bottom: 4rem;
-            max-width: 680px;
+            margin-bottom: 4.5rem;
+            max-width: 700px;
+            animation: fadeUp 0.5s ease both;
         }
 
-        .eyebrow {
-            font-family: var(--mono);
-            font-size: 0.75rem;
-            color: var(--primary);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
         .eyebrow::after {
             content: '';
             display: inline-block;
             width: 40px;
             height: 1px;
-            background: var(--border);
+            background: var(--primary-border);
         }
 
         .page-header h1 {
-            font-size: clamp(2.2rem, 5vw, 3.4rem);
-            font-weight: 800;
-            color: #111827;
-            letter-spacing: -0.035em;
-            line-height: 1.1;
+            font-family: var(--serif);
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 400;
+            color: var(--text);
+            letter-spacing: -0.025em;
+            line-height: 1.08;
             margin: 0 0 1.25rem;
+        }
+
+        .page-header h1 em {
+            font-style: italic;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        .page-header h1 em::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            height: 2px;
+            width: 0;
+            background: var(--primary-border);
+            border-radius: 2px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s;
+        }
+        .page-header h1 em.drawn::after {
+            width: 100%;
         }
 
         .page-header p {
             font-size: 1.05rem;
-            color: var(--text-2);
-            margin: 0 0 2rem;
-            line-height: 1.65;
+            color: var(--text-muted);
+            margin: 0 0 2.25rem;
+            line-height: 1.7;
+            max-width: 560px;
+            border-left: 2px solid var(--primary-border);
+            padding-left: 1.2rem;
         }
 
+        /* ── Stats bar ── */
         .stats-bar {
             display: flex;
             border: 1px solid var(--border);
@@ -113,84 +92,85 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
             background: var(--surface);
         }
         .stat-item {
-            padding: 0.8rem 1.6rem;
+            padding: 0.85rem 1.75rem;
             border-right: 1px solid var(--border);
+            text-align: center;
         }
         .stat-item:last-child { border-right: none; }
-        .stat-num {
-            display: block;
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--text);
-            letter-spacing: -0.03em;
-            line-height: 1;
-            margin-bottom: 0.2rem;
-        }
+
         .stat-label {
             display: block;
             font-family: var(--mono);
-            font-size: 0.68rem;
-            color: var(--text-3);
-            letter-spacing: 0.08em;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
             text-transform: uppercase;
         }
 
-        /* ── SECURECHAIN ── */
+        /* ── Featured project ── */
         .project-featured {
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            background: var(--surface);
-            padding: 2.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #eef5f8 100%);
+            border: 1px solid #d4e4ec;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 14px 14px 0;
+            padding: 2.75rem;
             margin-bottom: 1.5rem;
             position: relative;
+            overflow: hidden;
             transition: border-color 0.25s, box-shadow 0.25s;
+            animation: fadeUp 0.5s 0.1s ease both;
         }
-        .project-featured::before {
-            content: '';
+        .project-featured::after {
+            content: 'TFG';
             position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 3px;
-            background: var(--primary);
-            border-radius: 12px 12px 0 0;
+            right: -18px;
+            bottom: -28px;
+            font-family: var(--serif);
+            font-size: 9rem;
+            color: rgba(30,106,138,0.05);
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
         }
         .project-featured:hover {
-            border-color: var(--primary);
-            box-shadow: 0 4px 24px rgba(14,117,182,0.08);
+            border-left-color: var(--primary);
+            border-color: var(--primary-border);
+            box-shadow: 0 8px 32px rgba(30,106,138,0.1);
         }
 
         .featured-top {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            gap: 1rem;
         }
+
         .featured-title-row {
             display: flex;
             align-items: center;
-            gap: 0.9rem;
+            gap: 0.85rem;
         }
-        .project-icon { font-size: 1.7rem; line-height: 1; }
 
         .project-title {
-            font-size: 1.85rem;
-            font-weight: 700;
-            color: #111827;
-            letter-spacing: -0.025em;
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--text);
+            letter-spacing: -0.02em;
             margin: 0;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .featured-desc {
-            font-size: 0.97rem;
-            color: var(--text-2);
-            line-height: 1.7;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.75;
             margin: 0 0 1.5rem;
-            max-width: 780px;
+            max-width: 760px;
         }
 
-        /* ecosistemas en fila horizontal */
         .ecosystems {
             display: flex;
             flex-wrap: wrap;
@@ -202,8 +182,8 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
             font-size: 0.7rem;
             color: var(--primary);
             background: var(--primary-light);
-            border: 1px solid rgba(14,117,182,0.2);
-            padding: 0.22rem 0.65rem;
+            border: 1px solid var(--primary-border);
+            padding: 0.22rem 0.7rem;
             border-radius: 4px;
             letter-spacing: 0.04em;
         }
@@ -214,25 +194,26 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
             margin: 0 0 1.75rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 0.5rem 2rem;
+            gap: 0.5rem 2.5rem;
         }
         .features.one-col { grid-template-columns: 1fr; }
         .features li {
             font-size: 0.875rem;
-            color: var(--text-2);
+            color: var(--text-muted);
             display: flex;
             gap: 0.5rem;
             align-items: flex-start;
-            line-height: 1.5;
+            line-height: 1.55;
         }
         .features li::before {
             content: '→';
             color: var(--primary);
-            font-size: 0.75rem;
-            margin-top: 0.2rem;
+            font-size: 0.72rem;
+            margin-top: 0.25rem;
             flex-shrink: 0;
         }
 
+        /* ── Card footer ── */
         .card-footer {
             padding-top: 1.25rem;
             border-top: 1px solid var(--border);
@@ -241,114 +222,116 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
             justify-content: space-between;
             gap: 1rem;
             flex-wrap: wrap;
-        }
-        .tech-stack { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-        .tech-pill {
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            color: var(--text-3);
-            background: var(--bg);
-            border: 1px solid var(--border);
-            padding: 0.18rem 0.55rem;
-            border-radius: 4px;
-            letter-spacing: 0.04em;
-            transition: color 0.2s, border-color 0.2s;
+            grid-column: 1;
         }
         .project-featured:hover .tech-pill,
         .project-card:hover .tech-pill {
-            color: var(--text-2);
+            color: var(--text);
             border-color: var(--border-med);
         }
 
-        .btn-group { display: flex; gap: 0.5rem; }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            font-size: 0.82rem;
-            font-weight: 600;
-            padding: 0.45rem 1rem;
-            border-radius: 6px;
-            text-decoration: none;
-            border: 1px solid;
-            transition: all 0.2s;
-            white-space: nowrap;
-        }
-        .btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
-        .btn-primary:hover { background: #0b5b8e; border-color: #0b5b8e; }
-        .btn-ghost { background: transparent; color: var(--text-2); border-color: var(--border); }
-        .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+        /* ── Buttons ── */
 
-        .badge {
-            font-family: var(--mono);
-            font-size: 0.66rem;
-            font-weight: 500;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            padding: 0.22rem 0.65rem;
-            border-radius: 20px;
-        }
-        .badge-blue  { background: var(--primary-light); color: var(--primary); }
-        .badge-green { background: var(--green-bg); color: var(--green); }
-        .badge-amber { background: var(--amber-bg); color: var(--amber); }
+        /* ── Badges ── */
 
-        /* ── GRIDS ── */
+        /* ── Grids ── */
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .projects-bottom {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            background: var(--surface);
-            padding: 2rem;
             display: flex;
             flex-direction: column;
-            transition: border-color 0.25s, box-shadow 0.25s;
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
         }
-        .project-card:hover {
-            border-color: var(--border-med);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-        }
-        .card-header {
+        .projects-bottom {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.1rem;
-        }
-        .card-meta { display: flex; align-items: center; gap: 0.7rem; }
-        .project-num {
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            color: var(--text-3);
-            letter-spacing: 0.06em;
-        }
-        .card-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #111827;
-            letter-spacing: -0.02em;
-            margin: 0 0 0.6rem;
-            line-height: 1.2;
-        }
-        .card-desc {
-            font-size: 0.9rem;
-            color: var(--text-2);
-            line-height: 1.65;
-            margin: 0 0 1.1rem;
-            flex-grow: 1;
+            flex-direction: column;
+            gap: 1.25rem;
         }
 
+        /* ── Cards ── */
+        .project-card {
+            background: linear-gradient(135deg, #ffffff 0%, #eef5f8 100%);
+            border: 1px solid #d4e4ec;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 14px 14px 0;
+            padding: 2rem 2.25rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-rows: auto auto auto;
+            column-gap: 2.5rem;
+            align-items: start;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+        }
+        .project-card::before {
+            content: attr(data-num);
+            position: absolute;
+            right: -12px;
+            bottom: -22px;
+            font-family: var(--serif);
+            font-size: 7rem;
+            color: rgba(30,106,138,0.06);
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+        .project-card:hover {
+            border-color: var(--primary-border);
+            border-left-color: var(--primary);
+            box-shadow: 0 8px 32px rgba(30,106,138,0.1);
+        }
+
+        .card-header-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.6rem;
+            grid-column: 1;
+        }
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .project-num {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+        }
+        .card-title {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--text);
+            letter-spacing: -0.02em;
+            margin: 0 0 0.5rem;
+            line-height: 1.15;
+            grid-column: 1;
+        }
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin: 0 0 1rem;
+            grid-column: 1;
+            max-width: 680px;
+        }
+        .card-right {
+            grid-column: 2;
+            grid-row: 1 / 4;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 1.25rem;
+            min-width: 160px;
+            padding-top: 0.2rem;
+        }
+
+        /* ── View more ── */
         .view-more {
-            margin-top: 3rem;
+            margin-top: 3.5rem;
             padding-top: 2.5rem;
             border-top: 1px solid var(--border);
             display: flex;
@@ -357,43 +340,57 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
             gap: 1rem;
             flex-wrap: wrap;
         }
-        .view-more p { color: var(--text-2); font-size: 0.95rem; margin: 0; }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(14px); }
-            to   { opacity: 1; transform: translateY(0); }
+        .view-more p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin: 0;
         }
-        .page-header     { animation: fadeUp 0.5s ease both; }
-        .project-featured{ animation: fadeUp 0.5s 0.1s ease both; }
-        .projects-grid   { animation: fadeUp 0.5s 0.18s ease both; }
-        .projects-bottom { animation: fadeUp 0.5s 0.24s ease both; }
 
-        @media (max-width: 900px) {
-            .projects-grid { grid-template-columns: 1fr; }
-            .projects-bottom { grid-template-columns: 1fr; }
+        /* scroll reveal */
+
+        /* stat counter */
+        .stat-num {
+            display: block;
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            color: var(--text);
+            line-height: 1;
+            margin-bottom: 0.25rem;
+            transition: color 0.3s;
+        }
+        .stats-bar.counted .stat-num { color: var(--primary); }
+
+        @media (max-width: 700px) {
+            .project-card {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+            .card-right {
+                grid-column: 1;
+                grid-row: auto;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                min-width: unset;
+                padding-top: 0;
+                margin-top: 0.5rem;
+            }
+            .card-footer { grid-column: 1; }
         }
         @media (max-width: 600px) {
-            .wrapper { padding: 2.5rem 1.5rem 4rem; }
-            .project-featured { padding: 1.75rem; }
-            .project-card { padding: 1.5rem; }
-            .stats-bar { width: 100%; }
-            .stat-item { flex: 1; padding: 0.7rem 1rem; }
-            .card-footer { flex-direction: column; align-items: flex-start; }
-            .view-more { flex-direction: column; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-                opacity: 1 !important;
-            }
+            .wrapper          { padding: 2.5rem 1.25rem 5rem; }
+            .project-featured { padding: 1.75rem 1.5rem; }
+            .project-card     { padding: 1.5rem 1.25rem; }
+            .stats-bar        { width: 100%; }
+            .stat-item        { flex: 1; padding: 0.7rem 0.75rem; }
+            .card-footer      { flex-direction: column; align-items: flex-start; }
+            .view-more        { flex-direction: column; }
+            .featured-top     { flex-direction: column; }
         }
     </style>
 </head>
 <body>
+    <canvas class="page-canvas" id="page-canvas"></canvas>
     <Header />
 
     <main class="wrapper">
@@ -401,8 +398,8 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
         <a href="/" class="back-link">← Volver al inicio</a>
 
         <div class="page-header">
-            <p class="eyebrow">Investigación & Desarrollo</p>
-            <h1>Herramientas que construí<br>para entender.</h1>
+            <span class="eyebrow">Investigación & Desarrollo</span>
+            <h1>Herramientas que construí<br>para <em>entender</em>.</h1>
             <p>
                 Seguridad ofensiva, arquitecturas defensivas y proyectos académicos.
                 Cada línea escrita para aprender más de lo que enseña.
@@ -427,39 +424,38 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
             </div>
         </div>
 
-        <!-- 01 · SECURECHAIN -->
-        <div class="project-featured">
+        <div class="project-featured reveal">
             <div class="featured-top">
                 <div class="featured-title-row">
-                    <span class="project-icon">⛓️</span>
                     <h2 class="project-title">SecureChain</h2>
                     <span class="badge badge-blue">TFG</span>
                 </div>
                 <div class="btn-group">
-                    <a href="https://github.com/alvarofdezr/securechain-ssc-ingestion" target="_blank" class="btn btn-primary">↗ Ingestion</a>
+                    <a href="https://github.com/alvarofdezr/securechain-ssc-ingestion" target="_blank" class="btn btn-primary">↗ Ingesta</a>
                     <a href="https://github.com/alvarofdezr/securechain-depex" target="_blank" class="btn btn-ghost">↗ DepEx</a>
                 </div>
             </div>
 
             <p class="featured-desc">
-                Mi Trabajo de Fin de Grado. Consiste en la ampliación para el ecosistema del lenguaje Go
-                de las herramientas de la plataforma de análisis SecureChain (Ingestion y DepEx). Permite la ingesta masiva
-                de metadatos y la resolución de complejos árboles de dependencias en proyectos Go.
+                Mi Trabajo de Fin de Grado. Ampliación para el ecosistema Go de las herramientas de la plataforma
+                de análisis SecureChain (Ingestion y DepEx). Permite la ingesta masiva de metadatos y la resolución
+                de complejos árboles de dependencias multiecosistema.
             </p>
 
             <div class="ecosystems">
-                <span class="eco-pill">Go modules</span>
-                <span class="eco-pill">Cargo</span>
-                <span class="eco-pill">npm</span>
-                <span class="eco-pill">PyPI</span>
-                <span class="eco-pill">Maven</span>
+                <span class="eco-pill">go.mod</span>
+                <span class="eco-pill">pyproject.toml</span>
+                <span class="eco-pill">requirements.txt</span>
+                <span class="eco-pill">Cargo (Rust)</span>
+                <span class="eco-pill">npm (Node)</span>
+                <span class="eco-pill">NuGet (.NET)</span>
             </div>
 
             <ul class="features">
                 <li>Integración nativa de módulos Go en la arquitectura de microservicios (FastAPI, Redis, Dagster)</li>
                 <li>Resolución formal de restricciones de versiones de Go mediante Z3 Theorem Prover (SMT)</li>
                 <li>Ampliación del motor DepEx para la exploración exhaustiva de dependencias transitivas</li>
-                <li>Generación de SBOMs en formato CycloneDX y SPDX a partir de manifiestos go.mod</li>
+                <li>Generación de SBOMs en formato CycloneDX y SPDX a partir de manifiestos</li>
             </ul>
 
             <div class="card-footer">
@@ -467,25 +463,23 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
                     <span class="tech-pill">Python</span>
                     <span class="tech-pill">Go</span>
                     <span class="tech-pill">FastAPI</span>
+                    <span class="tech-pill">uv</span>
                     <span class="tech-pill">Dagster</span>
                     <span class="tech-pill">Redis</span>
-                    <span class="tech-pill">Z3</span>
+                    <span class="tech-pill">Z3 Prover</span>
                     <span class="tech-pill">Docker</span>
                     <span class="tech-pill">CycloneDX</span>
                 </div>
             </div>
         </div>
 
-        <!-- 02 + 03 -->
         <div class="projects-grid">
 
-            <div class="project-card">
-                <div class="card-header">
+            <div class="project-card reveal" data-num="02">
+                <div class="card-header-row">
                     <div class="card-meta">
-                        <span class="project-icon">🛡️</span>
                         <span class="project-num">02</span>
                     </div>
-                    <span class="badge badge-amber">Active</span>
                 </div>
                 <h2 class="card-title">Aegis Sentinel</h2>
                 <p class="card-desc">
@@ -504,17 +498,18 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
                         <span class="tech-pill">Docker</span>
                         <span class="tech-pill">RBAC</span>
                     </div>
-                    <a href="https://github.com/alvarofdezr/Aegis-sentinel" target="_blank" class="btn btn-ghost">↗ Repo</a>
+                </div>
+                <div class="card-right">
+                    <span class="badge badge-amber">Activo</span>
+                    <a href="https://github.com/alvarofdezr/Aegis-sentinel" target="_blank" class="btn btn-ghost">↗ Repositorio</a>
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="card-header">
+            <div class="project-card reveal" data-num="03">
+                <div class="card-header-row">
                     <div class="card-meta">
-                        <span class="project-icon">🔐</span>
                         <span class="project-num">03</span>
                     </div>
-                    <span class="badge badge-green">v2.0.0</span>
                 </div>
                 <h2 class="card-title">Harpocrates</h2>
                 <p class="card-desc">
@@ -532,22 +527,22 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
                         <span class="tech-pill">Cryptography</span>
                         <span class="tech-pill">CI/CD</span>
                     </div>
-                    <a href="https://github.com/alvarofdezr/Harpocrates" target="_blank" class="btn btn-ghost">↗ Repo</a>
+                </div>
+                <div class="card-right">
+                    <span class="badge badge-green">v2.0.0</span>
+                    <a href="https://github.com/alvarofdezr/Harpocrates" target="_blank" class="btn btn-ghost">↗ Repositorio</a>
                 </div>
             </div>
 
         </div>
 
-        <!-- 04 + 05 + 06 -->
         <div class="projects-bottom">
 
-            <div class="project-card">
-                <div class="card-header">
+            <div class="project-card reveal" data-num="04">
+                <div class="card-header-row">
                     <div class="card-meta">
-                        <span class="project-icon">🐍</span>
                         <span class="project-num">04</span>
                     </div>
-                    <span class="badge badge-green">Completed</span>
                 </div>
                 <h2 class="card-title">Basilisk</h2>
                 <p class="card-desc">
@@ -564,17 +559,18 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
                         <span class="tech-pill">FastAPI</span>
                         <span class="tech-pill">YARA</span>
                     </div>
-                    <a href="https://github.com/alvarofdezr/Basilisk" target="_blank" class="btn btn-ghost">↗ Repo</a>
+                </div>
+                <div class="card-right">
+                    <span class="badge badge-green">Completado</span>
+                    <a href="https://github.com/alvarofdezr/Basilisk" target="_blank" class="btn btn-ghost">↗ Repositorio</a>
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="card-header">
+            <div class="project-card reveal" data-num="05">
+                <div class="card-header-row">
                     <div class="card-meta">
-                        <span class="project-icon">⚔️</span>
                         <span class="project-num">05</span>
                     </div>
-                    <span class="badge badge-amber">Ofensivo</span>
                 </div>
                 <h2 class="card-title">Ares</h2>
                 <p class="card-desc">
@@ -591,17 +587,18 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
                         <span class="tech-pill">Networking</span>
                         <span class="tech-pill">Concurrency</span>
                     </div>
-                    <a href="https://github.com/alvarofdezr/Ares" target="_blank" class="btn btn-ghost">↗ Repo</a>
+                </div>
+                <div class="card-right">
+                    <span class="badge badge-amber">Ofensivo</span>
+                    <a href="https://github.com/alvarofdezr/Ares" target="_blank" class="btn btn-ghost">↗ Repositorio</a>
                 </div>
             </div>
 
-            <div class="project-card">
-                <div class="card-header">
+            <div class="project-card reveal" data-num="06">
+                <div class="card-header-row">
                     <div class="card-meta">
-                        <span class="project-icon">💬</span>
                         <span class="project-num">06</span>
                     </div>
-                    <span class="badge badge-green">Completed</span>
                 </div>
                 <h2 class="card-title">Cript</h2>
                 <p class="card-desc">
@@ -618,7 +615,10 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
                         <span class="tech-pill">E2EE</span>
                         <span class="tech-pill">Cryptography</span>
                     </div>
-                    <a href="https://github.com/alvarofdezr/cript" target="_blank" class="btn btn-ghost">↗ Repo</a>
+                </div>
+                <div class="card-right">
+                    <span class="badge badge-green">Completado</span>
+                    <a href="https://github.com/alvarofdezr/cript" target="_blank" class="btn btn-ghost">↗ Repositorio</a>
                 </div>
             </div>
 
@@ -634,5 +634,186 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
     </main>
 
     <Footer />
+
+    <script>
+    (() => {
+        // ── 1. Underline draw on h1 em ──
+        const em = document.querySelector('.page-header h1 em');
+        if (em) {
+            setTimeout(() => em.classList.add('drawn'), 400);
+        }
+
+        // ── 2. Animated stat counters ──
+        const statsBar = document.querySelector('.stats-bar');
+        const statNums = document.querySelectorAll('.stat-num');
+        const targets  = Array.from(statNums).map(el => parseInt(el.textContent || "0", 10));
+        
+        function animateCounters(): void {
+            const duration = 1000;
+            const start    = performance.now();
+            if (statsBar) statsBar.classList.add('counted');
+
+            function tick(now: number): void {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const ease = 1 - Math.pow(1 - progress, 3);
+                statNums.forEach((el, i) => {
+                    el.textContent = String(Math.round(targets[i] * ease));
+                });
+                if (progress < 1) requestAnimationFrame(tick);
+                else statNums.forEach((el, i) => el.textContent = String(targets[i]));
+            }
+            requestAnimationFrame(tick);
+        }
+
+        const statsObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+        if (statsBar) statsObserver.observe(statsBar);
+
+        // ── 3. Staggered scroll reveal for cards ──
+        const revealEls = document.querySelectorAll('.reveal');
+        const cardObserver = new IntersectionObserver(entries => {
+            const visible = entries.filter(e => e.isIntersecting);
+            visible.sort((a, b) =>
+                a.boundingClientRect.top - b.boundingClientRect.top
+            );
+
+            visible.forEach((entry, i) => {
+                const el = entry.target;
+                setTimeout(() => {
+                    el.classList.add('visible');
+                }, i * 100);
+                cardObserver.unobserve(el);
+            });
+        }, {
+            threshold: 0.08,
+            rootMargin: '0px 0px -40px 0px'
+        });
+        revealEls.forEach(el => cardObserver.observe(el));
+
+        // ── 4. Subtle card tilt on mouse move ──
+        if (window.matchMedia('(hover: hover)').matches) {
+            document.querySelectorAll('.project-card').forEach(el => {
+                const card = el as HTMLElement;
+                card.addEventListener('mousemove', (e: MouseEvent) => {
+                    const rect   = card.getBoundingClientRect();
+                    const cx     = rect.left + rect.width  / 2;
+                    const cy     = rect.top  + rect.height / 2;
+                    const dx     = (e.clientX - cx) / (rect.width  / 2);
+                    const dy     = (e.clientY - cy) / (rect.height / 2);
+                    const rotX   = (-dy * 1.8).toFixed(2);
+                    const rotY   = ( dx * 1.8).toFixed(2);
+                    card.style.transform =
+                        `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                });
+            });
+        }
+    })();
+    </script>
+
+    <script>
+    (() => {
+        // ── Partículas (Corregidas) ──
+        const canvas = document.getElementById('page-canvas') as HTMLCanvasElement | null;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d')!;
+        let W: number = 0;
+        let H: number = 0;
+        let particles: Particle[] = [];
+        const mouse = { x: -999, y: -999 };
+        const isMobile = (): boolean => window.innerWidth < 768;
+
+        function resize(): void {
+            W = canvas!.width  = window.innerWidth;
+            H = canvas!.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', () => { resize(); init(); });
+
+        window.addEventListener('mousemove', (e: MouseEvent) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        window.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
+
+        class Particle {
+            x: number = 0; y: number = 0;
+            vx: number = 0; vy: number = 0;
+            r: number = 0; base: number = 0; alpha: number = 0;
+
+            constructor() { this.reset(); }
+            
+            reset(): void {
+                this.x     = Math.random() * W;
+                this.y     = Math.random() * H;
+                this.vx    = (Math.random() - 0.5) * 0.3;
+                this.vy    = (Math.random() - 0.5) * 0.3;
+                this.r     = Math.random() * 2.2 + 1.2;
+                const mob  = isMobile();
+                this.base  = mob ? Math.random() * 0.45 + 0.35 : Math.random() * 0.35 + 0.25;
+                this.alpha = this.base;
+            }
+            update(): void {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > W) this.vx *= -1;
+                if (this.y < 0 || this.y > H) this.vy *= -1;
+                const dx = mouse.x - this.x, dy = mouse.y - this.y;
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                const target = dist < 130 ? this.base + (1 - dist/130) * 0.6 : this.base;
+                this.alpha += (target - this.alpha) * 0.06;
+            }
+            draw(): void {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+                ctx.fillStyle = `rgba(30,106,138,${this.alpha})`;
+                ctx.fill();
+            }
+        }
+
+        function init(): void {
+            const density = isMobile() ? 6000 : 10000;
+            particles = Array.from({ length: Math.floor((W * H) / density) }, () => new Particle());
+        }
+        init();
+
+        function connect(): void {
+            const maxDist = isMobile() ? 100 : 130;
+            const baseOp  = isMobile() ? 0.22 : 0.18;
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i+1; j < particles.length; j++) {
+                    const a = particles[i], b = particles[j];
+                    const dx = a.x-b.x, dy = a.y-b.y;
+                    const d  = Math.sqrt(dx*dx + dy*dy);
+                    if (d < maxDist) {
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.strokeStyle = `rgba(30,106,138,${(1-d/maxDist)*baseOp})`;
+                        ctx.lineWidth = 1.0; 
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function loop(): void {
+            ctx.clearRect(0, 0, W, H);
+            connect();
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(loop);
+        }
+        loop();
+    })();
+    </script>
 </body>
 </html>

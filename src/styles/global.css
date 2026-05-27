@@ -1,141 +1,207 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+/* ============================================================
+   GLOBAL STYLES — Álvaro Fernández portfolio
+   ============================================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ── Variables ── */
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
-}
-body {
-	font-family: var(--font-atkinson);
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
-}
-main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
-}
-h1 {
-	font-size: 3.052em;
-}
-h2 {
-	font-size: 2.441em;
-}
-h3 {
-	font-size: 1.953em;
-}
-h4 {
-	font-size: 1.563em;
-}
-h5 {
-	font-size: 1.25em;
-}
-strong,
-b {
-	font-weight: 700;
-}
-a {
-	color: var(--accent);
-}
-a:hover {
-	color: var(--accent);
-}
-p {
-	margin-bottom: 1em;
-}
-.prose p {
-	margin-bottom: 2em;
-}
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-input {
-	font-size: 16px;
-}
-table {
-	width: 100%;
-}
-img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
-}
-code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
-}
-pre {
-	padding: 1.5em;
-	border-radius: 8px;
-}
-pre > code {
-	all: unset;
-}
-blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: 1.333em;
-}
-hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-}
-@media (max-width: 720px) {
-	body {
-		font-size: 18px;
-	}
-	main {
-		padding: 1em;
-	}
+    --primary:        #1e6a8a;
+    --primary-light:  rgba(30, 106, 138, 0.07);
+    --primary-border: #b8d0dc;
+    --bg:             #f5f3ef;
+    --surface:        #ffffff;
+    --border:         #e1e4e8;
+    --border-med:     #c8cdd3;
+    --text:           #111518;
+    --text-2:         #4a5560;
+    --text-3:         #8a9099;
+    --green:          #1a6e3a;
+    --green-bg:       #e2f5ea;
+    --amber:          #7a5200;
+    --amber-bg:       #fef3d0;
+    --serif:          'DM Serif Display', serif;
+    --mono:           'DM Mono', monospace;
 }
 
+/* ── Base ── */
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── Partículas (canvas fijo) ── */
+.page-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    -webkit-mask-image:
+        radial-gradient(ellipse 50% 100% at 8%  50%, black 0%, black 40%, transparent 75%),
+        radial-gradient(ellipse 50% 100% at 92% 50%, black 0%, black 40%, transparent 75%);
+    -webkit-mask-composite: source-over;
+    mask-image:
+        radial-gradient(ellipse 50% 100% at 8%  50%, black 0%, black 40%, transparent 75%),
+        radial-gradient(ellipse 50% 100% at 92% 50%, black 0%, black 40%, transparent 75%);
+    mask-composite: add;
+}
+
+/* ── Back link ── */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-3);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    transition: color 0.2s;
+}
+.back-link:hover { color: var(--primary); }
+
+/* ── Eyebrow / section label ── */
+.eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--primary);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    display: block;
+}
+
+.section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin: 3.5rem 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+/* ── Card base con gradiente ── */
+.grad-card {
+    background: linear-gradient(135deg, #ffffff 0%, #eef5f8 100%);
+    border: 1px solid #d4e4ec;
+    border-left: 4px solid var(--primary);
+    border-radius: 0 14px 14px 0;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+}
+.grad-card:hover {
+    border-color: var(--primary-border);
+    border-left-color: var(--primary);
+    box-shadow: 0 8px 28px rgba(30, 106, 138, 0.1);
+    transform: translateY(-3px);
+}
+
+/* ── Botones ── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    padding: 0.5rem 1.1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    border: 1px solid;
+    transition: all 0.2s;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+.btn-primary:hover { background: #155878; border-color: #155878; }
+.btn-ghost { background: transparent; color: var(--text-2); border-color: var(--border); }
+.btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+.btn-group { display: flex; gap: 0.5rem; flex-shrink: 0; }
+
+/* ── Badges ── */
+.badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.22rem 0.7rem;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+.badge-blue  { background: var(--primary-light); color: var(--primary); border: 1px solid var(--primary-border); }
+.badge-green { background: var(--green-bg); color: var(--green); border: 1px solid rgba(26,110,58,0.2); }
+.badge-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(122,82,0,0.2); }
+
+/* ── Tech pills ── */
+.tech-pill {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--primary);
+    background: var(--primary-light);
+    border: 1px solid var(--primary-border);
+    padding: 0.18rem 0.55rem;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+}
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+/* ── Scroll reveal ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1),
+                transform 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Animaciones ── */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Script de partículas compartido ──
+   Cada página llama a initParticles(canvasId) desde su propio <script>
+   ── */
+
+/* ── Accesibilidad ── */
 .sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-	white-space: nowrap;
+    border: 0; padding: 0; margin: 0;
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        opacity: 1 !important;
+    }
 }
