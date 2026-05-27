@@ -328,12 +328,28 @@ const description = "Computer Engineering student specializing in secure softwar
             }
         }
 
+        let animationFrameId: number;
+        let isPageVisible = true;
+
         function loop(): void {
+            if (!isPageVisible) return;
+
             ctx.clearRect(0, 0, W, H);
             connect();
             particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(loop);
+            animationFrameId = requestAnimationFrame(loop);
         }
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                isPageVisible = false;
+                cancelAnimationFrame(animationFrameId);
+            } else {
+                isPageVisible = true;
+                loop();
+            }
+        });
+
         loop();
     })();
     </script>

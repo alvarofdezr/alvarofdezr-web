@@ -11,8 +11,6 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
 <html lang="es">
 <head>
     <BaseHead title={title} description={description} />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         /* Page-specific styles — common styles in global.css */
@@ -806,12 +804,28 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
             }
         }
 
+        let animationFrameId: number;
+        let isPageVisible = true;
+
         function loop(): void {
+            if (!isPageVisible) return;
+
             ctx.clearRect(0, 0, W, H);
             connect();
             particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(loop);
+            animationFrameId = requestAnimationFrame(loop);
         }
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                isPageVisible = false;
+                cancelAnimationFrame(animationFrameId);
+            } else {
+                isPageVisible = true;
+                loop();
+            }
+        });
+
         loop();
     })();
     </script>
