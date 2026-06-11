@@ -3,119 +3,219 @@ import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 ---
 
-<header>
-    <nav>
-        <h2><a href="/">{SITE_TITLE}</a></h2>
-        <div class="internal-links">
-            <HeaderLink href="/">Inicio</HeaderLink>
-            <HeaderLink href="/projects">Proyectos</HeaderLink>
-            <HeaderLink href="/stack">Stack</HeaderLink>
-            <HeaderLink href="/profile">Perfil</HeaderLink>
-        </div>
-        <div class="social-links">
-            <a href="https://github.com/alvarofdezr" target="_blank">
-                <span class="sr-only">Go to GitHub repo</span>
-                <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-                    ><path
-                        fill="currentColor"
-                        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-                    ></path></svg
-                >
-            </a>
-            
-            <a href="https://www.linkedin.com/in/%C3%A1lvaro-fern%C3%A1ndez-71b25a404" target="_blank">
-                <span class="sr-only">Go to LinkedIn profile</span>
-                <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
-                    ><path 
-                        fill="currentColor"
-                        d="M14.82 0H1.18A1.17 1.17 0 000 1.15v13.7A1.17 1.17 0 001.18 16h13.64A1.18 1.18 0 0016 14.85V1.15A1.18 1.18 0 0014.82 0zM4.74 13.68H2.3V5.9h2.45v7.78zM3.52 4.84h-.02a1.22 1.22 0 01-1.23-1.22c0-.68.56-1.23 1.25-1.23s1.23.54 1.24 1.23a1.22 1.22 0 01-1.24 1.22zm10.16 8.84h-2.44V9.82c0-1-.36-1.68-1.26-1.68-.69 0-1.1.46-1.28.91-.07.16-.08.38-.08.61v4.02H6.18s.03-7.05 0-7.78h2.44v1.1c.32-.5 1-1.22 2.24-1.22 1.63 0 2.86 1.07 2.86 3.37v4.51z"
-                    ></path></svg>
-            </a>
-        </div>
+<header class="nav-island" id="fluid-nav">
+    <div class="nav-brand">
+        <a href="/">{SITE_TITLE}</a>
+    </div>
+
+    <!-- Desktop Nav -->
+    <nav class="nav-links desktop-only">
+        <HeaderLink href="/">Inicio</HeaderLink>
+        <HeaderLink href="/projects">Proyectos</HeaderLink>
+        <HeaderLink href="/stack">Stack</HeaderLink>
+        <HeaderLink href="/profile">Perfil</HeaderLink>
     </nav>
+
+    <div class="nav-actions">
+        <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema">
+            <!-- Phosphor Light: Sun -->
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" d="M128 40V16m0 224v-24m62.23-150.23l16.97-16.97M48.8 207.2l16.97-16.97M240 128h-24M40 128H16m175.2 62.23l-16.97-16.97M65.77 65.77L48.8 48.8M128 176a48 48 0 1 0-48-48a48.05 48.05 0 0 0 48 48Z"/></svg>
+            <!-- Phosphor Light: Moon -->
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" d="M216.7 152.6A91.98 91.98 0 0 1 103.4 39.3a92 92 0 1 0 113.3 113.3Z"/></svg>
+        </button>
+
+        <!-- Hamburger Menu for Mobile -->
+        <button id="mobile-menu-btn" class="icon-btn mobile-only" aria-label="Abrir menú">
+            <div class="hamburger-morph">
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+    </div>
 </header>
 
+<!-- Mobile Expanded Menu -->
+<div id="mobile-overlay" class="mobile-overlay">
+    <nav class="mobile-nav-links">
+        <HeaderLink href="/">Inicio</HeaderLink>
+        <HeaderLink href="/projects">Proyectos</HeaderLink>
+        <HeaderLink href="/stack">Stack</HeaderLink>
+        <HeaderLink href="/profile">Perfil</HeaderLink>
+    </nav>
+</div>
+
 <style>
-    header {
-        margin: 0;
-        padding: 0;
-        background: white;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-    }
-    
-    h2 {
-        margin: 0;
-        font-size: 1.1em;
-        font-weight: 700;
-        white-space: nowrap;
+    /* Desktop layout is defined in global.css via .nav-island */
+    .nav-brand a {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: var(--text-primary);
+        text-decoration: none;
+        letter-spacing: -0.02em;
     }
 
-    h2 a, h2 a.active {
-        text-decoration: none;
-        color: #111827;
-    }
-    
-    nav {
+    .nav-links {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 0.8em 1.5em;
-        gap: 1em;
+        gap: 2rem;
     }
-    
-    .internal-links {
-        display: flex;
-        align-items: center;
-        gap: 1.5em;
-    }
-    
-    nav a {
-        padding: 0.5em 0;
-        color: #4b5563;
-        border-bottom: 2px solid transparent;
-        text-decoration: none;
-        font-size: 0.95em;
+
+    .nav-links a {
+        font-family: var(--font-body);
+        font-size: 0.9rem;
         font-weight: 500;
-        transition: color 0.2s, border-color 0.2s;
-    }
-    
-    nav a:hover,
-    nav a.active {
-        color: #0e75b6;
-        border-bottom-color: #0e75b6;
-    }
-    
-    .social-links {
-        display: flex;
-        align-items: center;
-        gap: 0.5em;
-        color: #4b5563;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color 0.4s var(--ease-spring);
     }
 
-    .social-links a:hover {
-        color: #0e75b6;
+    .nav-links a:hover,
+    .nav-links a.active {
+        color: var(--text-primary);
     }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .icon-btn {
+        background: transparent;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        transition: color 0.4s var(--ease-spring), background 0.4s var(--ease-spring), transform 0.4s var(--ease-spring);
+    }
+
+    .icon-btn:hover {
+        color: var(--text-primary);
+        background: rgba(255, 255, 255, 0.05);
+        transform: scale(1.05);
+    }
+
+    html:not(.dark) .icon-btn:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    .sun-icon { display: none; }
+    .moon-icon { display: block; }
+    html.dark .sun-icon { display: block; }
+    html.dark .moon-icon { display: none; }
+
+    /* Mobile Morph */
+    .mobile-only { display: none; }
+    .desktop-only { display: flex; }
+
+    .hamburger-morph {
+        position: relative;
+        width: 18px;
+        height: 12px;
+    }
+    .hamburger-morph span {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 1.5px;
+        background: currentColor;
+        transition: all 0.5s var(--ease-spring);
+        transform-origin: center;
+    }
+    .hamburger-morph span:first-child { top: 0; }
+    .hamburger-morph span:last-child { bottom: 0; }
     
+    .is-open .hamburger-morph span:first-child { transform: translateY(5px) rotate(45deg); }
+    .is-open .hamburger-morph span:last-child { transform: translateY(-5.5px) rotate(-45deg); }
+
+    /* Mobile Overlay */
+    .mobile-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 40;
+        background: var(--bg-base);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s var(--ease-in-out);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+    }
+    .mobile-overlay.is-active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        text-align: center;
+    }
+
+    .mobile-nav-links a {
+        font-family: var(--font-display);
+        font-size: 2.5rem;
+        font-weight: 500;
+        color: var(--text-primary);
+        text-decoration: none;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s var(--ease-spring);
+    }
+
+    .mobile-overlay.is-active .mobile-nav-links a {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .mobile-overlay.is-active .mobile-nav-links a:nth-child(1) { transition-delay: 0.1s; }
+    .mobile-overlay.is-active .mobile-nav-links a:nth-child(2) { transition-delay: 0.15s; }
+    .mobile-overlay.is-active .mobile-nav-links a:nth-child(3) { transition-delay: 0.2s; }
+    .mobile-overlay.is-active .mobile-nav-links a:nth-child(4) { transition-delay: 0.25s; }
+
     @media (max-width: 768px) {
-        nav {
-            padding: 1em;
-            flex-direction: column;
-            gap: 1em;
-        }
-        
-        .internal-links {
-            justify-content: center;
-            flex-wrap: wrap; 
-            gap: 0.5em 1.5em;
-        }
-        
-        .social-links {
-            display: none;
-        }
+        .mobile-only { display: flex; }
+        .desktop-only { display: none; }
     }
 </style>
+
+<script>
+    const setupHeader = () => {
+        // Theme toggle logic
+        const toggle = document.getElementById('theme-toggle');
+        if (toggle) {
+            toggle.replaceWith(toggle.cloneNode(true));
+            const newToggle = document.getElementById('theme-toggle');
+            newToggle?.addEventListener('click', () => {
+                const element = document.documentElement;
+                element.classList.toggle('dark');
+                localStorage.setItem('theme', element.classList.contains('dark') ? 'dark' : 'light');
+            });
+        }
+
+        // Mobile menu logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const overlay = document.getElementById('mobile-overlay');
+        if (mobileBtn && overlay) {
+            mobileBtn.replaceWith(mobileBtn.cloneNode(true));
+            const newMobileBtn = document.getElementById('mobile-menu-btn');
+            
+            newMobileBtn?.addEventListener('click', () => {
+                newMobileBtn.classList.toggle('is-open');
+                overlay.classList.toggle('is-active');
+                document.body.style.overflow = overlay.classList.contains('is-active') ? 'hidden' : '';
+            });
+        }
+    };
+
+    setupHeader();
+    document.addEventListener('astro:after-swap', setupHeader);
+</script>

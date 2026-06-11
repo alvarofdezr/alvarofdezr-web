@@ -11,823 +11,359 @@ const description = "Portfolio de proyectos destacados en ciberseguridad, EDR y 
 <html lang="es">
 <head>
     <BaseHead title={title} description={description} />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        /* Page-specific styles — common styles in global.css */
-        *, *::before, *::after { box-sizing: border-box; }
-
-        .wrapper {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 4rem 2rem 7rem;
-        }
-
-        /* ── Back link ── */
-
-        /* ── Page header ── */
-        .page-header {
-            margin-bottom: 4.5rem;
-            max-width: 700px;
-            animation: fadeUp 0.5s ease both;
-        }
-
-        .eyebrow::after {
-            content: '';
-            display: inline-block;
-            width: 40px;
-            height: 1px;
-            background: var(--primary-border);
-        }
-
-        .page-header h1 {
-            font-family: var(--serif);
-            font-size: clamp(2.4rem, 5vw, 3.8rem);
-            font-weight: 400;
-            color: var(--text);
-            letter-spacing: -0.025em;
-            line-height: 1.08;
-            margin: 0 0 1.25rem;
-        }
-
-        .page-header h1 em {
-            font-style: italic;
-            color: var(--primary);
-            position: relative;
-            display: inline-block;
-        }
-        .page-header h1 em::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            left: 0;
-            height: 2px;
-            width: 0;
-            background: var(--primary-border);
-            border-radius: 2px;
-            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s;
-        }
-        .page-header h1 em.drawn::after {
-            width: 100%;
-        }
-
-        .page-header p {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            margin: 0 0 2.25rem;
-            line-height: 1.7;
-            max-width: 560px;
-            border-left: 2px solid var(--primary-border);
-            padding-left: 1.2rem;
-        }
-
-        /* ── Stats bar ── */
-        .stats-bar {
-            display: flex;
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            overflow: hidden;
-            width: fit-content;
-            background: var(--surface);
-        }
-        .stat-item {
-            padding: 0.85rem 1.75rem;
-            border-right: 1px solid var(--border);
-            text-align: center;
-        }
-        .stat-item:last-child { border-right: none; }
-
-        .stat-label {
-            display: block;
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        /* ── Featured project ── */
-        .project-featured {
-            background: linear-gradient(135deg, #ffffff 0%, #eef5f8 100%);
-            border: 1px solid #d4e4ec;
-            border-left: 4px solid var(--primary);
-            border-radius: 0 14px 14px 0;
-            padding: 2.75rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: border-color 0.25s, box-shadow 0.25s;
-            animation: fadeUp 0.5s 0.1s ease both;
-        }
-        .project-featured::after {
-            content: 'TFG';
-            position: absolute;
-            right: -18px;
-            bottom: -28px;
-            font-family: var(--serif);
-            font-size: 9rem;
-            color: rgba(30,106,138,0.05);
-            line-height: 1;
-            pointer-events: none;
-            user-select: none;
-        }
-        .project-featured:hover {
-            border-left-color: var(--primary);
-            border-color: var(--primary-border);
-            box-shadow: 0 8px 32px rgba(30,106,138,0.1);
-        }
-
-        .featured-top {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            margin-bottom: 1.5rem;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .featured-title-row {
-            display: flex;
-            align-items: center;
-            gap: 0.85rem;
-        }
-
-        .project-title {
-            font-family: var(--serif);
-            font-size: 2rem;
-            font-weight: 400;
-            color: var(--text);
-            letter-spacing: -0.02em;
-            margin: 0;
-            line-height: 1.1;
-        }
-
-        .featured-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.75;
-            margin: 0 0 1.5rem;
-            max-width: 760px;
-        }
-
-        .ecosystems {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-bottom: 1.5rem;
-        }
-        .eco-pill {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            color: var(--primary);
-            background: var(--primary-light);
-            border: 1px solid var(--primary-border);
-            padding: 0.22rem 0.7rem;
-            border-radius: 4px;
-            letter-spacing: 0.04em;
-        }
-
-        .features {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 1.75rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 0.5rem 2.5rem;
-        }
-        .features.one-col { grid-template-columns: 1fr; }
-        .features li {
-            font-size: 0.875rem;
-            color: var(--text-muted);
-            display: flex;
-            gap: 0.5rem;
-            align-items: flex-start;
-            line-height: 1.55;
-        }
-        .features li::before {
-            content: '→';
-            color: var(--primary);
-            font-size: 0.72rem;
-            margin-top: 0.25rem;
-            flex-shrink: 0;
-        }
-
-        /* ── Card footer ── */
-        .card-footer {
-            padding-top: 1.25rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            flex-wrap: wrap;
-            grid-column: 1;
-        }
-        .project-featured:hover .tech-pill,
-        .project-card:hover .tech-pill {
-            color: var(--text);
-            border-color: var(--border-med);
-        }
-
-        /* ── Buttons ── */
-
-        /* ── Badges ── */
-
-        /* ── Grids ── */
-        .projects-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-            margin-bottom: 1.25rem;
-        }
-        .projects-bottom {
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
-
-        /* ── Cards ── */
-        .project-card {
-            background: linear-gradient(135deg, #ffffff 0%, #eef5f8 100%);
-            border: 1px solid #d4e4ec;
-            border-left: 4px solid var(--primary);
-            border-radius: 0 14px 14px 0;
-            padding: 2rem 2.25rem;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            grid-template-rows: auto auto auto;
-            column-gap: 2.5rem;
-            align-items: start;
-            position: relative;
-            overflow: hidden;
-            transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-        }
-        .project-card::before {
-            content: attr(data-num);
-            position: absolute;
-            right: -12px;
-            bottom: -22px;
-            font-family: var(--serif);
-            font-size: 7rem;
-            color: rgba(30,106,138,0.06);
-            line-height: 1;
-            pointer-events: none;
-            user-select: none;
-        }
-        .project-card:hover {
-            border-color: var(--primary-border);
-            border-left-color: var(--primary);
-            box-shadow: 0 8px 32px rgba(30,106,138,0.1);
-        }
-
-        .card-header-row {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.6rem;
-            grid-column: 1;
-        }
-        .card-meta {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-        .project-num {
-            font-family: var(--mono);
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            letter-spacing: 0.08em;
-        }
-        .card-title {
-            font-family: var(--serif);
-            font-size: 1.6rem;
-            font-weight: 400;
-            color: var(--text);
-            letter-spacing: -0.02em;
-            margin: 0 0 0.5rem;
-            line-height: 1.15;
-            grid-column: 1;
-        }
-        .card-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin: 0 0 1rem;
-            grid-column: 1;
-            max-width: 680px;
-        }
-        .card-right {
-            grid-column: 2;
-            grid-row: 1 / 4;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 1.25rem;
-            min-width: 160px;
-            padding-top: 0.2rem;
-        }
-
-        /* ── View more ── */
-        .view-more {
-            margin-top: 3.5rem;
-            padding-top: 2.5rem;
-            border-top: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .view-more p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin: 0;
-        }
-
-        /* scroll reveal */
-
-        /* stat counter */
-        .stat-num {
-            display: block;
-            font-family: var(--serif);
-            font-size: 1.6rem;
-            color: var(--text);
-            line-height: 1;
-            margin-bottom: 0.25rem;
-            transition: color 0.3s;
-        }
-        .stats-bar.counted .stat-num { color: var(--primary); }
-
-        @media (max-width: 700px) {
-            .project-card {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-            }
-            .card-right {
-                grid-column: 1;
-                grid-row: auto;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                min-width: unset;
-                padding-top: 0;
-                margin-top: 0.5rem;
-            }
-            .card-footer { grid-column: 1; }
-        }
-        @media (max-width: 600px) {
-            .wrapper          { padding: 2.5rem 1.25rem 5rem; }
-            .project-featured { padding: 1.75rem 1.5rem; }
-            .project-card     { padding: 1.5rem 1.25rem; }
-            .stats-bar        { width: 100%; }
-            .stat-item        { flex: 1; padding: 0.7rem 0.75rem; }
-            .card-footer      { flex-direction: column; align-items: flex-start; }
-            .view-more        { flex-direction: column; }
-            .featured-top     { flex-direction: column; }
-        }
-    </style>
 </head>
 <body>
-    <canvas class="page-canvas" id="page-canvas"></canvas>
+    <div class="mesh-bg"></div>
     <Header />
 
-    <main class="wrapper">
+    <main class="container layout-wrapper">
+        <a href="/" class="btn-magnetic back-btn reveal-up">
+            <div class="icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M216 128H40m72-72l-72 72l72 72"/></svg>
+            </div>
+            Volver al inicio
+        </a>
 
-        <a href="/" class="back-link">← Volver al inicio</a>
-
-        <div class="page-header">
+        <header class="page-header reveal-up" style="transition-delay: 0.1s;">
             <span class="eyebrow">Investigación & Desarrollo</span>
-            <h1>Herramientas que construí<br>para <em>entender</em>.</h1>
-            <p>
+            <h1 class="page-title">
+                Arquitecturas para <br>
+                <span class="text-accent">Entender.</span>
+            </h1>
+            <p class="page-desc">
                 Seguridad ofensiva, arquitecturas defensivas y proyectos académicos.
-                Cada línea escrita para aprender más de lo que enseña.
-            </p>
-            <div class="stats-bar">
-                <div class="stat-item">
-                    <span class="stat-num">6</span>
-                    <span class="stat-label">Proyectos</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-num">4</span>
-                    <span class="stat-label">Lenguajes</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-num">2</span>
-                    <span class="stat-label">EDRs</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-num">1</span>
-                    <span class="stat-label">TFG</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="project-featured reveal">
-            <div class="featured-top">
-                <div class="featured-title-row">
-                    <h2 class="project-title">SecureChain</h2>
-                    <span class="badge badge-blue">TFG</span>
-                </div>
-                <div class="btn-group">
-                    <a href="https://github.com/alvarofdezr/securechain-ssc-ingestion" target="_blank" class="btn btn-primary">↗ Ingesta</a>
-                    <a href="https://github.com/alvarofdezr/securechain-depex" target="_blank" class="btn btn-ghost">↗ DepEx</a>
-                </div>
-            </div>
-
-            <p class="featured-desc">
-                Mi Trabajo de Fin de Grado. Ampliación para el ecosistema Go de las herramientas de la plataforma
-                de análisis SecureChain (Ingestion y DepEx). Permite la ingesta masiva de metadatos y la resolución
-                de complejos árboles de dependencias multiecosistema.
+                Cada línea de código fue escrita para aprender más de lo que enseña.
             </p>
 
-            <div class="ecosystems">
-                <span class="eco-pill">go.mod</span>
-                <span class="eco-pill">pyproject.toml</span>
-                <span class="eco-pill">requirements.txt</span>
-                <span class="eco-pill">Cargo (Rust)</span>
-                <span class="eco-pill">npm (Node)</span>
-                <span class="eco-pill">NuGet (.NET)</span>
-            </div>
-
-            <ul class="features">
-                <li>Integración nativa de módulos Go en la arquitectura de microservicios (FastAPI, Redis, Dagster)</li>
-                <li>Resolución formal de restricciones de versiones de Go mediante Z3 Theorem Prover (SMT)</li>
-                <li>Ampliación del motor DepEx para la exploración exhaustiva de dependencias transitivas</li>
-                <li>Generación de SBOMs en formato CycloneDX y SPDX a partir de manifiestos</li>
-            </ul>
-
-            <div class="card-footer">
-                <div class="tech-stack">
-                    <span class="tech-pill">Python</span>
-                    <span class="tech-pill">Go</span>
-                    <span class="tech-pill">FastAPI</span>
-                    <span class="tech-pill">uv</span>
-                    <span class="tech-pill">Dagster</span>
-                    <span class="tech-pill">Redis</span>
-                    <span class="tech-pill">Z3 Prover</span>
-                    <span class="tech-pill">Docker</span>
-                    <span class="tech-pill">CycloneDX</span>
+            <div class="stats-glass bezel-outer">
+                <div class="bezel-inner stats-inner">
+                    <div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Proyectos</span></div>
+                    <div class="stat-item"><span class="stat-num">4</span><span class="stat-label">Lenguajes</span></div>
+                    <div class="stat-item"><span class="stat-num">2</span><span class="stat-label">EDRs</span></div>
+                    <div class="stat-item"><span class="stat-num">1</span><span class="stat-label">TFG</span></div>
                 </div>
             </div>
-        </div>
+        </header>
 
         <div class="projects-grid">
-
-            <div class="project-card reveal" data-num="02">
-                <div class="card-header-row">
-                    <div class="card-meta">
-                        <span class="project-num">02</span>
+            <!-- Project 1: SecureChain -->
+            <article class="project-card bezel-outer reveal-up" style="transition-delay: 0.1s;">
+                <div class="bezel-inner">
+                    <div class="card-top">
+                        <div class="title-wrap">
+                            <h2>SecureChain</h2>
+                            <span class="pill-badge accent-badge">TFG</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/alvarofdezr/securechain-ssc-ingestion" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
+                                ssc-ingestion
+                                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg></div>
+                            </a>
+                            <a href="https://github.com/alvarofdezr/securechain-depex" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
+                                depex
+                                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg></div>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <h2 class="card-title">Aegis Sentinel</h2>
-                <p class="card-desc">
-                    Plataforma EDR de próxima generación. Evoluciona la arquitectura base de Basilisk
-                    para ofrecer capacidades avanzadas de monitorización y respuesta automatizada.
-                </p>
-                <ul class="features one-col">
-                    <li>Monitorización mejorada: procesos, red, FIM y USB</li>
-                    <li>Escaneo YARA + inteligencia de VirusTotal integrada</li>
-                    <li>C2 HTTPS con control de acceso por roles (RBAC)</li>
-                </ul>
-                <div class="card-footer">
+                    <p class="project-desc">Ampliación para el ecosistema Go de las herramientas de la plataforma de análisis SecureChain. Ingesta masiva de metadatos y resolución de complejos árboles de dependencias multiecosistema mediante Z3 Theorem Prover.</p>
                     <div class="tech-stack">
-                        <span class="tech-pill">Python</span>
-                        <span class="tech-pill">EDR</span>
-                        <span class="tech-pill">Docker</span>
-                        <span class="tech-pill">RBAC</span>
+                        <span>Python</span><span>Go</span><span>FastAPI</span><span>Dagster</span><span>Z3 Prover</span>
                     </div>
                 </div>
-                <div class="card-right">
-                    <span class="badge badge-amber">Activo</span>
-                    <a href="https://github.com/alvarofdezr/Aegis-sentinel" target="_blank" class="btn btn-ghost">↗ Repositorio</a>
-                </div>
-            </div>
+            </article>
 
-            <div class="project-card reveal" data-num="03">
-                <div class="card-header-row">
-                    <div class="card-meta">
-                        <span class="project-num">03</span>
+            <!-- Project 2: Aegis Sentinel -->
+            <article class="project-card bezel-outer reveal-up" style="transition-delay: 0.2s;">
+                <div class="bezel-inner">
+                    <div class="card-top">
+                        <div class="title-wrap">
+                            <h2>Aegis Sentinel</h2>
+                            <span class="pill-badge outline-badge">Activo</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/alvarofdezr/Aegis-sentinel" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
+                                Repositorio
+                                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg></div>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <h2 class="card-title">Harpocrates</h2>
-                <p class="card-desc">
-                    Gestor de contraseñas CLI/GUI con arquitectura local Zero-Trust. Seguridad
-                    de grado militar para almacenamiento de credenciales sin depender de la nube.
-                </p>
-                <ul class="features one-col">
-                    <li>Bóveda de doble factor: Master Password + 128-bit Secret Key</li>
-                    <li>Cifrado AES-256-GCM con derivación Argon2id</li>
-                    <li>Log de auditoría antimanipulación</li>
-                </ul>
-                <div class="card-footer">
+                    <p class="project-desc">Plataforma EDR de próxima generación. Evoluciona la arquitectura base de Basilisk para ofrecer capacidades avanzadas de monitorización y respuesta automatizada, con escaneo YARA y control de acceso RBAC.</p>
                     <div class="tech-stack">
-                        <span class="tech-pill">Python</span>
-                        <span class="tech-pill">Cryptography</span>
-                        <span class="tech-pill">CI/CD</span>
+                        <span>Python</span><span>EDR</span><span>Docker</span><span>RBAC</span>
                     </div>
                 </div>
-                <div class="card-right">
-                    <span class="badge badge-green">v2.0.0</span>
-                    <a href="https://github.com/alvarofdezr/Harpocrates" target="_blank" class="btn btn-ghost">↗ Repositorio</a>
+            </article>
+
+            <!-- Project 3: Harpocrates -->
+            <article class="project-card bezel-outer reveal-up">
+                <div class="bezel-inner">
+                    <div class="card-top">
+                        <div class="title-wrap">
+                            <h2>Harpocrates</h2>
+                            <span class="pill-badge outline-badge">v2.0.0</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/alvarofdezr/Harpocrates" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
+                                Repositorio
+                                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg></div>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="project-desc">Gestor de contraseñas CLI/GUI con arquitectura local Zero-Trust. Seguridad de grado militar para almacenamiento de credenciales sin depender de la nube, cifrado AES-256-GCM y derivación Argon2id.</p>
+                    <div class="tech-stack">
+                        <span>Python</span><span>Cryptography</span><span>Zero-Trust</span>
+                    </div>
                 </div>
-            </div>
+            </article>
+
+            <!-- Project 4: Basilisk -->
+            <article class="project-card bezel-outer reveal-up">
+                <div class="bezel-inner">
+                    <div class="card-top">
+                        <div class="title-wrap">
+                            <h2>Basilisk</h2>
+                            <span class="pill-badge outline-badge">Completado</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/alvarofdezr/Basilisk" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
+                                Repositorio
+                                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg></div>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="project-desc">Sistema EDR modular base con agente de bajo nivel, servidor C2 y dashboard web en tiempo real. Monitorización de red, procesos, FIM y registro. Base arquitectónica de Aegis Sentinel.</p>
+                    <div class="tech-stack">
+                        <span>Python</span><span>FastAPI</span><span>YARA</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 5: Ares -->
+            <article class="project-card bezel-outer reveal-up">
+                <div class="bezel-inner">
+                    <div class="card-top">
+                        <div class="title-wrap">
+                            <h2>Ares</h2>
+                            <span class="pill-badge warning-badge">Ofensivo</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/alvarofdezr/Ares" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
+                                Repositorio
+                                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg></div>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="project-desc">Toolkit de seguridad ofensiva de alto rendimiento para reconocimiento de redes, descubrimiento de vulnerabilidades y automatización de payloads. Motor de escaneo de puertos altamente concurrente en Go.</p>
+                    <div class="tech-stack">
+                        <span>Go</span><span>Networking</span><span>Concurrency</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project 6: Cript -->
+            <article class="project-card bezel-outer reveal-up">
+                <div class="bezel-inner">
+                    <div class="card-top">
+                        <div class="title-wrap">
+                            <h2>Cript</h2>
+                            <span class="pill-badge outline-badge">Completado</span>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://github.com/alvarofdezr/cript" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
+                                Repositorio
+                                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg></div>
+                            </a>
+                        </div>
+                    </div>
+                    <p class="project-desc">Framework didáctico de simulación de protocolos criptográficos seguros. Implementa canales E2EE con Double Ratchet y derivación de claves HKDF.</p>
+                    <div class="tech-stack">
+                        <span>Python</span><span>E2EE</span><span>Cryptography</span>
+                    </div>
+                </div>
+            </article>
 
         </div>
-
-        <div class="projects-bottom">
-
-            <div class="project-card reveal" data-num="04">
-                <div class="card-header-row">
-                    <div class="card-meta">
-                        <span class="project-num">04</span>
-                    </div>
-                </div>
-                <h2 class="card-title">Basilisk</h2>
-                <p class="card-desc">
-                    Sistema EDR modular base con agente de bajo nivel, servidor C2 y dashboard
-                    web en tiempo real. Base arquitectónica de Aegis Sentinel.
-                </p>
-                <ul class="features one-col">
-                    <li>Monitorización de red, procesos, FIM y registro</li>
-                    <li>Integración de escaneo con reglas YARA</li>
-                </ul>
-                <div class="card-footer">
-                    <div class="tech-stack">
-                        <span class="tech-pill">Python</span>
-                        <span class="tech-pill">FastAPI</span>
-                        <span class="tech-pill">YARA</span>
-                    </div>
-                </div>
-                <div class="card-right">
-                    <span class="badge badge-green">Completado</span>
-                    <a href="https://github.com/alvarofdezr/Basilisk" target="_blank" class="btn btn-ghost">↗ Repositorio</a>
-                </div>
-            </div>
-
-            <div class="project-card reveal" data-num="05">
-                <div class="card-header-row">
-                    <div class="card-meta">
-                        <span class="project-num">05</span>
-                    </div>
-                </div>
-                <h2 class="card-title">Ares</h2>
-                <p class="card-desc">
-                    Toolkit de seguridad ofensiva de alto rendimiento para reconocimiento de
-                    redes, descubrimiento de vulnerabilidades y automatización de payloads.
-                </p>
-                <ul class="features one-col">
-                    <li>Motor de escaneo de puertos altamente concurrente</li>
-                    <li>Arquitectura modular para nuevos exploits</li>
-                </ul>
-                <div class="card-footer">
-                    <div class="tech-stack">
-                        <span class="tech-pill">Go</span>
-                        <span class="tech-pill">Networking</span>
-                        <span class="tech-pill">Concurrency</span>
-                    </div>
-                </div>
-                <div class="card-right">
-                    <span class="badge badge-amber">Ofensivo</span>
-                    <a href="https://github.com/alvarofdezr/Ares" target="_blank" class="btn btn-ghost">↗ Repositorio</a>
-                </div>
-            </div>
-
-            <div class="project-card reveal" data-num="06">
-                <div class="card-header-row">
-                    <div class="card-meta">
-                        <span class="project-num">06</span>
-                    </div>
-                </div>
-                <h2 class="card-title">Cript</h2>
-                <p class="card-desc">
-                    Framework didáctico de simulación de protocolos criptográficos seguros.
-                    Canales E2EE con Double Ratchet y derivación HKDF.
-                </p>
-                <ul class="features one-col">
-                    <li>Comunicación segura End-to-End (E2EE)</li>
-                    <li>Derivación HKDF + mecanismo Double Ratchet</li>
-                </ul>
-                <div class="card-footer">
-                    <div class="tech-stack">
-                        <span class="tech-pill">Python</span>
-                        <span class="tech-pill">E2EE</span>
-                        <span class="tech-pill">Cryptography</span>
-                    </div>
-                </div>
-                <div class="card-right">
-                    <span class="badge badge-green">Completado</span>
-                    <a href="https://github.com/alvarofdezr/cript" target="_blank" class="btn btn-ghost">↗ Repositorio</a>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="view-more">
-            <p>¿Buscas configuraciones, scripts menores o mi actividad diaria?</p>
-            <a href="https://github.com/alvarofdezr" target="_blank" class="btn btn-ghost">
-                Ver todos los repositorios en GitHub →
-            </a>
-        </div>
-
     </main>
 
     <Footer />
 
-    <script>
-    (() => {
-        // ── 1. Underline draw on h1 em ──
-        const em = document.querySelector('.page-header h1 em');
-        if (em) {
-            setTimeout(() => em.classList.add('drawn'), 400);
+    <style>
+        .layout-wrapper {
+            padding-top: clamp(8rem, 20vh, 14rem);
+            padding-bottom: 6rem;
         }
 
-        // ── 2. Animated stat counters ──
-        const statsBar = document.querySelector('.stats-bar');
-        const statNums = document.querySelectorAll('.stat-num');
-        const targets  = Array.from(statNums).map(el => parseInt(el.textContent || "0", 10));
-        
-        function animateCounters(): void {
-            const duration = 1000;
-            const start    = performance.now();
-            if (statsBar) statsBar.classList.add('counted');
-
-            function tick(now: number): void {
-                const elapsed = now - start;
-                const progress = Math.min(elapsed / duration, 1);
-                const ease = 1 - Math.pow(1 - progress, 3);
-                statNums.forEach((el, i) => {
-                    el.textContent = String(Math.round(targets[i] * ease));
-                });
-                if (progress < 1) requestAnimationFrame(tick);
-                else statNums.forEach((el, i) => el.textContent = String(targets[i]));
-            }
-            requestAnimationFrame(tick);
+        .back-btn {
+            background: transparent;
+            color: var(--text-secondary);
+            padding-left: 0.5rem;
+            margin-bottom: 3rem;
+            flex-direction: row-reverse;
         }
 
-        const statsObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    statsObserver.disconnect();
-                }
-            });
-        }, { threshold: 0.5 });
-        if (statsBar) statsObserver.observe(statsBar);
+        .back-btn .icon-wrapper { background: transparent; }
+        .back-btn:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); }
+        .back-btn:hover .icon-wrapper { transform: translateX(-4px); }
 
-        // ── 3. Staggered scroll reveal for cards ──
-        const revealEls = document.querySelectorAll('.reveal');
-        const cardObserver = new IntersectionObserver(entries => {
-            const visible = entries.filter(e => e.isIntersecting);
-            visible.sort((a, b) =>
-                a.boundingClientRect.top - b.boundingClientRect.top
-            );
-
-            visible.forEach((entry, i) => {
-                const el = entry.target;
-                setTimeout(() => {
-                    el.classList.add('visible');
-                }, i * 100);
-                cardObserver.unobserve(el);
-            });
-        }, {
-            threshold: 0.08,
-            rootMargin: '0px 0px -40px 0px'
-        });
-        revealEls.forEach(el => cardObserver.observe(el));
-
-        // ── 4. Subtle card tilt on mouse move ──
-        if (window.matchMedia('(hover: hover)').matches) {
-            document.querySelectorAll('.project-card').forEach(el => {
-                const card = el as HTMLElement;
-                card.addEventListener('mousemove', (e: MouseEvent) => {
-                    const rect   = card.getBoundingClientRect();
-                    const cx     = rect.left + rect.width  / 2;
-                    const cy     = rect.top  + rect.height / 2;
-                    const dx     = (e.clientX - cx) / (rect.width  / 2);
-                    const dy     = (e.clientY - cy) / (rect.height / 2);
-                    const rotX   = (-dy * 1.8).toFixed(2);
-                    const rotY   = ( dx * 1.8).toFixed(2);
-                    card.style.transform =
-                        `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
-                });
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = '';
-                });
-            });
-        }
-    })();
-    </script>
-
-    <script>
-    (() => {
-        // ── Partículas (Corregidas) ──
-        const canvas = document.getElementById('page-canvas') as HTMLCanvasElement | null;
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d')!;
-        let W: number = 0;
-        let H: number = 0;
-        let particles: Particle[] = [];
-        const mouse = { x: -999, y: -999 };
-        const isMobile = (): boolean => window.innerWidth < 768;
-
-        function resize(): void {
-            W = canvas!.width  = window.innerWidth;
-            H = canvas!.height = window.innerHeight;
-        }
-        resize();
-        window.addEventListener('resize', () => { resize(); init(); });
-
-        window.addEventListener('mousemove', (e: MouseEvent) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
-        window.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
-
-        class Particle {
-            x: number = 0; y: number = 0;
-            vx: number = 0; vy: number = 0;
-            r: number = 0; base: number = 0; alpha: number = 0;
-
-            constructor() { this.reset(); }
-            
-            reset(): void {
-                this.x     = Math.random() * W;
-                this.y     = Math.random() * H;
-                this.vx    = (Math.random() - 0.5) * 0.3;
-                this.vy    = (Math.random() - 0.5) * 0.3;
-                this.r     = Math.random() * 2.2 + 1.2;
-                const mob  = isMobile();
-                this.base  = mob ? Math.random() * 0.45 + 0.35 : Math.random() * 0.35 + 0.25;
-                this.alpha = this.base;
-            }
-            update(): void {
-                this.x += this.vx;
-                this.y += this.vy;
-                if (this.x < 0 || this.x > W) this.vx *= -1;
-                if (this.y < 0 || this.y > H) this.vy *= -1;
-                const dx = mouse.x - this.x, dy = mouse.y - this.y;
-                const dist = Math.sqrt(dx*dx + dy*dy);
-                const target = dist < 130 ? this.base + (1 - dist/130) * 0.6 : this.base;
-                this.alpha += (target - this.alpha) * 0.06;
-            }
-            draw(): void {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
-                ctx.fillStyle = `rgba(30,106,138,${this.alpha})`;
-                ctx.fill();
-            }
+        .page-header {
+            max-width: 800px;
+            margin-bottom: 6rem;
         }
 
-        function init(): void {
-            const density = isMobile() ? 6000 : 10000;
-            particles = Array.from({ length: Math.floor((W * H) / density) }, () => new Particle());
-        }
-        init();
-
-        function connect(): void {
-            const maxDist = isMobile() ? 100 : 130;
-            const baseOp  = isMobile() ? 0.22 : 0.18;
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i+1; j < particles.length; j++) {
-                    const a = particles[i], b = particles[j];
-                    const dx = a.x-b.x, dy = a.y-b.y;
-                    const d  = Math.sqrt(dx*dx + dy*dy);
-                    if (d < maxDist) {
-                        ctx.beginPath();
-                        ctx.moveTo(a.x, a.y);
-                        ctx.lineTo(b.x, b.y);
-                        ctx.strokeStyle = `rgba(30,106,138,${(1-d/maxDist)*baseOp})`;
-                        ctx.lineWidth = 1.0; 
-                        ctx.stroke();
-                    }
-                }
-            }
+        .page-title {
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
         }
 
-        let animationFrameId: number;
-        let isPageVisible = true;
-
-        function loop(): void {
-            if (!isPageVisible) return;
-
-            ctx.clearRect(0, 0, W, H);
-            connect();
-            particles.forEach(p => { p.update(); p.draw(); });
-            animationFrameId = requestAnimationFrame(loop);
+        .text-accent {
+            color: var(--accent);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        document.addEventListener("visibilitychange", () => {
-            if (document.hidden) {
-                isPageVisible = false;
-                cancelAnimationFrame(animationFrameId);
-            } else {
-                isPageVisible = true;
-                loop();
-            }
-        });
+        .page-desc {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 600px;
+        }
 
-        loop();
-    })();
-    </script>
+        /* ── Stats Glass ── */
+        .stats-glass {
+            display: inline-block;
+        }
+        .stats-inner {
+            display: flex;
+            gap: 3rem;
+            padding: 1.5rem 3rem;
+        }
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        .stat-num {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+        .stat-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        /* ── Projects Clean Grid ── */
+        .projects-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .project-card .bezel-inner {
+            padding: 3.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .project-card h2 {
+            font-size: 2.2rem;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .pill-badge {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: var(--radius-pill);
+            letter-spacing: 0.05em;
+        }
+
+        .accent-badge {
+            background: var(--accent-glow);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .outline-badge {
+            border: 1px solid var(--border-inner);
+            color: var(--text-secondary);
+        }
+
+        .warning-badge {
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            color: #fbbf24;
+            background: rgba(251, 191, 36, 0.1);
+        }
+
+        .outline-btn {
+            background: transparent;
+            border: 1px solid var(--border-outer);
+            color: var(--text-secondary);
+        }
+        .outline-btn:hover { background: var(--text-primary); color: var(--bg-base); }
+
+        .project-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 90%;
+            margin: 0;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            border-top: 1px solid var(--border-outer);
+            padding-top: 1.5rem;
+        }
+
+        .tech-stack span {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding: 0.25rem 0.75rem;
+            border: 1px solid var(--border-outer);
+            border-radius: 4px;
+        }
+
+        @media (max-width: 900px) {
+            .stats-inner { flex-wrap: wrap; padding: 1.5rem; gap: 2rem; justify-content: center; }
+            .card-top { flex-direction: column; align-items: flex-start; }
+            .project-card .bezel-inner { padding: 2rem; }
+            .project-desc { max-width: 100%; }
+        }
+    </style>
 </body>
 </html>

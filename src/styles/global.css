@@ -1,205 +1,257 @@
 /* ============================================================
-   GLOBAL STYLES — Álvaro Fernández portfolio
+   GLOBAL STYLES — AWWWARDS-TIER: ETHEREAL GLASS
    ============================================================ */
 
-*, *::before, *::after { box-sizing: border-box; }
-
-/* ── Variables ── */
-:root {
-    --primary:        #1e6a8a;
-    --primary-light:  rgba(30, 106, 138, 0.07);
-    --primary-border: #b8d0dc;
-    --bg:             #f5f3ef;
-    --surface:        #ffffff;
-    --border:         #e1e4e8;
-    --border-med:     #c8cdd3;
-    --text:           #111518;
-    --text-2:         #4a5560;
-    --text-3:         #8a9099;
-    --green:          #1a6e3a;
-    --green-bg:       #e2f5ea;
-    --amber:          #7a5200;
-    --amber-bg:       #fef3d0;
-    --serif:          'DM Serif Display', serif;
-    --mono:           'DM Mono', monospace;
-}
-
-/* ── Base ── */
-body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+   *, *::before, *::after { 
+    box-sizing: border-box; 
     margin: 0;
-    line-height: 1.6;
+    padding: 0;
+}
+
+/* ── Fluid Physics & Easings ── */
+:root {
+    --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+    --ease-in-out: cubic-bezier(0.8, 0, 0.2, 1);
+    --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    /* Layout Dials */
+    --max-w-container: 1400px;
+    --macro-gap: clamp(4rem, 10vw, 8rem);
+    
+    /* Typography */
+    --font-display: 'Outfit', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    
+    /* Default: Ethereal Glass (Dark Mode Baseline) */
+    --bg-base: #050505;
+    --bg-mesh-1: rgba(18, 5, 36, 0.6);
+    --bg-mesh-2: rgba(5, 26, 36, 0.6);
+    
+    --surface-outer: rgba(255, 255, 255, 0.03);
+    --surface-inner: rgba(10, 10, 10, 0.6);
+    --surface-hover: rgba(20, 20, 20, 0.8);
+    
+    --border-outer: rgba(255, 255, 255, 0.05);
+    --border-inner: rgba(255, 255, 255, 0.1);
+    --border-glow: rgba(56, 189, 248, 0.2);
+    
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.6);
+    --text-muted: rgba(255, 255, 255, 0.3);
+    
+    --accent: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.4);
+    
+    /* Squircles & Radii */
+    --radius-outer: 2rem;
+    --radius-inner: calc(2rem - 0.5rem);
+    --radius-pill: 9999px;
+}
+
+/* Light Mode Toggle (Soft Structuralism) */
+html:not(.dark) {
+    --bg-base: #FDFBF7;
+    --bg-mesh-1: rgba(255, 255, 255, 1);
+    --bg-mesh-2: rgba(245, 245, 240, 1);
+    
+    --surface-outer: rgba(0, 0, 0, 0.02);
+    --surface-inner: rgba(255, 255, 255, 0.8);
+    --surface-hover: rgba(255, 255, 255, 1);
+    
+    --border-outer: rgba(0, 0, 0, 0.05);
+    --border-inner: rgba(0, 0, 0, 0.08);
+    --border-glow: rgba(0, 0, 0, 0.05);
+    
+    --text-primary: #0a0a0a;
+    --text-secondary: rgba(0, 0, 0, 0.6);
+    --text-muted: rgba(0, 0, 0, 0.4);
+    
+    --accent: #111111;
+    --accent-glow: rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    line-height: 1.6;
+    transition: background-color 0.8s var(--ease-in-out), color 0.8s var(--ease-in-out);
 }
 
-/* ── Partículas (canvas fijo) ── */
-.page-canvas {
+::selection {
+    background: var(--text-primary);
+    color: var(--bg-base);
+}
+
+/* ── Typography Scale ── */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+}
+
+h1 { font-size: clamp(3rem, 8vw, 6.5rem); }
+h2 { font-size: clamp(2rem, 5vw, 4rem); }
+h3 { font-size: clamp(1.5rem, 3vw, 2.5rem); }
+
+/* ── Global Mesh Gradient Background ── */
+.mesh-bg {
     position: fixed;
-    inset: 0;
+    inset: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: -1;
     pointer-events: none;
-    z-index: 0;
-    -webkit-mask-image:
-        radial-gradient(ellipse 50% 100% at 8%  50%, black 0%, black 40%, transparent 75%),
-        radial-gradient(ellipse 50% 100% at 92% 50%, black 0%, black 40%, transparent 75%);
-    -webkit-mask-composite: source-over;
-    mask-image:
-        radial-gradient(ellipse 50% 100% at 8%  50%, black 0%, black 40%, transparent 75%),
-        radial-gradient(ellipse 50% 100% at 92% 50%, black 0%, black 40%, transparent 75%);
-    mask-composite: add;
+    background: 
+        radial-gradient(circle at 50% 50%, var(--bg-mesh-1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--bg-mesh-2) 0%, transparent 40%);
+    filter: blur(120px);
+    opacity: 0.8;
+    animation: slow-drift 30s infinite alternate linear;
 }
 
-/* ── Back link ── */
-.back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: var(--text-3);
-    text-decoration: none;
-    font-family: var(--mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 3rem;
-    transition: color 0.2s;
-}
-.back-link:hover { color: var(--primary); }
-
-/* ── Eyebrow / section label ── */
-.eyebrow {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--primary);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 1.2rem;
-    display: block;
+@keyframes slow-drift {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-5%, 5%) scale(1.1); }
 }
 
-.section-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--text-3);
-    margin: 3.5rem 0 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-.section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
+/* ── Layout & Containers ── */
+.container {
+    max-width: var(--max-w-container);
+    margin: 0 auto;
+    padding: 0 1.5rem;
 }
 
-/* ── Card base con gradiente ── */
-.grad-card {
-    background: linear-gradient(135deg, #ffffff 0%, #eef5f8 100%);
-    border: 1px solid #d4e4ec;
-    border-left: 4px solid var(--primary);
-    border-radius: 0 14px 14px 0;
+section {
+    padding: var(--macro-gap) 0;
+}
+
+/* ── Doppelrand (Double-Bezel) Card Component ── */
+.bezel-outer {
+    background: var(--surface-outer);
+    border: 1px solid var(--border-outer);
+    padding: 0.5rem;
+    border-radius: var(--radius-outer);
+    transition: transform 0.6s var(--ease-spring), border-color 0.6s var(--ease-spring);
+    will-change: transform;
+}
+
+.bezel-inner {
+    background: var(--surface-inner);
+    border: 1px solid var(--border-inner);
+    border-radius: var(--radius-inner);
+    padding: 2.5rem;
+    height: 100%;
     position: relative;
     overflow: hidden;
-    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-}
-.grad-card:hover {
-    border-color: var(--primary-border);
-    border-left-color: var(--primary);
-    box-shadow: 0 8px 28px rgba(30, 106, 138, 0.1);
-    transform: translateY(-3px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+    transition: background 0.6s var(--ease-spring), box-shadow 0.6s var(--ease-spring);
 }
 
-/* ── Botones ── */
-.btn {
+.bezel-outer:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: var(--border-glow);
+}
+
+.bezel-outer:hover .bezel-inner {
+    background: var(--surface-hover);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.1), 0 12px 40px var(--border-glow);
+}
+
+/* ── "Fluid Island" Navbar ── */
+.nav-island {
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-pill);
+    background: var(--surface-inner);
+    border: 1px solid var(--border-inner);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    width: max-content;
+    gap: 2rem;
+    transition: all 0.6s var(--ease-spring);
+}
+
+/* ── Magnetic CTA Button (Button-in-Button) ── */
+.btn-magnetic {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
-    padding: 0.5rem 1.1rem;
-    border-radius: 6px;
+    gap: 1rem;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    background: var(--text-primary);
+    color: var(--bg-base);
+    border-radius: var(--radius-pill);
     text-decoration: none;
-    border: 1px solid;
-    transition: all 0.2s;
-    white-space: nowrap;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: transform 0.4s var(--ease-spring), background 0.4s var(--ease-spring);
     cursor: pointer;
 }
-.btn-primary { background: var(--primary); color: #fff; border-color: var(--primary); }
-.btn-primary:hover { background: #155878; border-color: #155878; }
-.btn-ghost { background: transparent; color: var(--text-2); border-color: var(--border); }
-.btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
-.btn-group { display: flex; gap: 0.5rem; flex-shrink: 0; }
 
-/* ── Badges ── */
-.badge {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.22rem 0.7rem;
-    border-radius: 20px;
-    white-space: nowrap;
-}
-.badge-blue  { background: var(--primary-light); color: var(--primary); border: 1px solid var(--primary-border); }
-.badge-green { background: var(--green-bg); color: var(--green); border: 1px solid rgba(26,110,58,0.2); }
-.badge-amber { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(122,82,0,0.2); }
-
-/* ── Tech pills ── */
-.tech-pill {
-    font-family: var(--mono);
-    font-size: 0.68rem;
-    color: var(--primary);
-    background: var(--primary-light);
-    border: 1px solid var(--primary-border);
-    padding: 0.18rem 0.55rem;
-    border-radius: 4px;
-    letter-spacing: 0.03em;
-}
-.tech-stack {
+.btn-magnetic .icon-wrapper {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(0,0,0,0.1);
+    border-radius: 50%;
+    transition: transform 0.4s var(--ease-spring);
 }
 
-/* ── Scroll reveal ── */
-.reveal {
+.btn-magnetic:hover {
+    transform: scale(0.98);
+    background: var(--text-secondary);
+}
+
+.btn-magnetic:hover .icon-wrapper {
+    transform: translateX(4px) scale(1.05);
+}
+
+/* ── Eyebrow Tag ── */
+.eyebrow {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--border-inner);
+    border-radius: var(--radius-pill);
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* ── Motion & Reveal Utility ── */
+.reveal-up {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1),
-                transform 0.6s cubic-bezier(0.4,0,0.2,1);
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* ── Animaciones ── */
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(14px); }
-    to   { opacity: 1; transform: translateY(0); }
+    transform: translateY(40px);
+    filter: blur(8px);
+    transition: all 1s var(--ease-spring);
 }
 
-/* ── Script de partículas compartido ──
-   Cada página llama a initParticles(canvasId) desde su propio <script>
-   ── */
-
-/* ── Accesibilidad ── */
-.sr-only {
-    border: 0; padding: 0; margin: 0;
-    position: absolute !important;
-    height: 1px; width: 1px;
-    overflow: hidden;
-    clip: rect(1px, 1px, 1px, 1px);
-    clip-path: inset(50%);
-    white-space: nowrap;
+.reveal-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
 }
 
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        opacity: 1 !important;
-    }
+@media (max-width: 768px) {
+    .bezel-outer:hover { transform: none; }
+    .nav-island { top: 1rem; width: calc(100% - 2rem); }
 }

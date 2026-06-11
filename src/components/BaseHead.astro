@@ -33,8 +33,31 @@ const imageUrl = typeof image === 'string' ? new URL(image, Astro.url) : new URL
 />
 <meta name="generator" content={Astro.generator} />
 
-<Font cssVariable="--serif" preload />
-<Font cssVariable="--mono" preload />
+<script is:inline>
+    const setupTheme = () => {
+        const getTheme = () => {
+            if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+                return localStorage.getItem('theme');
+            }
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                return 'dark';
+            }
+            return 'light';
+        };
+        const theme = getTheme();
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    };
+    setupTheme();
+    document.addEventListener('astro:after-swap', setupTheme);
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <ClientRouter />
 

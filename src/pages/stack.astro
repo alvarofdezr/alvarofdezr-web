@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const title = "Stack & Certificaciones | Álvaro Fernández";
+const title = "Stack & Certificaciones | Álvaro Fernández Ramos";
 const description = "Arsenal tecnológico, entornos de desarrollo, aplicaciones y progreso en certificaciones de ciberseguridad.";
 ---
 
@@ -11,595 +11,354 @@ const description = "Arsenal tecnológico, entornos de desarrollo, aplicaciones 
 <html lang="es">
 <head>
     <BaseHead title={title} description={description} />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { box-sizing: border-box; }
-
-        :root {
-            --primary:        #1e6a8a;
-            --primary-light:  rgba(30,106,138,0.07);
-            --primary-border: #b8d0dc;
-            --bg:             #f5f3ef;
-            --surface:        #ffffff;
-            --border:         #e1e4e8;
-            --text:           #111518;
-            --text-2:         #4a5560;
-            --text-3:         #8a9099;
-            --mono:           'DM Mono', monospace;
-            --serif:          'DM Serif Display', serif;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* ── Partículas ── */
-        .page-canvas {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-            -webkit-mask-image:
-                radial-gradient(ellipse 50% 100% at 8% 50%, black 0%, black 40%, transparent 75%),
-                radial-gradient(ellipse 50% 100% at 92% 50%, black 0%, black 40%, transparent 75%);
-            -webkit-mask-composite: source-over;
-            mask-image:
-                radial-gradient(ellipse 50% 100% at 8% 50%, black 0%, black 40%, transparent 75%),
-                radial-gradient(ellipse 50% 100% at 92% 50%, black 0%, black 40%, transparent 75%);
-            mask-composite: add;
-        }
-
-        .wrapper {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 4rem 2rem 7rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            color: var(--text-3);
-            text-decoration: none;
-            font-family: var(--mono);
-            font-size: 11px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 3rem;
-            transition: color 0.2s;
-        }
-        .back-link:hover { color: var(--primary); }
-
-        .page-header {
-            margin-bottom: 4rem;
-            max-width: 750px;
-            animation: fadeUp 0.5s ease both;
-        }
-
-        .eyebrow {
-            font-family: var(--mono);
-            font-size: 11px;
-            color: var(--primary);
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            margin-bottom: 1.2rem;
-            display: block;
-        }
-
-        .page-header h1 {
-            font-family: var(--serif);
-            font-size: clamp(2.5rem, 6vw, 3.8rem);
-            font-weight: 400;
-            color: var(--text);
-            letter-spacing: -0.025em;
-            line-height: 1.05;
-            margin: 0 0 1.25rem;
-        }
-
-        .page-header h1 em {
-            font-style: italic;
-            color: var(--primary);
-        }
-
-        .page-header p {
-            font-size: 1rem;
-            color: var(--text-2);
-            margin: 0;
-            line-height: 1.7;
-            border-left: 2px solid var(--primary-border);
-            padding-left: 1.2rem;
-            max-width: 560px;
-        }
-
-        .section-label {
-            font-family: var(--mono);
-            font-size: 10px;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: var(--text-3);
-            margin: 3.5rem 0 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
-        /* ── Cards con gradiente ── */
-        .project-card, .bento-card, .cert-item {
-            background: linear-gradient(135deg, #ffffff 0%, #eef5f8 100%);
-            border: 1px solid #d4e4ec;
-            border-left: 4px solid var(--primary);
-            border-radius: 0 14px 14px 0;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-            transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
-        }
-
-        .project-card::before, .bento-card::before {
-            content: attr(data-label);
-            position: absolute;
-            right: -10px;
-            bottom: -22px;
-            font-family: var(--serif);
-            font-size: 6rem;
-            color: rgba(30,106,138,0.05);
-            line-height: 1;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .project-card:hover, .bento-card:hover, .cert-item:hover {
-            border-color: var(--primary-border);
-            border-left-color: var(--primary);
-            box-shadow: 0 8px 28px rgba(30,106,138,0.1);
-            transform: translateY(-3px);
-        }
-
-        .core-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 0;
-        }
-
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-        }
-
-        .span-2 { grid-column: span 2; }
-        .span-1 { grid-column: span 1; }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .icon-box {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--primary-light);
-            border: 1px solid var(--primary-border);
-            border-radius: 8px;
-            color: var(--primary);
-            flex-shrink: 0;
-        }
-
-        .card-title {
-            font-family: var(--serif);
-            font-size: 1.35rem;
-            font-weight: 400;
-            color: var(--text);
-            margin: 0;
-            line-height: 1.2;
-            letter-spacing: -0.01em;
-        }
-
-        .card-desc {
-            font-size: 0.9rem;
-            color: var(--text-2);
-            line-height: 1.7;
-            margin: 0 0 1.25rem;
-            flex-grow: 1;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.35rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(30,106,138,0.1);
-        }
-
-        .bento-card .tech-stack {
-            border-top: none;
-            padding-top: 0.5rem;
-        }
-
-        .tech-pill {
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            color: var(--primary);
-            background: var(--primary-light);
-            border: 1px solid var(--primary-border);
-            padding: 0.18rem 0.55rem;
-            border-radius: 4px;
-            letter-spacing: 0.03em;
-        }
-
-        /* ── Certs ── */
-        .cert-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .cert-item {
-            flex-direction: row;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 1.5rem 2rem;
-        }
-
-        .cert-info { flex-grow: 1; }
-
-        .cert-info h3 {
-            font-family: var(--serif);
-            font-size: 1.25rem;
-            margin: 0 0 0.3rem;
-            color: var(--text);
-            font-weight: 400;
-        }
-
-        .cert-info p {
-            margin: 0;
-            font-size: 0.88rem;
-            color: var(--text-2);
-            line-height: 1.6;
-        }
-
-        .badge {
-            font-family: var(--mono);
-            font-size: 10px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            padding: 0.22rem 0.7rem;
-            border-radius: 20px;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-        .badge-blue  { background: var(--primary-light); color: var(--primary); border: 1px solid var(--primary-border); }
-        .badge-green { background: #e2f5ea; color: #1a6e3a; border: 1px solid rgba(26,110,58,0.2); }
-        .badge-amber { background: #fef3d0; color: #7a5200; border: 1px solid rgba(122,82,0,0.2); }
-
-        /* ── Reveal ── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s cubic-bezier(0.4,0,0.2,1), transform 0.6s cubic-bezier(0.4,0,0.2,1);
-        }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(14px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 900px) {
-            .bento-grid { grid-template-columns: 1fr; }
-            .span-2, .span-1 { grid-column: span 1; }
-        }
-        @media (max-width: 768px) {
-            .cert-item { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
-        }
-        @media (max-width: 600px) {
-            .wrapper { padding: 2.5rem 1.25rem 5rem; }
-            .project-card, .bento-card { padding: 1.5rem; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                opacity: 1 !important;
-            }
-        }
-    </style>
 </head>
 <body>
-    <canvas class="page-canvas" id="page-canvas"></canvas>
+    <div class="mesh-bg"></div>
     <Header />
 
-    <main class="wrapper">
+    <main class="container layout-wrapper">
+        <a href="/" class="btn-magnetic back-btn reveal-up">
+            <div class="icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M216 128H40m72-72l-72 72l72 72"/></svg>
+            </div>
+            Volver
+        </a>
 
-        <a href="/" class="back-link">← Inicio</a>
-
-        <header class="page-header">
+        <header class="page-header reveal-up" style="transition-delay: 0.1s;">
             <span class="eyebrow">Arsenal Técnico</span>
-            <h1><em>Stack y Herramientas</em></h1>
-            <p>Tecnologías principales, entornos de despliegue y herramientas aplicadas a la auditoría de seguridad, monitorización y arquitecturas Zero-Trust.</p>
+            <h1 class="page-title">
+                Stack y <br>
+                <span class="text-accent">Herramientas.</span>
+            </h1>
+            <p class="page-desc">
+                Tecnologías principales, entornos de despliegue y herramientas aplicadas a la auditoría de seguridad, monitorización y arquitecturas Zero-Trust.
+            </p>
         </header>
 
-        <div class="section-label">Tecnologías principales</div>
-        <div class="core-grid">
-
-            <div class="project-card reveal" data-label="Go">
-                <div class="card-header">
-                    <div class="icon-box">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="m9 15 2 2 4-4"></path></svg>
+        <section class="stack-section reveal-up" style="transition-delay: 0.2s;">
+            <h2 class="section-title">Tecnologías Core</h2>
+            <div class="bento-dense">
+                <!-- Go Card -->
+                <div class="bento-card bezel-outer tech-go span-row-2">
+                    <div class="bezel-inner">
+                        <div class="card-head">
+                            <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="m9 15 2 2 4-4"></path></svg></div>
+                            <h3>Go (Golang)</h3>
+                        </div>
+                        <p>Desarrollo de herramientas de seguridad de bajo nivel, análisis de dependencias de alta concurrencia y despliegues estáticos rápidos.</p>
+                        <div class="tags"><span>Goroutines</span><span>AST Parsing</span></div>
                     </div>
-                    <h3 class="card-title">Go (Golang)</h3>
                 </div>
-                <p class="card-desc">Desarrollo de herramientas de seguridad de bajo nivel, análisis de dependencias de alta concurrencia y despliegues estáticos rápidos.</p>
-                <div class="tech-stack">
-                    <span class="tech-pill">Goroutines</span>
-                    <span class="tech-pill">Análisis AST</span>
-                </div>
-            </div>
 
-            <div class="project-card reveal" data-label="Py">
-                <div class="card-header">
-                    <div class="icon-box">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg>
+                <!-- Python Card -->
+                <div class="bento-card bezel-outer tech-py span-row-2">
+                    <div class="bezel-inner">
+                        <div class="card-head">
+                            <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg></div>
+                            <h3>Python</h3>
+                        </div>
+                        <p>Scripting ofensivo, automatización defensiva, análisis de malware y desarrollo de agentes EDR multiplataforma.</p>
+                        <div class="tags"><span>FastAPI</span><span>uv</span><span>Pytest</span></div>
                     </div>
-                    <h3 class="card-title">Python</h3>
                 </div>
-                <p class="card-desc">Scripting ofensivo, automatización defensiva, análisis de malware y desarrollo de agentes EDR multiplataforma.</p>
-                <div class="tech-stack">
-                    <span class="tech-pill">FastAPI</span>
-                    <span class="tech-pill">uv</span>
-                    <span class="tech-pill">Pytest</span>
-                </div>
-            </div>
 
-            <div class="project-card reveal" data-label="[]">
-                <div class="card-header">
-                    <div class="icon-box">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M8 12h8"></path><path d="M12 8v8"></path></svg>
+                <!-- Containers Card -->
+                <div class="bento-card bezel-outer tech-docker span-col-2">
+                    <div class="bezel-inner">
+                        <div class="card-head">
+                            <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M8 12h8"></path><path d="M12 8v8"></path></svg></div>
+                            <h3>Contenedores & Sandboxing</h3>
+                        </div>
+                        <p>Virtualización ligera y orquestación para aislar servicios, pruebas de concepto y arquitecturas de microservicios seguras.</p>
+                        <div class="tags"><span>Docker</span><span>Compose</span></div>
                     </div>
-                    <h3 class="card-title">Contenedores</h3>
-                </div>
-                <p class="card-desc">Virtualización ligera y orquestación para aislar servicios, pruebas de concepto y arquitecturas de microservicios seguras.</p>
-                <div class="tech-stack">
-                    <span class="tech-pill">Docker</span>
-                    <span class="tech-pill">Sandboxing</span>
                 </div>
             </div>
+        </section>
 
-        </div>
-
-        <div class="section-label">Especialización técnica</div>
-        <div class="bento-grid">
-
-            <div class="bento-card span-2 reveal" data-label="Red">
-                <h3 class="card-title" style="margin-bottom:0.75rem">Análisis de Red y Detección</h3>
-                <p class="card-desc">Inspección profunda de paquetes (DPI), enumeración de servicios, descubrimiento de vulnerabilidades activas y despliegue de sistemas de detección de intrusos en red (NIDS).</p>
-                <div class="tech-stack">
-                    <span class="tech-pill">Wireshark</span>
-                    <span class="tech-pill">Nmap</span>
-                    <span class="tech-pill">Suricata</span>
-                    <span class="tech-pill">Lynis</span>
+        <section class="stack-section reveal-up">
+            <h2 class="section-title">Especialización & Dominio</h2>
+            <div class="bento-dense spec-grid">
+                
+                <div class="bento-card bezel-outer span-col-2">
+                    <div class="bezel-inner">
+                        <h3>Análisis de Red y Detección</h3>
+                        <p>Inspección profunda de paquetes (DPI), enumeración de servicios, vulnerabilidades activas y sistemas NIDS.</p>
+                        <div class="tags"><span>Wireshark</span><span>Nmap</span><span>Suricata</span><span>Lynis</span></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="bento-card span-1 reveal" data-label="SA">
-                <h3 class="card-title" style="margin-bottom:0.75rem">Auditoría Lógica (SAST)</h3>
-                <p class="card-desc">Análisis estático avanzado de código fuente y validación formal de vulnerabilidades en la lógica de negocio.</p>
-                <div class="tech-stack">
-                    <span class="tech-pill">Z3 Prover</span>
-                    <span class="tech-pill">Bandit</span>
+                <div class="bento-card bezel-outer span-col-2">
+                    <div class="bezel-inner">
+                        <h3>Análisis de Composición (SCA)</h3>
+                        <p>Auditoría cruzada de dependencias, resolución de restricciones y vulnerabilidades en la cadena de suministro en múltiples lenguajes.</p>
+                        <div class="tags"><span>pyproject.toml</span><span>go.mod</span><span>Cargo</span><span>npm</span></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="bento-card span-1 reveal" data-label="DB">
-                <h3 class="card-title" style="margin-bottom:0.75rem">Persistencia y Correlación</h3>
-                <p class="card-desc">Modelado relacional y en grafos para la correlación avanzada de eventos de seguridad.</p>
-                <div class="tech-stack">
-                    <span class="tech-pill">Neo4j</span>
-                    <span class="tech-pill">MongoDB</span>
-                    <span class="tech-pill">MariaDB</span>
+                <div class="bento-card bezel-outer">
+                    <div class="bezel-inner">
+                        <h3>Auditoría Lógica (SAST)</h3>
+                        <p>Validación formal de vulnerabilidades en la lógica de negocio.</p>
+                        <div class="tags"><span>Z3 Prover</span><span>Bandit</span></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="bento-card span-2 reveal" data-label="SCA">
-                <h3 class="card-title" style="margin-bottom:0.75rem">Análisis de Composición (SCA) & Cadena de Suministro</h3>
-                <p class="card-desc">Auditoría cruzada de dependencias, resolución de restricciones y análisis de vulnerabilidades heredadas en manifiestos de empaquetado a través de múltiples lenguajes.</p>
-                <div class="tech-stack">
-                    <span class="tech-pill">pyproject.toml</span>
-                    <span class="tech-pill">requirements.txt</span>
-                    <span class="tech-pill">Cargo (Rust)</span>
-                    <span class="tech-pill">NPM (Node)</span>
-                    <span class="tech-pill">NuGet (.NET)</span>
+                <div class="bento-card bezel-outer">
+                    <div class="bezel-inner">
+                        <h3>Persistencia & Grafos</h3>
+                        <p>Modelado relacional y grafos para correlación de eventos.</p>
+                        <div class="tags"><span>Neo4j</span><span>MongoDB</span></div>
+                    </div>
                 </div>
+
             </div>
+        </section>
 
-        </div>
-
-        <div class="section-label">Plan de certificaciones</div>
-        <div class="cert-list">
-
-            <div class="cert-item reveal">
-                <span class="badge badge-blue">Planificado</span>
-                <div class="cert-info">
-                    <h3>eJPT — Junior Penetration Tester</h3>
-                    <p>Consolidación práctica de bases de seguridad ofensiva, enumeración activa y auditoría de redes lógicas.</p>
+        <section class="stack-section reveal-up">
+            <h2 class="section-title">Certificaciones</h2>
+            <div class="cert-grid">
+                
+                <div class="cert-card bezel-outer">
+                    <div class="bezel-inner">
+                        <div class="cert-header">
+                            <span class="pill-badge accent-badge">Planificado</span>
+                        </div>
+                        <h3>eJPT — Junior Penetration Tester</h3>
+                        <p>Consolidación práctica de bases de seguridad ofensiva, enumeración activa y auditoría de redes lógicas.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="cert-item reveal">
-                <span class="badge badge-blue">Planificado</span>
-                <div class="cert-info">
-                    <h3>OSCP — Offensive Security Certified Professional</h3>
-                    <p>Preparación orientada a la explotación manual avanzada, escalada de privilegios y metodologías de intrusión estandarizadas.</p>
+                <div class="cert-card bezel-outer">
+                    <div class="bezel-inner">
+                        <div class="cert-header">
+                            <span class="pill-badge accent-badge">Planificado</span>
+                        </div>
+                        <h3>OSCP — Offensive Security</h3>
+                        <p>Preparación orientada a la explotación manual avanzada, escalada de privilegios y metodologías estandarizadas.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="cert-item reveal">
-                <span class="badge badge-green">Acreditado</span>
-                <div class="cert-info">
-                    <h3>Cambridge B2 English</h3>
-                    <p>Competencia profesional fluida. Idioma vehicular para lectura de especificaciones técnicas (CVEs) y redacción de reportes.</p>
+                <div class="cert-card bezel-outer">
+                    <div class="bezel-inner">
+                        <div class="cert-header">
+                            <span class="pill-badge success-badge">Acreditado</span>
+                        </div>
+                        <h3>Cambridge B2 English</h3>
+                        <p>Competencia profesional fluida. Idioma vehicular para lectura de especificaciones (CVEs) y redacción de reportes.</p>
+                    </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
+        </section>
 
     </main>
 
     <Footer />
 
-    <script>
-    (() => {
-        // ── Partículas ──
-        const canvas = document.getElementById('page-canvas') as HTMLCanvasElement | null;
-        if (!canvas) return;
-
-        const ctx = canvas.getContext('2d')!;
-        let W: number = 0;
-        let H: number = 0;
-        let particles: Particle[] = [];
-        const mouse = { x: -999, y: -999 };
-        const isMobile = (): boolean => window.innerWidth < 768;
-
-        function resize(): void {
-            W = canvas!.width  = window.innerWidth;
-            H = canvas!.height = window.innerHeight;
-        }
-        resize();
-        window.addEventListener('resize', () => { resize(); init(); });
-        window.addEventListener('mousemove', (e: MouseEvent) => { mouse.x = e.clientX; mouse.y = e.clientY; });
-        window.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
-
-        class Particle {
-            x: number = 0;
-            y: number = 0;
-            vx: number = 0;
-            vy: number = 0;
-            r: number = 0;
-            base: number = 0;
-            alpha: number = 0;
-
-            constructor() { this.reset(); }
-
-            reset(): void {
-                this.x     = Math.random() * W;
-                this.y     = Math.random() * H;
-                this.vx    = (Math.random() - 0.5) * 0.3;
-                this.vy    = (Math.random() - 0.5) * 0.3;
-                this.r     = Math.random() * 2.2 + 1.2;
-                this.base  = isMobile() ? Math.random() * 0.45 + 0.35 : Math.random() * 0.35 + 0.25;
-                this.alpha = this.base;
-            }
-
-            update(): void {
-                this.x += this.vx;
-                this.y += this.vy;
-                if (this.x < 0 || this.x > W) this.vx *= -1;
-                if (this.y < 0 || this.y > H) this.vy *= -1;
-                const dx   = mouse.x - this.x;
-                const dy   = mouse.y - this.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                const target = dist < 130 ? this.base + (1 - dist / 130) * 0.6 : this.base;
-                this.alpha += (target - this.alpha) * 0.06;
-            }
-
-            draw(): void {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(30,106,138,${this.alpha})`;
-                ctx.fill();
-            }
+    <style>
+        .layout-wrapper {
+            padding-top: clamp(8rem, 20vh, 14rem);
         }
 
-        function init(): void {
-            particles = Array.from(
-                { length: Math.floor((W * H) / (isMobile() ? 6000 : 10000)) },
-                () => new Particle()
-            );
+        .back-btn {
+            background: transparent;
+            color: var(--text-secondary);
+            padding-left: 0.5rem;
+            margin-bottom: 3rem;
+            flex-direction: row-reverse;
         }
-        init();
 
-        function connect(): void {
-            const maxDist = isMobile() ? 100 : 130;
-            const baseOp  = isMobile() ? 0.22 : 0.18;
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const a = particles[i], b = particles[j];
-                    const dx = a.x - b.x, dy = a.y - b.y;
-                    const d  = Math.sqrt(dx * dx + dy * dy);
-                    if (d < maxDist) {
-                        ctx.beginPath();
-                        ctx.moveTo(a.x, a.y);
-                        ctx.lineTo(b.x, b.y);
-                        ctx.strokeStyle = `rgba(30,106,138,${(1 - d / maxDist) * baseOp})`;
-                        ctx.lineWidth = 1;
-                        ctx.stroke();
-                    }
-                }
+        .back-btn .icon-wrapper { background: transparent; }
+        .back-btn:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); }
+        .back-btn:hover .icon-wrapper { transform: translateX(-4px); }
+
+        .page-header {
+            max-width: 800px;
+            margin-bottom: 6rem;
+        }
+
+        .page-title {
+            color: var(--text-primary);
+            font-size: clamp(3.5rem, 6vw, 5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.05;
+        }
+
+        .text-accent {
+            color: var(--accent);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-desc {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 650px;
+        }
+
+        .stack-section {
+            margin-bottom: 6rem;
+        }
+
+        .section-title {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            height: 1px;
+            flex-grow: 1;
+            background: var(--border-outer);
+        }
+
+        /* ── Bento Dense ── */
+        .bento-dense {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(180px, auto);
+            gap: 1.5rem;
+        }
+
+        .spec-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .bento-card .bezel-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 2.5rem;
+        }
+
+        .span-row-2 { grid-row: span 2; }
+        .span-col-2 { grid-column: span 2; }
+        
+        .tech-go { grid-column: span 2; }
+        .tech-py { grid-column: span 2; }
+        .tech-docker { grid-column: span 4; }
+
+        .card-head {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            background: var(--surface-outer);
+            border: 1px solid var(--border-inner);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+
+        .bento-card h3 {
+            font-size: 1.6rem;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .bento-card p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+
+        .tags span {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            padding: 0.25rem 0.75rem;
+            border: 1px solid var(--border-outer);
+            border-radius: 4px;
+        }
+
+        /* ── Certifications ── */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cert-card .bezel-inner {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .cert-header {
+            margin-bottom: 0.5rem;
+        }
+
+        .pill-badge {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: var(--radius-pill);
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+
+        .accent-badge {
+            background: var(--accent-glow);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .success-badge {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+        }
+
+        .cert-card h3 {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .cert-card p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (max-width: 900px) {
+            .bento-dense { grid-template-columns: 1fr; }
+            .tech-go, .tech-py, .tech-docker, .span-row-2, .span-col-2 {
+                grid-column: span 1;
+                grid-row: auto;
             }
+            .spec-grid { grid-template-columns: 1fr; }
         }
-
-        let animationFrameId: number;
-        let isPageVisible = true;
-
-        function loop(): void {
-            if (!isPageVisible) return;
-
-            ctx.clearRect(0, 0, W, H);
-            connect();
-            particles.forEach(p => { p.update(); p.draw(); });
-            animationFrameId = requestAnimationFrame(loop);
-        }
-
-        document.addEventListener("visibilitychange", () => {
-            if (document.hidden) {
-                isPageVisible = false;
-                cancelAnimationFrame(animationFrameId);
-            } else {
-                isPageVisible = true;
-                loop();
-            }
-        });
-
-        loop();
-    })();
-
-    (() => {
-
-        // ── Scroll reveal escalonado ──
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver(entries => {
-            const visible = entries.filter(e => e.isIntersecting);
-            visible.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-            visible.forEach((entry, i) => {
-                setTimeout(() => entry.target.classList.add('visible'), i * 90);
-                observer.unobserve(entry.target);
-            });
-        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-        reveals.forEach(el => observer.observe(el));
-    
-    })();
-    </script>
+    </style>
 </body>
 </html>

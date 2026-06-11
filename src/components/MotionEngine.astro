@@ -1,0 +1,30 @@
+---
+---
+<script>
+    function initMotion() {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Opcionalmente de-observar para que la animación ocurra solo una vez:
+                    // observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const revealElements = document.querySelectorAll('.reveal-up');
+        revealElements.forEach(el => observer.observe(el));
+    }
+
+    // Inicializar en primera carga
+    initMotion();
+
+    // Re-inicializar si usamos Astro View Transitions (ClientRouter)
+    document.addEventListener('astro:after-swap', initMotion);
+</script>
