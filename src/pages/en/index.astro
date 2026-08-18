@@ -1,0 +1,212 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Álvaro Fernández Ramos | Security Engineer";
+const description = "Security Engineer specializing in offensive security, malware analysis, and zero-trust architecture.";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <BaseHead title={title} description={description} />
+</head>
+<body>
+    <div class="mesh-bg"></div>
+    <Header />
+
+    <main class="container layout-wrapper">
+        <section class="hero-section reveal-up">
+            <span class="eyebrow">Security Engineer · Seville</span>
+            <h1 class="hero-title">
+                Álvaro <br>
+                <span class="text-accent">Fernández Ramos</span>
+            </h1>
+            <p class="hero-bio">
+                I build <strong>secure software</strong> and break systems to understand how to defend them. 
+                Computer Engineering degree focused on <em>offensive security</em> research, malware analysis, and Zero-Trust architectures.
+            </p>
+            
+            <div class="hero-actions">
+                <a href="/en/projects" class="btn-magnetic">
+                    View Projects
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216h-40M56 216h40m104-56v56M56 160v56m164-88H36a16 16 0 0 1-16-16V64a16 16 0 0 1 16-16h184a16 16 0 0 1 16 16v48a16 16 0 0 1-16 16ZM20 64l108 72L236 64"/></svg>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Asymmetrical Bento Navigation -->
+        <section class="bento-grid-section reveal-up" style="transition-delay: 0.1s;">
+            <div class="bento-grid">
+                
+                <!-- Project Card (Span 2 Cols) -->
+                <a href="/en/projects" class="bento-card bezel-outer card-projects">
+                    <div class="bezel-inner">
+                        <div class="card-header">
+                            <h2>Projects and analysis</h2>
+                            <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg>
+                        </div>
+                        <p>Explore my work in cybersecurity, secure development, offensive tools, and technical audits.</p>
+                        <div class="decorative-blur"></div>
+                    </div>
+                </a>
+
+                <!-- Stack Card (Span 1 Col) -->
+                <a href="/en/stack" class="bento-card bezel-outer card-stack">
+                    <div class="bezel-inner">
+                        <div class="card-header">
+                            <h2>Stack and certs</h2>
+                            <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg>
+                        </div>
+                        <p>My technological arsenal and certifications.</p>
+                    </div>
+                </a>
+
+                <!-- Profile Card (Span 3 Cols) -->
+                <a href="/en/profile" class="bento-card bezel-outer card-profile">
+                    <div class="bezel-inner">
+                        <div class="card-header">
+                            <h2>Profile and journey</h2>
+                            <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg>
+                        </div>
+                        <p>More about my professional background, education, and how I approach engineering and security.</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <Footer />
+
+    <style>
+        .layout-wrapper {
+            padding-top: clamp(8rem, 20vh, 14rem);
+            padding-bottom: var(--macro-gap);
+        }
+
+        .hero-section {
+            max-width: 900px;
+            margin-bottom: var(--macro-gap);
+        }
+
+        .hero-title {
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .text-accent {
+            color: var(--accent);
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-bio {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-secondary);
+            max-width: 700px;
+            line-height: 1.8;
+            border-left: 2px solid var(--border-inner);
+            padding-left: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-bio strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .hero-bio em {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        /* ── Asymmetrical Bento Grid ── */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .bento-card {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .bento-card .bezel-inner {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .card-projects { grid-column: span 2; }
+        .card-stack { grid-column: span 1; }
+        .card-profile { grid-column: span 3; }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .bento-card h2 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .bento-card p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin: 0;
+            max-width: 90%;
+        }
+
+        .bento-card .arrow {
+            color: var(--text-muted);
+            transition: transform 0.6s var(--ease-spring), color 0.6s var(--ease-spring);
+        }
+
+        .bento-card:hover .arrow {
+            color: var(--accent);
+            transform: translate(6px, -6px);
+        }
+
+        .card-projects .decorative-blur {
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 200px;
+            height: 200px;
+            background: var(--accent-glow);
+            filter: blur(80px);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.5;
+            transition: opacity 0.6s var(--ease-spring);
+        }
+
+        .card-projects:hover .decorative-blur {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 900px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .card-projects, .card-stack, .card-profile { grid-column: span 1; }
+            .layout-wrapper { padding-top: 8rem; }
+            .bento-card .bezel-inner { padding: 2rem; }
+        }
+    </style>
+</body>
+</html>

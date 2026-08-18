@@ -1,17 +1,21 @@
 ---
 const today = new Date();
 import MotionEngine from './MotionEngine.astro';
+import { useTranslations } from '../i18n/utils';
+
+const lang = Astro.currentLocale || 'es';
+const t = useTranslations(lang as any);
 ---
 
 <footer class="bento-footer container">
     <div class="footer-grid">
         <div class="footer-block main-block bezel-outer reveal-up">
             <div class="bezel-inner">
-                <h2>¿Conectamos?</h2>
-                <p>Si te interesa la seguridad ofensiva, el análisis de malware o simplemente quieres charlar sobre tecnología, mis mensajes directos están abiertos.</p>
+                <h2>{t('footer.connect')}</h2>
+                <p>{t('footer.connect.desc')}</p>
                 <div class="contact-actions">
                     <a href="mailto:alvarofdezr@example.com" class="btn-magnetic">
-                        Enviar un correo
+                        {t('footer.connect.btn')}
                         <div class="icon-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216h-40M56 216h40m104-56v56M56 160v56m164-88H36a16 16 0 0 1-16-16V64a16 16 0 0 1 16-16h184a16 16 0 0 1 16 16v48a16 16 0 0 1-16 16ZM20 64l108 72L236 64"/></svg>
                         </div>
@@ -22,7 +26,7 @@ import MotionEngine from './MotionEngine.astro';
 
         <div class="footer-block side-block bezel-outer reveal-up" style="transition-delay: 0.1s;">
             <div class="bezel-inner social-inner">
-                <h3>Redes</h3>
+                <h3>{t('footer.social')}</h3>
                 <div class="social-list">
                     <a href="https://github.com/alvarofdezr" target="_blank" rel="noopener noreferrer" class="social-link">
                         <span class="social-name">GitHub</span>
@@ -38,8 +42,8 @@ import MotionEngine from './MotionEngine.astro';
     </div>
     
     <div class="footer-bottom">
-        <p>&copy; {today.getFullYear()} Álvaro Fernández Ramos. Todos los derechos reservados.</p>
-        <p class="tagline">Ingeniería de Diseño y Seguridad.</p>
+        <p>&copy; {today.getFullYear()} {t('footer.rights')}</p>
+        <p class="tagline">{t('footer.tagline')}</p>
     </div>
 </footer>
 

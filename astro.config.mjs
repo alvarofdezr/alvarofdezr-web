@@ -6,6 +6,13 @@ import { defineConfig, fontProviders } from 'astro/config';
 export default defineConfig({
 	site: 'https://alvarofdezr-web.vercel.app',
 	integrations: [mdx(), sitemap()],
+	i18n: {
+		defaultLocale: "es",
+		locales: ["es", "en"],
+		routing: {
+			prefixDefaultLocale: false
+		}
+	},
 	fonts: [
 		{
 			provider: fontProviders.local(),

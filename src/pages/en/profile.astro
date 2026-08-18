@@ -1,0 +1,351 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Profile | Álvaro Fernández Ramos";
+const description = "Career path, security philosophy, and professional goals.";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <BaseHead title={title} description={description} />
+</head>
+<body>
+    <div class="mesh-bg"></div>
+    <Header />
+
+    <main class="container layout-wrapper">
+        <a href="/en" class="btn-magnetic back-btn reveal-up">
+            <div class="icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M216 128H40m72-72l-72 72l72 72"/></svg>
+            </div>
+            Back
+        </a>
+
+        <div class="editorial-split">
+            <!-- Left Sticky Column -->
+            <aside class="sticky-aside">
+                <div class="aside-content reveal-up" style="transition-delay: 0.1s;">
+                    <span class="eyebrow">Journey</span>
+                    <h1 class="page-title">Profile</h1>
+                    <p class="lead-text">
+                        Computer engineer, security researcher, and tool builder.
+                    </p>
+
+                    <div class="timeline bezel-outer">
+                        <div class="bezel-inner timeline-inner">
+                            <div class="timeline-item">
+                                <span class="time-dot"></span>
+                                <span class="time-date">Present</span>
+                                <h3>Bachelor's thesis</h3>
+                                <p>Dependency security (Go) in SecureChain. Z3, FastAPI, Dagster.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time-dot"></span>
+                                <span class="time-date">Sep 2024 – Jun 2025</span>
+                                <h3>Erasmus+ — Germany</h3>
+                                <p>Academic exchange to improve technical English and get a broader view of software development.</p>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time-dot"></span>
+                                <span class="time-date">2022 – 2026</span>
+                                <h3>ETSII — University of Seville</h3>
+                                <p>Degree in Computer Engineering. Systems, algorithms, and secure software.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Right Scroll Column -->
+            <section class="scroll-content">
+                
+                <div class="content-block reveal-up" style="transition-delay: 0.2s;">
+                    <h2 class="block-title">Philosophy</h2>
+                    <div class="philosophy-quote bezel-outer">
+                        <div class="bezel-inner">
+                            <blockquote>
+                                I believe in breaking to defend. Understanding flaws is just as important as building things right.
+                            </blockquote>
+                            <p class="quote-body">
+                                My passion has always been tied to one question: <em>how does this work inside?</em>. Developing my own tools (EDRs, password managers, offensive toolkits) gives me an understanding that no tutorial can provide. Every project is an experiment.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-block reveal-up">
+                    <h2 class="block-title">Languages</h2>
+                    <div class="lang-grid">
+                        <div class="lang-card bezel-outer">
+                            <div class="bezel-inner">
+                                <span class="lang-name">Spanish</span>
+                                <span class="lang-level">Native</span>
+                            </div>
+                        </div>
+                        <div class="lang-card bezel-outer">
+                            <div class="bezel-inner">
+                                <span class="lang-name">English</span>
+                                <span class="lang-level">Professional (B2/C1)</span>
+                            </div>
+                        </div>
+                        <div class="lang-card bezel-outer">
+                            <div class="bezel-inner">
+                                <span class="lang-name">German</span>
+                                <span class="lang-level">Basic (A2)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-block reveal-up">
+                    <h2 class="block-title">Connect</h2>
+                    <div class="contact-bento bezel-outer">
+                        <div class="bezel-inner">
+                            <p>Got an interesting project or want to talk security? Reach out on social media.</p>
+                            <div class="contact-links">
+                                <a href="https://www.linkedin.com/in/%C3%A1lvaro-fern%C3%A1ndez-71b25a404" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
+                                    LinkedIn
+                                    <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M64 192L192 64M88 64h104v104"/></svg></div>
+                                </a>
+                                <a href="https://github.com/alvarofdezr" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
+                                    GitHub
+                                    <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M64 192L192 64M88 64h104v104"/></svg></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <Footer />
+
+    <style>
+        .layout-wrapper {
+            padding-top: clamp(8rem, 20vh, 14rem);
+        }
+
+        .back-btn {
+            background: transparent;
+            color: var(--text-secondary);
+            padding-left: 0.5rem;
+            margin-bottom: 3rem;
+            flex-direction: row-reverse;
+        }
+
+        .back-btn .icon-wrapper { background: transparent; }
+        .back-btn:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); }
+        .back-btn:hover .icon-wrapper { transform: translateX(-4px); }
+
+        .editorial-split {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: clamp(4rem, 8vw, 8rem);
+            padding-bottom: 6rem;
+            align-items: start;
+        }
+
+        /* ── Left Column ── */
+        .sticky-aside {
+            position: sticky;
+            top: 8rem;
+        }
+
+        .page-title {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            color: var(--text-primary);
+            margin: 0.5rem 0 1.5rem;
+            line-height: 1;
+        }
+
+        .lead-text {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            max-width: 90%;
+        }
+
+        .timeline-inner {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 1px solid var(--border-inner);
+        }
+
+        .time-dot {
+            position: absolute;
+            left: -5px;
+            top: 0;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .time-date {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin: 0 0 0.5rem;
+        }
+
+        .timeline-item p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ── Right Column ── */
+        .scroll-content {
+            display: flex;
+            flex-direction: column;
+            gap: 5rem;
+            padding-top: 2rem;
+        }
+
+        .block-title {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .block-title::after {
+            content: '';
+            height: 1px;
+            flex-grow: 1;
+            background: var(--border-outer);
+        }
+
+        .philosophy-quote .bezel-inner {
+            padding: 3.5rem;
+        }
+
+        blockquote {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            color: var(--text-primary);
+            line-height: 1.3;
+            margin: 0 0 2rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .quote-body {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .quote-body em {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .lang-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .lang-card .bezel-inner {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .lang-name {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .lang-level {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        .contact-bento .bezel-inner {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-bento p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin: 0;
+            max-width: 80%;
+            line-height: 1.6;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .outline-btn {
+            background: transparent;
+            border: 1px solid var(--border-inner);
+            color: var(--text-secondary);
+        }
+
+        .outline-btn:hover {
+            background: var(--text-primary);
+            color: var(--bg-base);
+        }
+
+        @media (max-width: 1024px) {
+            .editorial-split {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+            .sticky-aside {
+                position: relative;
+                top: 0;
+            }
+            .scroll-content {
+                padding-top: 0;
+            }
+        }
+        @media (max-width: 768px) {
+            .philosophy-quote .bezel-inner, .contact-bento .bezel-inner { padding: 2rem; }
+            .timeline-inner { padding: 1.5rem; }
+            .contact-bento p { max-width: 100%; }
+        }
+    </style>
+</body>
+</html>

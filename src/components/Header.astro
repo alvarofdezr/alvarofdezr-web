@@ -1,6 +1,15 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import { useTranslations } from '../i18n/utils';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const lang = Astro.currentLocale || 'es';
+const t = useTranslations(lang as any);
+
+const basePath = lang === 'en' ? '/en' : '';
+const nextLang = lang === 'en' ? 'es' : 'en';
+const nextUrl = nextLang === 'es' ? Astro.url.pathname.replace(/^\/en\/?/, '/') : `/en${Astro.url.pathname}`;
 ---
 
 <header class="nav-island" id="fluid-nav">
@@ -8,15 +17,19 @@ import HeaderLink from './HeaderLink.astro';
         <a href="/">{SITE_TITLE}</a>
     </div>
 
-    <!-- Desktop Nav -->
-    <nav class="nav-links desktop-only">
-        <HeaderLink href="/">Inicio</HeaderLink>
-        <HeaderLink href="/projects">Proyectos</HeaderLink>
-        <HeaderLink href="/stack">Stack</HeaderLink>
-        <HeaderLink href="/profile">Perfil</HeaderLink>
-    </nav>
+    <div class="nav-right">
+        <!-- Desktop Nav -->
+        <nav class="nav-links desktop-only">
+            <HeaderLink href={basePath === '' ? '/' : basePath}>{t('nav.home')}</HeaderLink>
+            <HeaderLink href={`${basePath}/projects`}>{t('nav.projects')}</HeaderLink>
+            <HeaderLink href={`${basePath}/stack`}>{t('nav.stack')}</HeaderLink>
+            <HeaderLink href={`${basePath}/profile`}>{t('nav.profile')}</HeaderLink>
+        </nav>
 
     <div class="nav-actions">
+        <a href={nextUrl || '/'} class="lang-toggle-btn" aria-label="Cambiar idioma">
+            <span class="lang-text">{lang === 'es' ? 'EN' : 'ES'}</span>
+        </a>
         <button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema">
             <!-- Phosphor Light: Sun -->
             <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="12" d="M128 40V16m0 224v-24m62.23-150.23l16.97-16.97M48.8 207.2l16.97-16.97M240 128h-24M40 128H16m175.2 62.23l-16.97-16.97M65.77 65.77L48.8 48.8M128 176a48 48 0 1 0-48-48a48.05 48.05 0 0 0 48 48Z"/></svg>
@@ -25,22 +38,23 @@ import HeaderLink from './HeaderLink.astro';
         </button>
 
         <!-- Hamburger Menu for Mobile -->
-        <button id="mobile-menu-btn" class="icon-btn mobile-only" aria-label="Abrir menú">
-            <div class="hamburger-morph">
-                <span></span>
-                <span></span>
-            </div>
-        </button>
+            <button id="mobile-menu-btn" class="icon-btn mobile-only" aria-label="Abrir menú">
+                <div class="hamburger-morph">
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
     </div>
 </header>
 
 <!-- Mobile Expanded Menu -->
 <div id="mobile-overlay" class="mobile-overlay">
     <nav class="mobile-nav-links">
-        <HeaderLink href="/">Inicio</HeaderLink>
-        <HeaderLink href="/projects">Proyectos</HeaderLink>
-        <HeaderLink href="/stack">Stack</HeaderLink>
-        <HeaderLink href="/profile">Perfil</HeaderLink>
+        <HeaderLink href={basePath === '' ? '/' : basePath}>{t('nav.home')}</HeaderLink>
+        <HeaderLink href={`${basePath}/projects`}>{t('nav.projects')}</HeaderLink>
+        <HeaderLink href={`${basePath}/stack`}>{t('nav.stack')}</HeaderLink>
+        <HeaderLink href={`${basePath}/profile`}>{t('nav.profile')}</HeaderLink>
     </nav>
 </div>
 
@@ -53,6 +67,12 @@ import HeaderLink from './HeaderLink.astro';
         color: var(--text-primary);
         text-decoration: none;
         letter-spacing: -0.02em;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
     }
 
     .nav-links {
@@ -108,6 +128,31 @@ import HeaderLink from './HeaderLink.astro';
     .moon-icon { display: block; }
     html.dark .sun-icon { display: block; }
     html.dark .moon-icon { display: none; }
+
+    .lang-toggle-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        font-weight: 600;
+        transition: all 0.4s var(--ease-spring);
+    }
+    
+    .lang-toggle-btn:hover {
+        color: var(--text-primary);
+        background: rgba(255, 255, 255, 0.05);
+        transform: scale(1.05);
+    }
+
+    html:not(.dark) .lang-toggle-btn:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
 
     /* Mobile Morph */
     .mobile-only { display: none; }
