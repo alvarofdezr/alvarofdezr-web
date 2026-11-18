@@ -2,9 +2,10 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ProjectVignettes from '../components/ProjectVignettes.astro';
 
-const title = "Proyectos | Álvaro Fernández";
-const description = "Proyectos de ciberseguridad, EDR y desarrollo de software seguro.";
+const title = "Proyectos & Casos de Estudio | Álvaro Fernández Ramos";
+const description = "Proyectos de desarrollo de software: aplicaciones web, Android, parsers, EDRs, herramientas ofensivas y lógica formal.";
 ---
 
 <!DOCTYPE html>
@@ -13,356 +14,65 @@ const description = "Proyectos de ciberseguridad, EDR y desarrollo de software s
     <BaseHead title={title} description={description} />
 </head>
 <body>
-    <div class="mesh-bg"></div>
     <Header />
 
     <main class="container layout-wrapper">
-        <a href="/" class="btn-magnetic back-btn reveal-up">
-            <div class="icon-wrapper">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M216 128H40m72-72l-72 72l72 72"/></svg>
-            </div>
-            Volver al inicio
-        </a>
+        <div class="page-top-nav reveal-up">
+            <a href="/" class="back-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+                <span>Volver al inicio</span>
+            </a>
+        </div>
 
-        <header class="page-header reveal-up" style="transition-delay: 0.1s;">
-            <span class="eyebrow">Proyectos y experimentos</span>
+        <header class="page-header reveal-up">
+            <div class="badge-chip cyan">CASOS DE ESTUDIO TÉCNICOS</div>
             <h1 class="page-title">
-                Arquitecturas para <br>
-                <span class="text-accent">entender.</span>
+                Proyectos y <br>
+                <span class="text-cyan" data-scramble="desarrollo de sistemas.">desarrollo de sistemas.</span>
             </h1>
             <p class="page-desc">
-                Seguridad ofensiva, arquitecturas defensivas y proyectos académicos.
-                Cada línea de código fue escrita para aprender más de lo que enseña.
+                Soluciones integrales de software: desde aplicaciones completas para web y Android hasta parsers de alta fidelidad, motores de telemetría de sistemas y verificación formal con solucionadores lógicos.
             </p>
-
-            <div class="stats-glass bezel-outer">
-                <div class="bezel-inner stats-inner">
-                    <div class="stat-item"><span class="stat-num">6</span><span class="stat-label">Proyectos</span></div>
-                    <div class="stat-item"><span class="stat-num">4</span><span class="stat-label">Lenguajes</span></div>
-                    <div class="stat-item"><span class="stat-num">2</span><span class="stat-label">EDRs</span></div>
-                    <div class="stat-item"><span class="stat-num">1</span><span class="stat-label">TFG</span></div>
-                </div>
-            </div>
         </header>
 
-        <div class="projects-grid">
-            <!-- Project 1: SecureChain -->
-            <article class="project-card bezel-outer reveal-up" style="transition-delay: 0.1s;">
-                <div class="bezel-inner">
-                    <div class="card-top">
-                        <div class="title-wrap">
-                            <h2>SecureChain</h2>
-                            <span class="pill-badge accent-badge">TFG</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/alvarofdezr/securechain-ssc-ingestion" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
-                                ssc-ingestion
-                                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg></div>
-                            </a>
-                            <a href="https://github.com/alvarofdezr/securechain-depex" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
-                                depex
-                                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg></div>
-                            </a>
-                        </div>
-                    </div>
-                    <p class="project-desc">Ampliación de la plataforma SecureChain para dar soporte al ecosistema Go. Ingesta masiva de metadatos y resolución de complejos árboles de dependencias multiecosistema mediante Z3 Theorem Prover.</p>
-                    <div class="tech-stack">
-                        <span>Python</span><span>Go</span><span>FastAPI</span><span>Dagster</span><span>Z3 Prover</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 2: Aegis Sentinel -->
-            <article class="project-card bezel-outer reveal-up" style="transition-delay: 0.2s;">
-                <div class="bezel-inner">
-                    <div class="card-top">
-                        <div class="title-wrap">
-                            <h2>Aegis Sentinel</h2>
-                            <span class="pill-badge outline-badge">Activo</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/alvarofdezr/Aegis-sentinel" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
-                                Repositorio
-                                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg></div>
-                            </a>
-                        </div>
-                    </div>
-                    <p class="project-desc">Plataforma EDR que evoluciona la arquitectura base de Basilisk. Añade capacidades de monitorización, respuesta automatizada, escaneo YARA y control de acceso RBAC.</p>
-                    <div class="tech-stack">
-                        <span>Python</span><span>EDR</span><span>Docker</span><span>RBAC</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 3: Harpocrates -->
-            <article class="project-card bezel-outer reveal-up">
-                <div class="bezel-inner">
-                    <div class="card-top">
-                        <div class="title-wrap">
-                            <h2>Harpocrates</h2>
-                            <span class="pill-badge outline-badge">v2.0.0</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/alvarofdezr/Harpocrates" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
-                                Repositorio
-                                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg></div>
-                            </a>
-                        </div>
-                    </div>
-                    <p class="project-desc">Gestor de contraseñas CLI/GUI con arquitectura local Zero-Trust. Almacenamiento seguro de credenciales sin depender de la nube, cifrado AES-256-GCM y derivación Argon2id.</p>
-                    <div class="tech-stack">
-                        <span>Python</span><span>Cryptography</span><span>Zero-Trust</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 4: Basilisk -->
-            <article class="project-card bezel-outer reveal-up">
-                <div class="bezel-inner">
-                    <div class="card-top">
-                        <div class="title-wrap">
-                            <h2>Basilisk</h2>
-                            <span class="pill-badge outline-badge">Completado</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/alvarofdezr/Basilisk" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
-                                Repositorio
-                                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg></div>
-                            </a>
-                        </div>
-                    </div>
-                    <p class="project-desc">Sistema EDR modular base con agente de bajo nivel, servidor C2 y dashboard web en tiempo real. Monitorización de red, procesos, FIM y registro. Base arquitectónica de Aegis Sentinel.</p>
-                    <div class="tech-stack">
-                        <span>Python</span><span>FastAPI</span><span>YARA</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 5: Ares -->
-            <article class="project-card bezel-outer reveal-up">
-                <div class="bezel-inner">
-                    <div class="card-top">
-                        <div class="title-wrap">
-                            <h2>Ares</h2>
-                            <span class="pill-badge warning-badge">Ofensivo</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/alvarofdezr/Ares" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
-                                Repositorio
-                                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg></div>
-                            </a>
-                        </div>
-                    </div>
-                    <p class="project-desc">Toolkit de seguridad ofensiva de alto rendimiento para reconocimiento de redes, descubrimiento de vulnerabilidades y automatización de payloads. Motor de escaneo de puertos altamente concurrente en Go.</p>
-                    <div class="tech-stack">
-                        <span>Go</span><span>Networking</span><span>Concurrency</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Project 6: Cript -->
-            <article class="project-card bezel-outer reveal-up">
-                <div class="bezel-inner">
-                    <div class="card-top">
-                        <div class="title-wrap">
-                            <h2>Cript</h2>
-                            <span class="pill-badge outline-badge">Completado</span>
-                        </div>
-                        <div class="card-actions">
-                            <a href="https://github.com/alvarofdezr/cript" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
-                                Repositorio
-                                <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg></div>
-                            </a>
-                        </div>
-                    </div>
-                    <p class="project-desc">Framework didáctico de simulación de protocolos criptográficos seguros. Implementa canales E2EE con Double Ratchet y derivación de claves HKDF.</p>
-                    <div class="tech-stack">
-                        <span>Python</span><span>E2EE</span><span>Cryptography</span>
-                    </div>
-                </div>
-            </article>
-
-        </div>
+        <ProjectVignettes lang="es" />
     </main>
 
     <Footer />
 
     <style>
         .layout-wrapper {
-            padding-top: clamp(8rem, 20vh, 14rem);
-            padding-bottom: 6rem;
+            padding-top: clamp(6.5rem, 14vh, 9.5rem);
+            padding-bottom: var(--macro-gap);
         }
 
-        .back-btn {
-            background: transparent;
-            color: var(--text-secondary);
-            padding-left: 0.5rem;
-            margin-bottom: 3rem;
-            flex-direction: row-reverse;
+        .page-top-nav { margin-bottom: 2rem; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            transition: color 140ms var(--ease-out);
         }
-
-        .back-btn .icon-wrapper { background: transparent; }
-        .back-btn:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); }
-        .back-btn:hover .icon-wrapper { transform: translateX(-4px); }
+        .back-link:hover { color: var(--accent-cyan); }
 
         .page-header {
-            max-width: 800px;
-            margin-bottom: 6rem;
+            margin-bottom: 2.75rem;
+            max-width: 900px;
         }
-
         .page-title {
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
+            margin-top: 1rem;
+            margin-bottom: 1.25rem;
+            font-size: clamp(2.4rem, 5.5vw, 4rem);
         }
-
-        .text-accent {
-            color: var(--accent);
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
+        .text-cyan { color: var(--accent-cyan); }
         .page-desc {
             font-size: 1.15rem;
             color: var(--text-secondary);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            max-width: 600px;
-        }
-
-        /* ── Stats Glass ── */
-        .stats-glass {
-            display: inline-block;
-        }
-        .stats-inner {
-            display: flex;
-            gap: 3rem;
-            padding: 1.5rem 3rem;
-        }
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
-        .stat-num {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            line-height: 1;
-        }
-        .stat-label {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--accent);
-        }
-
-        /* ── Projects Clean Grid ── */
-        .projects-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-        }
-
-        .project-card .bezel-inner {
-            padding: 3.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .card-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-        }
-
-        .title-wrap {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .project-card h2 {
-            font-size: 2.2rem;
-            color: var(--text-primary);
-            margin: 0;
-        }
-
-        .card-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .pill-badge {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            padding: 0.2rem 0.8rem;
-            border-radius: var(--radius-pill);
-            letter-spacing: 0.05em;
-        }
-
-        .accent-badge {
-            background: var(--accent-glow);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-        }
-
-        .outline-badge {
-            border: 1px solid var(--border-inner);
-            color: var(--text-secondary);
-        }
-
-        .warning-badge {
-            border: 1px solid rgba(251, 191, 36, 0.4);
-            color: #fbbf24;
-            background: rgba(251, 191, 36, 0.1);
-        }
-
-        .outline-btn {
-            background: transparent;
-            border: 1px solid var(--border-outer);
-            color: var(--text-secondary);
-        }
-        .outline-btn:hover { background: var(--text-primary); color: var(--bg-base); }
-
-        .project-desc {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            max-width: 90%;
-            margin: 0;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            border-top: 1px solid var(--border-outer);
-            padding-top: 1.5rem;
-        }
-
-        .tech-stack span {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            padding: 0.25rem 0.75rem;
-            border: 1px solid var(--border-outer);
-            border-radius: 4px;
-        }
-
-        @media (max-width: 900px) {
-            .stats-inner { flex-wrap: wrap; padding: 1.5rem; gap: 2rem; justify-content: center; }
-            .card-top { flex-direction: column; align-items: flex-start; }
-            .project-card .bezel-inner { padding: 2rem; }
-            .project-desc { max-width: 100%; }
+            max-width: 720px;
+            margin-bottom: 0;
         }
     </style>
 </body>

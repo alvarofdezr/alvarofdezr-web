@@ -3,8 +3,8 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
-const title = "Álvaro Fernández Ramos | Security Engineer";
-const description = "Security Engineer specializing in offensive security, malware analysis, and zero-trust architecture.";
+const title = "Álvaro Fernández Ramos | Software Engineer & Systems Builder";
+const description = "Software Engineer: Full-Stack web & Android mobile development, backend architectures, databases, automations, and systems engineering.";
 ---
 
 <!DOCTYPE html>
@@ -13,68 +13,190 @@ const description = "Security Engineer specializing in offensive security, malwa
     <BaseHead title={title} description={description} />
 </head>
 <body>
-    <div class="mesh-bg"></div>
     <Header />
 
     <main class="container layout-wrapper">
+        <!-- ── 1. HERO SECTION & TELEMETRY ── -->
         <section class="hero-section reveal-up">
-            <span class="eyebrow">Security Engineer · Seville</span>
+            <div class="telemetry-bar">
+                <div class="telemetry-item">
+                    <span class="beacon-dot"></span>
+                    <span class="telemetry-label">ROLE:</span>
+                    <span class="telemetry-val text-cyan">SOFTWARE ENGINEER // FULL-STACK & SYSTEMS</span>
+                </div>
+                <div class="telemetry-sep">/</div>
+                <div class="telemetry-item">
+                    <span class="telemetry-label">LOCATION:</span>
+                    <span class="telemetry-val">SEVILLE, ES</span>
+                </div>
+            </div>
+
             <h1 class="hero-title">
                 Álvaro <br>
-                <span class="text-accent">Fernández Ramos</span>
+                <span class="hero-highlight" data-scramble="Fernández Ramos">Fernández Ramos</span>
             </h1>
+
             <p class="hero-bio">
-                I build <strong>secure software</strong> and break systems to understand how to defend them. 
-                Computer Engineering degree focused on <em>offensive security</em> research, malware analysis, and Zero-Trust architectures.
+                I build software end-to-end: from <strong>frontend web development and native Android mobile apps</strong>, to <strong>backend architectures, databases, and automation pipelines</strong>, down to <em>systems engineering and security</em>.
             </p>
-            
-            <div class="hero-actions">
-                <a href="/en/projects" class="btn-magnetic">
-                    View Projects
-                    <div class="icon-wrapper">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216h-40M56 216h40m104-56v56M56 160v56m164-88H36a16 16 0 0 1-16-16V64a16 16 0 0 1 16-16h184a16 16 0 0 1 16 16v48a16 16 0 0 1-16 16ZM20 64l108 72L236 64"/></svg>
-                    </div>
+
+            <div class="hero-cta-group">
+                <button class="btn-tactile btn-primary" data-copy="alvarofdezr@gmail.com" data-copy-label="Email copied to clipboard">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                    <span>alvarofdezr@gmail.com</span>
+                </button>
+
+                <a href="/en/projects" class="btn-tactile btn-secondary">
+                    <span>View Projects</span>
+                    <span class="arrow-icon">→</span>
                 </a>
+
+                <a href="https://github.com/alvarofdezr" target="_blank" rel="noopener noreferrer" class="btn-tactile btn-ghost">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/>
+                    </svg>
+                    <span>GitHub</span>
+                </a>
+            </div>
+
+            <!-- Stats HUD -->
+            <div class="stats-hud spotlight-card">
+                <div class="stat-cell">
+                    <span class="stat-number" data-scramble="7">7</span>
+                    <span class="stat-desc">Featured Projects</span>
+                </div>
+                <div class="stat-cell">
+                    <span class="stat-number" data-scramble="Full-Stack">Full-Stack</span>
+                    <span class="stat-desc">Web, Android, Backend & DBs</span>
+                </div>
+                <div class="stat-cell">
+                    <span class="stat-number" data-scramble="Py / Go / C / JS">Py / Go / C / JS</span>
+                    <span class="stat-desc">Languages & Toolkits</span>
+                </div>
+                <div class="stat-cell">
+                    <span class="stat-number text-cyan" data-scramble="Systems & DB">Systems & DB</span>
+                    <span class="stat-desc">SQLite / Ingestion / Zero-Trust</span>
+                </div>
             </div>
         </section>
 
-        <!-- Asymmetrical Bento Navigation -->
-        <section class="bento-grid-section reveal-up" style="transition-delay: 0.1s;">
-            <div class="bento-grid">
-                
-                <!-- Project Card (Span 2 Cols) -->
-                <a href="/en/projects" class="bento-card bezel-outer card-projects">
-                    <div class="bezel-inner">
-                        <div class="card-header">
-                            <h2>Projects and analysis</h2>
-                            <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg>
-                        </div>
-                        <p>Explore my work in cybersecurity, secure development, offensive tools, and technical audits.</p>
-                        <div class="decorative-blur"></div>
-                    </div>
+        <!-- ── 2. ARSENAL ── -->
+        <section class="section-block reveal-up">
+            <div class="section-header">
+                <div>
+                    <span class="badge-chip emerald">ARSENAL</span>
+                    <h2 class="section-title">Tools & Specialization</h2>
+                </div>
+                <a href="/en/stack" class="view-all-link">
+                    <span>View full stack</span>
+                    <span class="arrow-icon">→</span>
                 </a>
+            </div>
 
-                <!-- Stack Card (Span 1 Col) -->
-                <a href="/en/stack" class="bento-card bezel-outer card-stack">
-                    <div class="bezel-inner">
-                        <div class="card-header">
-                            <h2>Stack and certs</h2>
-                            <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg>
-                        </div>
-                        <p>My technological arsenal and certifications.</p>
-                    </div>
-                </a>
+            <div class="stack-filters">
+                <button class="filter-chip active" data-filter="all">All (12)</button>
+                <button class="filter-chip" data-filter="fullstack">Web, Mobile & DB</button>
+                <button class="filter-chip" data-filter="low-level">Backend & Systems</button>
+                <button class="filter-chip" data-filter="sec-tools">Security & Analysis</button>
+            </div>
 
-                <!-- Profile Card (Span 3 Cols) -->
-                <a href="/en/profile" class="bento-card bezel-outer card-profile">
-                    <div class="bezel-inner">
-                        <div class="card-header">
-                            <h2>Profile and journey</h2>
-                            <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216V56H40m160 0L40 216"/></svg>
-                        </div>
-                        <p>More about my professional background, education, and how I approach engineering and security.</p>
+            <div class="arsenal-grid" id="arsenal-grid">
+                <div class="arsenal-card spotlight-card" data-category="fullstack">
+                    <div class="arsenal-top">
+                        <span class="arsenal-name">Web & Android Development</span>
+                        <span class="badge-chip emerald">Full-Stack</span>
                     </div>
-                </a>
+                    <p class="arsenal-use">Modular JavaScript SPAs, native Android tablet APK packaging, and IndexedDB local client storage (ARQMED Studio).</p>
+                </div>
+
+                <div class="arsenal-card spotlight-card" data-category="fullstack">
+                    <div class="arsenal-top">
+                        <span class="arsenal-name">Databases & SQLite</span>
+                        <span class="badge-chip cyan">Data</span>
+                    </div>
+                    <p class="arsenal-use">Relational schema design, database migrations, structured SQLite export, and serverless client-side persistence.</p>
+                </div>
+
+                <div class="arsenal-card spotlight-card" data-category="low-level">
+                    <div class="arsenal-top">
+                        <span class="arsenal-name">Python</span>
+                        <span class="badge-chip cyan">Core</span>
+                    </div>
+                    <p class="arsenal-use">High-speed parsers, zero-dependency CLI architectures (Arqmed), EDR agents (Aegis/Basilisk), and Dagster pipelines.</p>
+                </div>
+
+                <div class="arsenal-card spotlight-card" data-category="low-level">
+                    <div class="arsenal-top">
+                        <span class="arsenal-name">Go (Golang)</span>
+                        <span class="badge-chip cyan">Core</span>
+                    </div>
+                    <p class="arsenal-use">Concurrent network tools (Ares), multithreaded network scanners, and AST syntax parsing in SecureChain.</p>
+                </div>
+
+                <div class="arsenal-card spotlight-card" data-category="low-level">
+                    <div class="arsenal-top">
+                        <span class="arsenal-name">Z3 Theorem Prover</span>
+                        <span class="badge-chip emerald">SAT/SMT</span>
+                    </div>
+                    <p class="arsenal-use">Modeling version constraint systems and finding vulnerability-free dependency graphs in Thesis research.</p>
+                </div>
+
+                <div class="arsenal-card spotlight-card" data-category="low-level">
+                    <div class="arsenal-top">
+                        <span class="arsenal-name">C (C99 / POSIX)</span>
+                        <span class="badge-chip cyan">Systems</span>
+                    </div>
+                    <p class="arsenal-use">Memory layout understanding (stack/heap), Linux kernel syscalls, pointers, and data structures.</p>
+                </div>
+
+                <div class="arsenal-card spotlight-card" data-category="fullstack">
+                    <div class="arsenal-top">
+                        <span class="arsenal-name">Docker & Automations</span>
+                        <span class="badge-chip emerald">Infra</span>
+                    </div>
+                    <p class="arsenal-use">Hermetic containerization, service orchestration, deployment workflows, and automated testing pipelines.</p>
+                </div>
+
+                <div class="arsenal-card spotlight-card" data-category="sec-tools">
+                    <div class="arsenal-top">
+                        <span class="arsenal-name">Cryptography & Zero-Trust</span>
+                        <span class="badge-chip emerald">Security</span>
+                    </div>
+                    <p class="arsenal-use">AES-256-GCM, Argon2id derivation, and Double Ratchet E2EE channels (Cript & Harpocrates).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── 4. ENGINEERING PHILOSOPHY ── -->
+        <section class="section-block reveal-up">
+            <div class="section-header">
+                <div>
+                    <span class="badge-chip cyan">PRINCIPLES</span>
+                    <h2 class="section-title">How I approach software</h2>
+                </div>
+            </div>
+
+            <div class="principles-grid">
+                <div class="principle-card spotlight-card">
+                    <span class="principle-num">01</span>
+                    <h3>End-to-end problem solving</h3>
+                    <p>I don't limit myself to a single layer. From touch interfaces on an Android tablet to bare-metal parsers on a server, I master the entire lifecycle.</p>
+                </div>
+
+                <div class="principle-card spotlight-card">
+                    <span class="principle-num">02</span>
+                    <h3>Zero unnecessary dependencies</h3>
+                    <p>I value resilient, lightweight software. Writing tools and libraries that avoid bloated, fragile dependency chains ensures systems remain fast and predictable.</p>
+                </div>
+
+                <div class="principle-card spotlight-card">
+                    <span class="principle-num">03</span>
+                    <h3>Technical rigor & native security</h3>
+                    <p>Security and robustness are never added as an afterthought: they are engineered into the data models, strict format validators, and memory safety patterns.</p>
+                </div>
             </div>
         </section>
     </main>
@@ -83,130 +205,301 @@ const description = "Security Engineer specializing in offensive security, malwa
 
     <style>
         .layout-wrapper {
-            padding-top: clamp(8rem, 20vh, 14rem);
+            padding-top: clamp(6.5rem, 14vh, 9.5rem);
             padding-bottom: var(--macro-gap);
         }
 
         .hero-section {
-            max-width: 900px;
+            max-width: 980px;
             margin-bottom: var(--macro-gap);
         }
 
-        .hero-title {
+        .telemetry-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.35rem 0.85rem;
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-pill);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
             margin-bottom: 2rem;
-            color: var(--text-primary);
         }
 
-        .text-accent {
-            color: var(--accent);
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .telemetry-item { display: flex; align-items: center; gap: 0.4rem; }
+        .telemetry-label { color: var(--text-muted); }
+        .telemetry-val { color: var(--text-primary); font-weight: 500; }
+        .text-emerald { color: var(--accent-emerald); }
+        .text-cyan { color: var(--accent-cyan); }
+        .telemetry-sep { color: var(--border-medium); }
+
+        .hero-title {
+            margin-bottom: 1.5rem;
+            font-size: clamp(2.8rem, 7vw, 5.2rem);
+            letter-spacing: -0.04em;
+            line-height: 1.05;
         }
+
+        .hero-highlight { color: var(--accent-cyan); cursor: default; }
 
         .hero-bio {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
             color: var(--text-secondary);
-            max-width: 700px;
-            line-height: 1.8;
-            border-left: 2px solid var(--border-inner);
-            padding-left: 1.5rem;
+            max-width: 780px;
+            line-height: 1.7;
+            margin-bottom: 2.25rem;
+        }
+
+        .hero-bio strong { color: var(--text-primary); font-weight: 600; }
+        .hero-bio em { color: var(--accent-cyan); font-style: normal; }
+
+        .hero-cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.85rem;
             margin-bottom: 3rem;
         }
 
-        .hero-bio strong {
+        .stats-hud {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            padding: 1.25rem 2rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-md);
+        }
+
+        .stat-cell { display: flex; flex-direction: column; gap: 0.25rem; }
+        .stat-number {
+            font-family: var(--font-mono);
+            font-size: 1.3rem;
+            font-weight: 700;
             color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+        .stat-desc { font-family: var(--font-body); font-size: 0.8rem; color: var(--text-muted); }
+
+        .section-block {
+            padding: calc(var(--macro-gap) * 0.75) 0;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 2.5rem;
+            gap: 1rem;
+        }
+
+        .section-title { margin-top: 0.5rem; font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+
+        .view-all-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            transition: transform 0.2s ease;
+        }
+        .view-all-link:hover { text-decoration: underline; }
+        .view-all-link:hover .arrow-icon { transform: translateX(3px); }
+
+        .projects-stack { display: flex; flex-direction: column; gap: 2rem; }
+        .project-multi-card { padding: 2rem; }
+        .card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .title-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.35rem; }
+        .title-row h3 { font-size: 1.6rem; margin: 0; }
+        .project-tagline { font-size: 0.95rem; color: var(--text-secondary); margin: 0; }
+        .head-actions { display: flex; gap: 0.5rem; }
+        .btn-text { font-family: var(--font-mono); font-size: 0.8rem; }
+        .arrow-up { font-size: 0.8rem; }
+
+        .view-tabs {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            padding: 0.35rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: transform 140ms var(--ease-out), background-color 140ms var(--ease-out), color 140ms var(--ease-out), border-color 140ms var(--ease-out);
+        }
+        .tab-btn:hover { color: var(--text-primary); background: var(--bg-surface-elevated); }
+        .tab-btn:active { transform: scale(0.96); }
+        .tab-btn.active {
+            color: var(--accent-cyan);
+            background: rgba(0, 240, 255, 0.08);
+            border-color: rgba(0, 240, 255, 0.25);
+            font-weight: 500;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: tabContentEnter 0.22s var(--ease-out); }
+        @keyframes tabContentEnter {
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+                filter: blur(2px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+        .tab-desc {
+            font-size: 0.98rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+            max-width: 900px;
+        }
+        .tab-desc strong { color: var(--text-primary); }
+
+        .tech-tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .tech-tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.55rem;
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            color: var(--text-secondary);
+        }
+
+        .arch-flow { display: flex; align-items: center; gap: 0.75rem; overflow-x: auto; padding: 1rem 0; }
+        .arch-node {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-medium);
+            padding: 0.85rem 1rem;
+            border-radius: var(--radius-sm);
+            min-width: 160px;
+            flex-shrink: 0;
+        }
+        .node-step { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-cyan); font-weight: 600; }
+        .node-title { font-size: 0.88rem; font-weight: 600; color: var(--text-primary); }
+        .node-sub { font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); }
+        .arch-arrow { color: var(--accent-cyan); font-weight: bold; opacity: 0.6; flex-shrink: 0; }
+
+        .terminal-snippet {
+            background: #040507;
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-sm);
+            padding: 1rem 1.25rem;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+        .term-prompt { color: var(--accent-cyan); font-weight: bold; margin-right: 0.5rem; }
+
+        .stack-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .filter-chip {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            padding: 0.35rem 0.8rem;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            transition: transform 140ms var(--ease-out), background-color 140ms var(--ease-out), border-color 140ms var(--ease-out), color 140ms var(--ease-out);
+        }
+        .filter-chip:hover { border-color: var(--border-medium); color: var(--text-primary); }
+        .filter-chip:active { transform: scale(0.95); }
+        .filter-chip.active {
+            background: var(--text-primary);
+            color: var(--bg-base);
+            border-color: var(--text-primary);
             font-weight: 600;
         }
 
-        .hero-bio em {
-            color: var(--accent);
-            font-style: italic;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        /* ── Asymmetrical Bento Grid ── */
-        .bento-grid {
+        .arsenal-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.25rem;
         }
+        .arsenal-card { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
+        .arsenal-top { display: flex; align-items: center; justify-content: space-between; }
+        .arsenal-name { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; color: var(--text-primary); }
+        .arsenal-use { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin: 0; }
 
-        .bento-card {
-            display: block;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .bento-card .bezel-inner {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-
-        .card-projects { grid-column: span 2; }
-        .card-stack { grid-column: span 1; }
-        .card-profile { grid-column: span 3; }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .bento-card h2 {
-            font-size: 1.5rem;
-            margin: 0;
-            color: var(--text-primary);
-        }
-
-        .bento-card p {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
-            line-height: 1.6;
-            margin: 0;
-            max-width: 90%;
-        }
-
-        .bento-card .arrow {
-            color: var(--text-muted);
-            transition: transform 0.6s var(--ease-spring), color 0.6s var(--ease-spring);
-        }
-
-        .bento-card:hover .arrow {
-            color: var(--accent);
-            transform: translate(6px, -6px);
-        }
-
-        .card-projects .decorative-blur {
-            position: absolute;
-            bottom: -20%;
-            right: -10%;
-            width: 200px;
-            height: 200px;
-            background: var(--accent-glow);
-            filter: blur(80px);
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.5;
-            transition: opacity 0.6s var(--ease-spring);
-        }
-
-        .card-projects:hover .decorative-blur {
-            opacity: 0.8;
-        }
+        .principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .principle-card { padding: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+        .principle-num { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--accent-cyan); }
+        .principle-card h3 { font-size: 1.25rem; margin: 0; }
+        .principle-card p { font-size: 0.92rem; line-height: 1.6; margin: 0; }
 
         @media (max-width: 900px) {
-            .bento-grid { grid-template-columns: 1fr; }
-            .card-projects, .card-stack, .card-profile { grid-column: span 1; }
-            .layout-wrapper { padding-top: 8rem; }
-            .bento-card .bezel-inner { padding: 2rem; }
+            .stats-hud { grid-template-columns: repeat(2, 1fr); }
+            .principles-grid { grid-template-columns: 1fr; }
+            .card-head { flex-direction: column; }
+        }
+
+        @media (max-width: 640px) {
+            .stats-hud { grid-template-columns: 1fr; }
+            .telemetry-bar { flex-wrap: wrap; }
         }
     </style>
+
+    <script>
+        function setupInteractivePage() {
+            document.querySelectorAll('.project-multi-card').forEach((card) => {
+                const tabBtns = card.querySelectorAll('.tab-btn');
+                const panels = card.querySelectorAll('.tab-content');
+
+                tabBtns.forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        const targetTab = btn.getAttribute('data-tab');
+                        tabBtns.forEach((b) => b.classList.remove('active'));
+                        panels.forEach((p) => p.classList.remove('active'));
+
+                        btn.classList.add('active');
+                        const targetPanel = card.querySelector(`[data-panel="${targetTab}"]`);
+                        targetPanel?.classList.add('active');
+                    });
+                });
+            });
+
+            const filterChips = document.querySelectorAll('.filter-chip');
+            const arsenalCards = document.querySelectorAll<HTMLElement>('.arsenal-card');
+
+            filterChips.forEach((chip) => {
+                chip.addEventListener('click', () => {
+                    const filter = chip.getAttribute('data-filter');
+                    filterChips.forEach((c) => c.classList.remove('active'));
+                    chip.classList.add('active');
+
+                    arsenalCards.forEach((card) => {
+                        const cat = card.getAttribute('data-category');
+                        if (filter === 'all' || cat === filter) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        }
+
+        setupInteractivePage();
+        document.addEventListener('astro:after-swap', setupInteractivePage);
+    </script>
 </body>
 </html>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-labelledby="title">
+  <title id="title">ARQMED Symbol (Dark Mode)</title>
+  <!-- Outer Caliper Bracket in Crisp Bright Titanium -->
+  <path fill="#F8FAFC" d="M24 24 H140 L172 56 H60 V200 H172 L140 232 H24 Z" />
+  <!-- Level 1 Chapter Bar -->
+  <path fill="#64748B" d="M96 76 H232 V104 H96 Z" />
+  <!-- Level 2 Subchapter / Core Measurement Bar in Technical Amber -->
+  <path fill="#F59E0B" d="M136 114 H232 V142 H136 Z" />
+  <!-- Level 3 Work Unit Bar -->
+  <path fill="#64748B" d="M96 152 H232 V180 H96 Z" />
+</svg>
+

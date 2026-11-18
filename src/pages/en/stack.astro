@@ -3,8 +3,8 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
-const title = "Stack and Certifications | Álvaro Fernández Ramos";
-const description = "Technological arsenal, development environments, applications, and progress in cybersecurity certifications.";
+const title = "Stack & Technical Arsenal | Álvaro Fernández Ramos";
+const description = "Technical arsenal: web development, Android applications, backend architectures, databases, automations, and systems.";
 ---
 
 <!DOCTYPE html>
@@ -13,343 +13,411 @@ const description = "Technological arsenal, development environments, applicatio
     <BaseHead title={title} description={description} />
 </head>
 <body>
-    <div class="mesh-bg"></div>
     <Header />
 
     <main class="container layout-wrapper">
-        <a href="/en" class="btn-magnetic back-btn reveal-up">
-            <div class="icon-wrapper">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M216 128H40m72-72l-72 72l72 72"/></svg>
-            </div>
-            Back
-        </a>
+        <div class="page-top-nav reveal-up">
+            <a href="/en" class="back-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+                <span>Back to home</span>
+            </a>
+        </div>
 
-        <header class="page-header reveal-up" style="transition-delay: 0.1s;">
-            <span class="eyebrow">Technical Arsenal</span>
+        <header class="page-header reveal-up">
+            <div class="badge-chip emerald">TECHNICAL ARSENAL & PROFICIENCY</div>
             <h1 class="page-title">
-                Stack and <br>
-                <span class="text-accent">tools.</span>
+                Technologies & <br>
+                <span class="text-cyan" data-scramble="development environments.">development environments.</span>
             </h1>
             <p class="page-desc">
-                Core technologies, deployment environments, and tools applied to security auditing, monitoring, and Zero-Trust architectures.
+                Toolkits selected to build comprehensive software: from responsive web SPAs and Android mobile apps down to low-level calculation engines, databases, and automated pipelines.
             </p>
         </header>
 
-        <section class="stack-section reveal-up" style="transition-delay: 0.2s;">
-            <h2 class="section-title">Core technologies</h2>
-            <div class="bento-dense">
-                <!-- Go Card -->
-                <div class="bento-card bezel-outer tech-go span-row-2">
-                    <div class="bezel-inner">
-                        <div class="card-head">
-                            <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><path d="m9 15 2 2 4-4"></path></svg></div>
-                            <h3>Go (Golang)</h3>
-                        </div>
-                        <p>Development of low-level security tools, high-concurrency dependency analysis, and fast static deployments.</p>
-                        <div class="tags"><span>Goroutines</span><span>AST Parsing</span></div>
-                    </div>
-                </div>
+        <div class="arsenal-controls reveal-up">
+            <div class="search-box spotlight-card">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input id="stack-search" type="text" placeholder="Filter by technology, framework, or tool..." autocomplete="off">
+            </div>
 
-                <!-- Python Card -->
-                <div class="bento-card bezel-outer tech-py span-row-2">
-                    <div class="bezel-inner">
-                        <div class="card-head">
-                            <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"></path><path d="m6 8-4 4 4 4"></path><path d="m14.5 4-5 16"></path></svg></div>
-                            <h3>Python</h3>
-                        </div>
-                        <p>Offensive scripting, defensive automation, malware analysis, and multi-platform EDR agent development.</p>
-                        <div class="tags"><span>FastAPI</span><span>uv</span><span>Pytest</span></div>
-                    </div>
-                </div>
+            <div class="stack-filters">
+                <button class="filter-chip active" data-filter="all">All (12)</button>
+                <button class="filter-chip" data-filter="web-mobile">Web, Android & DB</button>
+                <button class="filter-chip" data-filter="core">Backend Languages</button>
+                <button class="filter-chip" data-filter="systems">Systems & Formal Logic</button>
+                <button class="filter-chip" data-filter="security">Security & Networking</button>
+            </div>
+        </div>
 
-                <!-- Containers Card -->
-                <div class="bento-card bezel-outer tech-docker span-col-2">
-                    <div class="bezel-inner">
-                        <div class="card-head">
-                            <div class="icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M8 12h8"></path><path d="M12 8v8"></path></svg></div>
-                            <h3>Containers and sandboxing</h3>
-                        </div>
-                        <p>Lightweight virtualization and orchestration for isolating services, proofs of concept, and secure microservices architectures.</p>
-                        <div class="tags"><span>Docker</span><span>Compose</span></div>
+        <div class="arsenal-cards-grid" id="arsenal-cards-container">
+            <!-- Web & Frontend SPA -->
+            <div class="stack-card spotlight-card" data-category="web-mobile" data-keywords="web frontend javascript spa indexeddb css ui ux html5 arqmed">
+                <div class="card-top">
+                    <div class="tech-icon-title">
+                        <span class="tech-symbol">Web</span>
+                        <h3>Web Development & SPAs</h3>
                     </div>
+                    <span class="badge-chip emerald">Frontend</span>
+                </div>
+                <p class="tech-description">
+                    Building reactive Single Page Applications with modern JavaScript, client-side state machines, IndexedDB persistence, modular CSS, and touch-ready UX (e.g., ARQMED Studio's interactive budget editor).
+                </p>
+                <div class="tag-list">
+                    <span>JavaScript ES6+</span><span>IndexedDB</span><span>Web APIs</span><span>CSS Architecture</span>
                 </div>
             </div>
-        </section>
 
-        <section class="stack-section reveal-up">
-            <h2 class="section-title">Specialization and domain</h2>
-            <div class="bento-dense spec-grid">
-                
-                <div class="bento-card bezel-outer span-col-2">
-                    <div class="bezel-inner">
-                        <h3>Network analysis and detection</h3>
-                        <p>Deep Packet Inspection (DPI), service enumeration, active vulnerabilities, and NIDS systems.</p>
-                        <div class="tags"><span>Wireshark</span><span>Nmap</span><span>Suricata</span><span>Lynis</span></div>
+            <!-- Android Mobile -->
+            <div class="stack-card spotlight-card" data-category="web-mobile" data-keywords="android apk tablet mobile app aplicacion movil arqmed">
+                <div class="card-top">
+                    <div class="tech-icon-title">
+                        <span class="tech-symbol">And</span>
+                        <h3>Android Development</h3>
                     </div>
+                    <span class="badge-chip emerald">Mobile</span>
                 </div>
-
-                <div class="bento-card bezel-outer span-col-2">
-                    <div class="bezel-inner">
-                        <h3>Software composition analysis (SCA)</h3>
-                        <p>Cross-dependency auditing, constraint resolution, and supply chain vulnerabilities in multiple languages.</p>
-                        <div class="tags"><span>pyproject.toml</span><span>go.mod</span><span>Cargo</span><span>npm</span></div>
-                    </div>
+                <p class="tech-description">
+                    Packaging and distribution of native Android APKs tailored for tablet workflows in field operations, featuring touch feedback, local storage, and zero-latency client execution.
+                </p>
+                <div class="tag-list">
+                    <span>Android APK</span><span>Tablet UI</span><span>Offline First</span><span>Mobile Packaging</span>
                 </div>
-
-                <div class="bento-card bezel-outer">
-                    <div class="bezel-inner">
-                        <h3>Logical auditing (SAST)</h3>
-                        <p>Formal validation of vulnerabilities in business logic.</p>
-                        <div class="tags"><span>Z3 Prover</span><span>Bandit</span></div>
-                    </div>
-                </div>
-
-                <div class="bento-card bezel-outer">
-                    <div class="bezel-inner">
-                        <h3>Persistence and graphs</h3>
-                        <p>Relational and graph modeling for event correlation.</p>
-                        <div class="tags"><span>Neo4j</span><span>MongoDB</span></div>
-                    </div>
-                </div>
-
             </div>
-        </section>
 
-        <section class="stack-section reveal-up">
-            <h2 class="section-title">Certifications</h2>
+            <!-- Databases & SQLite -->
+            <div class="stack-card spotlight-card" data-category="web-mobile" data-keywords="sqlite databases sql bases de datos esquemas json csv orm persistencia">
+                <div class="card-top">
+                    <div class="tech-icon-title">
+                        <span class="tech-symbol">SQL</span>
+                        <h3>Databases & SQLite</h3>
+                    </div>
+                    <span class="badge-chip cyan">Data</span>
+                </div>
+                <p class="tech-description">
+                    Relational schema modeling, index optimization, structured SQLite batch exports, and data serialization across JSON, CSV, and embedded databases.
+                </p>
+                <div class="tag-list">
+                    <span>SQLite3</span><span>Relational Schemas</span><span>Data Serialization</span><span>JSON / CSV</span>
+                </div>
+            </div>
+
+            <!-- Python & Automation -->
+            <div class="stack-card spotlight-card" data-category="core" data-keywords="python automatizaciones backend dagster fastapi cli bc3 parser">
+                <div class="card-top">
+                    <div class="tech-icon-title">
+                        <span class="tech-symbol">Py</span>
+                        <h3>Python & Automations</h3>
+                    </div>
+                    <span class="badge-chip cyan">Advanced</span>
+                </div>
+                <p class="tech-description">
+                    Engineering high-fidelity parsers with zero third-party dependencies (Arqmed), automated CLI tooling, asynchronous APIs via FastAPI, and DAG pipelines with Dagster.
+                </p>
+                <div class="tag-list">
+                    <span>FastAPI</span><span>Dagster</span><span>CLI Automation</span><span>Zero Runtime Deps</span>
+                </div>
+            </div>
+
+            <!-- Go -->
+            <div class="stack-card spotlight-card" data-category="core" data-keywords="go golang concurrencia ast goroutines ares securechain">
+                <div class="card-top">
+                    <div class="tech-icon-title">
+                        <span class="tech-symbol">Go</span>
+                        <h3>Go (Golang)</h3>
+                    </div>
+                    <span class="badge-chip cyan">Advanced</span>
+                </div>
+                <p class="tech-description">
+                    Building high-concurrency tooling (Ares), multithreaded network scanning through goroutine pools, and syntax tree (AST) code parsing in SecureChain.
+                </p>
+                <div class="tag-list">
+                    <span>Goroutines</span><span>AST Parsing</span><span>Raw Sockets</span><span>go.mod Parser</span>
+                </div>
+            </div>
+
+            <!-- C / POSIX -->
+            <div class="stack-card spotlight-card" data-category="systems" data-keywords="c c99 posix linux syscalls memoria heap stack punteros">
+                <div class="card-top">
+                    <div class="tech-icon-title">
+                        <span class="tech-symbol">C</span>
+                        <h3>C (C99 / POSIX)</h3>
+                    </div>
+                    <span class="badge-chip cyan">Systems</span>
+                </div>
+                <p class="tech-description">
+                    Low-level memory management, pointer mechanics, direct Linux kernel syscall handling, and memory debugging with GDB and Valgrind.
+                </p>
+                <div class="tag-list">
+                    <span>Linux Syscalls</span><span>GDB</span><span>Memory Layout</span><span>Valgrind</span>
+                </div>
+            </div>
+
+            <!-- Z3 Theorem Prover -->
+            <div class="stack-card spotlight-card" data-category="systems" data-keywords="z3 smt sat logica formal formal verification solver tfg">
+                <div class="card-top">
+                    <div class="tech-icon-title">
+                        <span class="tech-symbol">Z3</span>
+                        <h3>Z3 SMT Solver</h3>
+                    </div>
+                    <span class="badge-chip emerald">Formal Logic</span>
+                </div>
+                <p class="tech-description">
+                    Formulating package dependency constraints as SAT/SMT formulas to achieve mathematically verified, deterministic, vulnerability-free dependency trees.
+                </p>
+                <div class="tag-list">
+                    <span>SMT Solving</span><span>Boolean Logic</span><span>SAT Solvers</span>
+                </div>
+            </div>
+
+            <!-- Docker & Sandboxing -->
+            <div class="stack-card spotlight-card" data-category="web-mobile" data-keywords="docker contenedores sandbox compose cgroups namespaces virtualizacion">
+                <div class="card-top">
+                    <div class="tech-icon-title">
+                        <span class="tech-symbol">Doc</span>
+                        <h3>Docker & Sandboxing</h3>
+                    </div>
+                    <span class="badge-chip emerald">Infrastructure</span>
+                </div>
+                <p class="tech-description">
+                    Service isolation, containerized testing environments, reproducible staging setups, and sandboxed specimen execution with bounded resources.
+                </p>
+                <div class="tag-list">
+                    <span>Namespaces</span><span>cgroups</span><span>Docker Compose</span><span>Testing Labs</span>
+                </div>
+            </div>
+
+            <!-- Wireshark & Networking -->
+            <div class="stack-card spotlight-card" data-category="security" data-keywords="wireshark pcap tcpdump dpi redes protocolos analisis">
+                <div class="card-top">
+                    <div class="tech-icon-title">
+                        <span class="tech-symbol">Net</span>
+                        <h3>Networking & Traffic Analysis</h3>
+                    </div>
+                    <span class="badge-chip amber">Protocols</span>
+                </div>
+                <p class="tech-description">
+                    Deep packet inspection (DPI), PCAP analysis via Wireshark and tcpdump, TLS handshake auditing, and network telemetry monitoring.
+                </p>
+                <div class="tag-list">
+                    <span>Wireshark</span><span>PCAP</span><span>TCP/IP</span><span>TLS Handshake</span>
+                </div>
+            </div>
+
+            <!-- YARA & EDR -->
+            <div class="stack-card spotlight-card" data-category="security" data-keywords="yara edr malware aegis basilisk firmas deteccion">
+                <div class="card-top">
+                    <div class="tech-icon-title">
+                        <span class="tech-symbol">Yar</span>
+                        <h3>EDR Engines & YARA Rules</h3>
+                    </div>
+                    <span class="badge-chip amber">Security</span>
+                </div>
+                <p class="tech-description">
+                    Architecting host telemetry agents, process tree tracking, and scanning active in-memory artifacts through embedded YARA signature matching.
+                </p>
+                <div class="tag-list">
+                    <span>Host Telemetry</span><span>FIM</span><span>In-Memory Scan</span><span>EDR Agents</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="cert-section reveal-up">
+            <div class="section-header">
+                <div>
+                    <span class="badge-chip cyan">ACADEMIC & MILESTONES</span>
+                    <h2 class="section-title">Academic Background</h2>
+                </div>
+            </div>
+
             <div class="cert-grid">
-                
-                <!-- AWS SimuLearn Card -->
-                <div class="cert-card bezel-outer">
-                    <div class="bezel-inner">
-                        <div class="cert-header">
-                            <span class="pill-badge accent-badge">AWS SimuLearn</span>
-                        </div>
-                        <h3>Cloud, Networking and Security</h3>
-                        <p>Training in Cloud architecture (VPCs, EC2), Cloud Economics, and foundational security concepts.</p>
+                <div class="cert-card spotlight-card">
+                    <div class="cert-badge-row">
+                        <span class="badge-chip emerald">Degree // In Progress</span>
+                        <span class="cert-year">2022 - 2026</span>
                     </div>
+                    <h3>B.S. in Computer Engineering</h3>
+                    <p class="cert-institution">ETSII — University of Seville</p>
+                    <p class="cert-desc">
+                        Comprehensive software engineering curriculum: web and mobile development, database architectures, algorithmic theory, and systems design.
+                    </p>
                 </div>
 
-                <div class="cert-card bezel-outer">
-                    <div class="bezel-inner">
-                        <div class="cert-header">
-                            <span class="pill-badge success-badge">Accredited</span>
-                        </div>
-                        <h3>Cambridge B2 English</h3>
-                        <p>Fluent professional proficiency. Working language for reading specifications (CVEs) and writing reports.</p>
+                <div class="cert-card spotlight-card">
+                    <div class="cert-badge-row">
+                        <span class="badge-chip cyan">International</span>
+                        <span class="cert-year">2024 - 2025</span>
                     </div>
+                    <h3>Erasmus+ Academic Stay</h3>
+                    <p class="cert-institution">Germany</p>
+                    <p class="cert-desc">
+                        Technical immersion in technical English focusing on concurrent systems, agile workflows, and European software collaboration.
+                    </p>
                 </div>
-
             </div>
         </section>
-
     </main>
 
     <Footer />
 
     <style>
-        .layout-wrapper {
-            padding-top: clamp(8rem, 20vh, 14rem);
-        }
-
-        .back-btn {
-            background: transparent;
-            color: var(--text-secondary);
-            padding-left: 0.5rem;
-            margin-bottom: 3rem;
-            flex-direction: row-reverse;
-        }
-
-        .back-btn .icon-wrapper { background: transparent; }
-        .back-btn:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); }
-        .back-btn:hover .icon-wrapper { transform: translateX(-4px); }
-
-        .page-header {
-            max-width: 800px;
-            margin-bottom: 6rem;
-        }
-
-        .page-title {
-            color: var(--text-primary);
-            font-size: clamp(3.5rem, 6vw, 5rem);
-            margin-bottom: 1.5rem;
-            line-height: 1.05;
-        }
-
-        .text-accent {
-            color: var(--accent);
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .page-desc {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            line-height: 1.8;
-            max-width: 650px;
-        }
-
-        .stack-section {
-            margin-bottom: 6rem;
-        }
-
-        .section-title {
+        .layout-wrapper { padding-top: clamp(6.5rem, 14vh, 9.5rem); padding-bottom: var(--macro-gap); }
+        .page-top-nav { margin-bottom: 2rem; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
             font-family: var(--font-mono);
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 2rem;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--accent-cyan); }
+
+        .page-header { max-width: 900px; margin-bottom: 2.5rem; }
+        .page-title { margin-top: 0.75rem; margin-bottom: 1.25rem; font-size: clamp(2.4rem, 5.5vw, 4.2rem); line-height: 1.1; }
+        .text-cyan { color: var(--accent-cyan); }
+        .page-desc { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem; }
+
+        .arsenal-controls { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2.5rem; }
+        .search-box {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-medium);
+            border-radius: var(--radius-sm);
+        }
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+        .search-box input::placeholder { color: var(--text-muted); }
+
+        .stack-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .filter-chip {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            transition: transform 140ms var(--ease-out), background-color 140ms var(--ease-out), border-color 140ms var(--ease-out), color 140ms var(--ease-out);
+        }
+        .filter-chip:hover { border-color: var(--border-medium); color: var(--text-primary); }
+        .filter-chip:active { transform: scale(0.95); }
+        .filter-chip.active {
+            background: var(--text-primary);
+            color: var(--bg-base);
+            border-color: var(--text-primary);
+            font-weight: 600;
         }
 
-        .section-title::after {
-            content: '';
-            height: 1px;
-            flex-grow: 1;
-            background: var(--border-outer);
-        }
-
-        /* ── Bento Dense ── */
-        .bento-dense {
+        .arsenal-cards-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: minmax(180px, auto);
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem;
+            margin-bottom: var(--macro-gap);
         }
 
-        .spec-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .bento-card .bezel-inner {
+        .stack-card {
+            padding: 1.75rem;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            padding: 2.5rem;
+            justify-content: space-between;
+            gap: 1.25rem;
         }
 
-        .span-row-2 { grid-row: span 2; }
-        .span-col-2 { grid-column: span 2; }
-        
-        .tech-go { grid-column: span 2; }
-        .tech-py { grid-column: span 2; }
-        .tech-docker { grid-column: span 4; }
-
-        .card-head {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .icon-box {
-            width: 48px;
-            height: 48px;
-            background: var(--surface-outer);
-            border: 1px solid var(--border-inner);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-        }
-
-        .bento-card h3 {
-            font-size: 1.6rem;
-            color: var(--text-primary);
-            margin: 0;
-        }
-
-        .bento-card p {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin: 0;
-            flex-grow: 1;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: auto;
-            padding-top: 1rem;
-        }
-
-        .tags span {
+        .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; }
+        .tech-icon-title { display: flex; align-items: center; gap: 0.6rem; }
+        .tech-symbol {
             font-family: var(--font-mono);
             font-size: 0.75rem;
-            color: var(--text-muted);
-            padding: 0.25rem 0.75rem;
-            border: 1px solid var(--border-outer);
+            font-weight: 700;
+            color: var(--accent-cyan);
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 0.2rem 0.45rem;
             border-radius: 4px;
         }
-
-        /* ── Certifications ── */
-        .cert-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .cert-card .bezel-inner {
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .cert-header {
-            margin-bottom: 0.5rem;
-        }
-
-        .pill-badge {
+        .tech-icon-title h3 { font-size: 1.15rem; margin: 0; }
+        .tech-description { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin: 0; flex: 1; }
+        .tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .tag-list span {
             font-family: var(--font-mono);
-            font-size: 0.75rem;
-            padding: 0.2rem 0.8rem;
-            border-radius: var(--radius-pill);
-            letter-spacing: 0.05em;
-            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.45rem;
+            border-radius: 4px;
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
         }
 
-        .accent-badge {
-            background: var(--accent-glow);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-        }
+        .cert-section { border-top: 1px solid var(--border-subtle); padding-top: calc(var(--macro-gap) * 0.75); }
+        .section-header { margin-bottom: 2rem; }
+        .section-title { font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin-top: 0.5rem; }
 
-        .success-badge {
-            background: rgba(16, 185, 129, 0.1);
-            color: #10b981;
-            border: 1px solid rgba(16, 185, 129, 0.4);
-        }
+        .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .cert-card { padding: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+        .cert-badge-row { display: flex; align-items: center; justify-content: space-between; }
+        .cert-year { font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); }
+        .cert-card h3 { font-size: 1.25rem; margin: 0; }
+        .cert-institution { font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-cyan); margin: 0; }
+        .cert-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
 
-        .cert-card h3 {
-            font-size: 1.4rem;
-            color: var(--text-primary);
-            margin: 0;
-        }
-
-        .cert-card p {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        @media (max-width: 900px) {
-            .bento-dense { grid-template-columns: 1fr; }
-            .tech-go, .tech-py, .tech-docker, .span-row-2, .span-col-2 {
-                grid-column: span 1;
-                grid-row: auto;
-            }
-            .spec-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 900px) { .cert-grid { grid-template-columns: 1fr; } }
     </style>
+
+    <script>
+        function setupStackPage() {
+            const searchInput = document.getElementById('stack-search') as HTMLInputElement;
+            const filterChips = document.querySelectorAll('.filter-chip');
+            const cards = document.querySelectorAll<HTMLElement>('.stack-card');
+
+            let currentFilter = 'all';
+
+            function updateCards() {
+                const query = searchInput?.value.toLowerCase().trim() || '';
+                cards.forEach((card) => {
+                    const category = card.getAttribute('data-category');
+                    const keywords = (card.getAttribute('data-keywords') || '').toLowerCase();
+                    const text = card.textContent?.toLowerCase() || '';
+
+                    const matchesCat = currentFilter === 'all' || category === currentFilter;
+                    const matchesQuery = !query || keywords.includes(query) || text.includes(query);
+
+                    if (matchesCat && matchesQuery) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            searchInput?.addEventListener('input', updateCards);
+
+            filterChips.forEach((chip) => {
+                chip.addEventListener('click', () => {
+                    currentFilter = chip.getAttribute('data-filter') || 'all';
+                    filterChips.forEach((c) => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    updateCards();
+                });
+            });
+        }
+
+        setupStackPage();
+        document.addEventListener('astro:after-swap', setupStackPage);
+    </script>
 </body>
 </html>

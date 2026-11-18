@@ -1,0 +1,1415 @@
+---
+interface Props {
+    lang?: 'es' | 'en';
+}
+
+const { lang = 'es' } = Astro.props;
+const isEn = lang === 'en';
+
+const projects = [
+    {
+        id: 'arqmed',
+        num: '01',
+        title: 'ARQMED Studio',
+        logoImg: '/logos/arqmed.svg',
+        categoryFilter: 'web-mobile',
+        categoryTag: isEn ? 'Latest // Full-Stack & Android' : 'Último Proyecto // Full-Stack & Android',
+        categoryChip: 'emerald',
+        badgeFront: isEn ? 'Latest' : 'Lanzamiento',
+        sub: 'Web SPA & Android APK',
+        tagline: isEn 
+            ? 'Bidirectional parser and web editor + native Android tablet app for FIEBDC-3 (.BC3) architectural bill of quantities.'
+            : 'Parser bidireccional y editor web + app nativa Android para presupuestos de construcción FIEBDC-3 (.BC3).',
+        specs: [
+            { k: isEn ? 'Core' : 'Núcleo', v: 'Python (0 deps)' },
+            { k: isEn ? 'Platform' : 'Plataforma', v: 'Web + Android' },
+            { k: 'Storage', v: 'SQLite / IndexedDB' }
+        ],
+        github: 'https://github.com/alvarofdezr/Arqmed',
+        extraLink: {
+            url: 'https://github.com/alvarofdezr/Arqmed/releases',
+            text: isEn ? 'Android APK' : 'Android APK'
+        },
+        overview: isEn
+            ? 'Full-stack engineering modernizing construction budget tooling. Features a zero-dependency Python parser (UTF-8, Windows-1252, and CP850), structured exporter to SQLite, JSON, and CSV, an interactive web editor with IndexedDB persistence and cascade cost recalculations, plus a compiled Android tablet app for on-site field auditing.'
+            : 'Desarrollo full-stack que moderniza el software de presupuestos técnicos en obra. Incluye un parser universal en Python con 0 dependencias runtime (soporta UTF-8, Windows-1252 y CP850), exportador a SQLite, JSON y CSV, un editor web interactivo con persistencia en IndexedDB y recálculo en cascada de mediciones, más una aplicación compilada para tablets Android para trabajar a pie de obra.',
+        tags: ['Python (0 deps)', 'JavaScript SPA', 'Android APK (Tablet)', 'SQLite', 'IndexedDB', 'FIEBDC-3 (.BC3)'],
+        arch: [
+            { step: '01', title: 'Universal Ingestion', sub: 'UTF-8 / CP850 Auto' },
+            { step: '02', title: 'WBS Tree Parse', sub: 'Hierarchical Cascade' },
+            { step: '03', title: 'Relational Store', sub: 'SQLite / IndexedDB' },
+            { step: '04', title: 'Android Runtime', sub: 'Native Tablet Client' }
+        ],
+        terminal: [
+            { prompt: '$', cmd: 'python -m arqmed.cli parse --input ./data/edificacion_v2.bc3 --format sqlite --output output/' },
+            { type: 'muted', text: '[INFO] Parsing FIEBDC-3 file: detected Windows-1252 encoding (14,280 lines)' },
+            { type: 'muted', text: '[CASCADE] Recalculating tree: 12 chapters, 184 subchapters, 920 unit items' },
+            { type: 'emerald', text: '[SUCCESS] Total project: 1,482,910.42 € (0 errors)' },
+            { type: 'cyan', text: '[EXPORT] Generated: output/presupuesto.db (2.2 MB SQLite), JSON, CSV & Android client ready' }
+        ]
+    },
+    {
+        id: 'securechain',
+        num: '02',
+        title: 'SecureChain',
+        categoryFilter: 'tfg',
+        categoryTag: isEn ? 'Thesis // Backend & Formal Logic' : 'TFG // Backend & Lógica Formal',
+        categoryChip: 'emerald',
+        badgeFront: isEn ? 'Thesis' : 'TFG',
+        sub: 'Go AST & Z3 Solver',
+        tagline: isEn
+            ? 'Software Supply Chain Security (SSC) for the Go ecosystem with mathematical constraint solving.'
+            : 'Seguridad de la cadena de suministro de software (SSC) en el ecosistema Go con resolución formal.',
+        specs: [
+            { k: isEn ? 'Core' : 'Núcleo', v: 'Go AST + Python' },
+            { k: 'Solver', v: 'Z3 Theorem Prover' },
+            { k: 'Pipeline', v: 'FastAPI + Dagster' }
+        ],
+        github: 'https://github.com/alvarofdezr/securechain-ssc-ingestion',
+        extraLink: {
+            url: 'https://github.com/alvarofdezr/securechain-depex',
+            text: 'depex-solver'
+        },
+        overview: isEn
+            ? 'Massive backend ingestion pipeline and dependency graph solver for the Go ecosystem. Formulates version bounds as computable SAT/SMT problems with Z3 Theorem Prover to find mathematically optimal, CVE-free trees.'
+            : 'Backend de ingesta masiva y análisis de dependencias para el ecosistema Go. Resuelve grafos de dependencias no triviales y vulnerabilidades transitivas mediante Z3 Theorem Prover, modelando versiones y restricciones como problemas SAT/SMT computables.',
+        tags: ['Go AST', 'Python', 'Z3 SMT Solver', 'FastAPI', 'Dagster Pipelines', 'SAT/SMT'],
+        arch: [
+            { step: '01', title: 'Go Proxy Ingestion', sub: 'Dagster + Go AST' },
+            { step: '02', title: 'Constraint Modeling', sub: 'Z3 Formula Generation' },
+            { step: '03', title: 'SAT/SMT Solve', sub: 'Optimal Safe Tree' },
+            { step: '04', title: 'Vulnerability Match', sub: 'OSV / CVE Database' }
+        ],
+        terminal: [
+            { prompt: '$', cmd: 'securechain-depex solve --target github.com/gin-gonic/gin --ecosystem go' },
+            { type: 'muted', text: '[INFO] Ingesting go.mod constraints for 42 dependencies...' },
+            { type: 'muted', text: '[INFO] Generating Z3 boolean propositions (254 clauses)...' },
+            { type: 'emerald', text: '[SOLVER] Status: SAT (optimal solution found in 84ms)' },
+            { type: 'cyan', text: '[REPORT] 0 critical CVEs in resolved dependency graph.' }
+        ]
+    },
+    {
+        id: 'aegis',
+        num: '03',
+        title: 'Aegis Sentinel',
+        categoryFilter: 'edr',
+        categoryTag: isEn ? 'Systems & EDR Platform' : 'Sistemas & EDR Modular',
+        categoryChip: 'cyan',
+        badgeFront: 'EDR',
+        sub: 'YARA & Host Hooking',
+        tagline: isEn
+            ? 'Modular EDR platform with host agent, YARA detection, and active automated response.'
+            : 'Plataforma EDR modular con agente de host, detección YARA y mitigación activa.',
+        specs: [
+            { k: isEn ? 'Engine' : 'Motor', v: 'YARA + C2' },
+            { k: 'Telemetry', v: 'FIM / Sockets' },
+            { k: 'Sandbox', v: 'Docker Isolated' }
+        ],
+        github: 'https://github.com/alvarofdezr/Aegis-sentinel',
+        overview: isEn
+            ? 'Evolution of the baseline EDR (Basilisk). Real-time process monitoring, file integrity monitoring (FIM), anomalous socket connections, and integrated YARA signatures with automated network isolation.'
+            : 'Evolución del sistema EDR base (Basilisk). Monitoriza eventos de procesos en tiempo real, integridad de archivos (FIM), conexiones anómalas e integra un motor de reglas YARA para la detección de binarios maliciosos con aislamiento de red automatizado.',
+        tags: ['Python Low-Level', 'YARA Engine', 'C2 Architecture', 'FIM', 'Docker Sandbox'],
+        arch: [
+            { step: '01', title: 'Host Telemetry', sub: 'Process / FIM / Sockets' },
+            { step: '02', title: 'YARA Scan Hook', sub: 'Memory & Binary Check' },
+            { step: '03', title: 'C2 Pipeline', sub: 'FastAPI + RBAC Auth' },
+            { step: '04', title: 'Mitigation', sub: 'Process Kill / Quarantine' }
+        ],
+        terminal: [
+            { prompt: '$', cmd: 'aegis-agent --daemon --rules /etc/aegis/yara/' },
+            { type: 'muted', text: '[AGENT] Hooking active process table... [PID: 1420-8910]' },
+            { type: 'amber', text: '[ALERT] Suspicious binary execution detected in /tmp/mem_dump' },
+            { type: 'amber', text: '[YARA] Rule match: APT_CobaltStrike_Beacon (confidence: 99.4%)' },
+            { type: 'emerald', text: '[ACTION] SIGKILL sent to PID 4120. Endpoint network isolated.' }
+        ]
+    },
+    {
+        id: 'ares',
+        num: '04',
+        title: 'Ares',
+        logoImg: '/logos/ares.png',
+        categoryFilter: 'offensive',
+        categoryTag: isEn ? 'Networking & High Concurrency' : 'Redes & Alta Concurrencia',
+        categoryChip: 'amber',
+        badgeFront: 'Network',
+        sub: 'Go Raw Sockets',
+        tagline: isEn
+            ? 'High-throughput network reconnaissance & port scanner in Go with thousands of goroutines.'
+            : 'Toolkit de reconocimiento y escaneo de puertos de alto rendimiento en Go con miles de goroutines.',
+        specs: [
+            { k: 'Runtime', v: 'Go 1.22' },
+            { k: isEn ? 'Concurrency' : 'Concurrencia', v: 'Goroutines / Chan' },
+            { k: 'Speed', v: '65k ports / 1.8s' }
+        ],
+        github: 'https://github.com/alvarofdezr/Ares',
+        overview: isEn
+            ? 'Ultra-fast reconnaissance engine written in Go. Designed to audit enterprise perimeter attack surfaces, execute banner grabbing, and probe ports with custom TCP handshake timings without packet dropping.'
+            : 'Motor de reconocimiento de redes ultrarrápido programado en Go con miles de goroutines concurrentes. Diseñado para auditar perímetros externos, mapear superficies de ataque y realizar fingerprinting de servicios sin pérdida de paquetes bajo alta latencia.',
+        tags: ['Go Concurrency', 'Goroutines / Channels', 'Raw Sockets', 'Port Scanning'],
+        arch: [
+            { step: '01', title: 'Target Ingest', sub: 'CIDR & Range Expand' },
+            { step: '02', title: 'Worker Pool', sub: 'Goroutines Dispatch' },
+            { step: '03', title: 'SYN Probe', sub: 'Non-blocking Sockets' },
+            { step: '04', title: 'Fingerprint', sub: 'Banner / Service ID' }
+        ],
+        terminal: [
+            { prompt: '$', cmd: 'ares scan --target 192.168.1.0/24 --concurrency 5000 --syn' },
+            { type: 'muted', text: '[INIT] Dispatched 5,000 workers across pool...' },
+            { type: 'emerald', text: '[OPEN] 192.168.1.42:22 (OpenSSH 8.9p1 Ubuntu)' },
+            { type: 'emerald', text: '[OPEN] 192.168.1.42:443 (nginx/1.18.0 TLS 1.3)' },
+            { type: 'cyan', text: '[DONE] 65,535 ports scanned in 1.84s (0 packets dropped)' }
+        ]
+    },
+    {
+        id: 'harpocrates',
+        num: '05',
+        title: 'Harpocrates',
+        logoImg: '/logos/harpocrates.png',
+        categoryFilter: 'crypto',
+        categoryTag: isEn ? 'Cryptography // v2.0.0' : 'Criptografía // v2.0.0',
+        categoryChip: 'emerald',
+        badgeFront: 'Crypto',
+        sub: 'Argon2id Vault',
+        tagline: isEn
+            ? 'Local Zero-Trust secrets manager with Argon2id memory-hard derivation and AES-256-GCM.'
+            : 'Gestor de secretos con arquitectura hermética Zero-Trust y derivación Argon2id.',
+        specs: [
+            { k: 'KDF', v: 'Argon2id (64MB)' },
+            { k: 'Cipher', v: 'AES-256-GCM' },
+            { k: 'Wipe', v: 'RAM Zeroing' }
+        ],
+        github: 'https://github.com/alvarofdezr/Harpocrates',
+        overview: isEn
+            ? 'Local credential vault with zero cloud dependencies. Uses Argon2id memory-hard key derivation to resist GPU/ASIC attacks, AES-256-GCM authenticated encryption, and aggressive RAM memory wiping after every operation.'
+            : 'Gestor de credenciales local sin dependencias en la nube. Emplea derivación de claves mediante Argon2id resistente a GPU/ASIC, cifrado autenticado AES-256-GCM y limpieza activa de búferes de memoria RAM tras cada operación criptográfica.',
+        tags: ['Python', 'AES-256-GCM', 'Argon2id', 'Zero-Knowledge', 'RAM Wipe'],
+        arch: [
+            { step: '01', title: 'Master Key Prompt', sub: 'Entropy Check' },
+            { step: '02', title: 'Argon2id KDF', sub: '64MB RAM / 4 Passes' },
+            { step: '03', title: 'AES-256-GCM', sub: 'Auth Tag Verify' },
+            { step: '04', title: 'Secure Wipe', sub: 'RAM Zeroing' }
+        ],
+        terminal: [
+            { prompt: '$', cmd: 'harpocrates unlock --vault /sec/keys.vault' },
+            { type: 'muted', text: '[KDF] Deriving 256-bit key via Argon2id (memory: 65536 KB)...' },
+            { type: 'emerald', text: '[AUTH] GCM tag verified. Vault unlocked in 310ms.' },
+            { type: 'cyan', text: '[MEM] Key purged from memory buffers. Ready.' }
+        ]
+    },
+    {
+        id: 'basilisk',
+        num: '06',
+        title: 'Basilisk',
+        logoImg: '/logos/basilisk.png',
+        categoryFilter: 'edr',
+        categoryTag: isEn ? 'Systems // EDR Base' : 'Sistemas // EDR Base',
+        categoryChip: 'cyan',
+        badgeFront: 'Core EDR',
+        sub: 'mTLS Host Telemetry',
+        tagline: isEn
+            ? 'Foundational EDR architecture with decoupled agent, minimal overhead, and mTLS C2.'
+            : 'Arquitectura EDR fundacional con agente ligero y telemetría de endpoints.',
+        specs: [
+            { k: 'Transport', v: 'mTLS 1.3' },
+            { k: 'FIM', v: 'SHA-256 Hashes' },
+            { k: 'C2', v: 'FastAPI Async' }
+        ],
+        github: 'https://github.com/alvarofdezr/Basilisk',
+        overview: isEn
+            ? 'The bedrock system upon which Aegis Sentinel was designed. Modular endpoint detection agent with minimal CPU overhead, centralized network telemetry collection, FIM, and real-time C2 dashboarding.'
+            : 'La arquitectura base sobre la que se construyó Aegis Sentinel. Sistema de detección de punto final con agente desacoplado de baja sobrecarga de CPU, colector central de telemetría de red, FIM y motor de persistencia SQLite/Redis.',
+        tags: ['Python', 'FIM Telemetry', 'FastAPI C2', 'Process Tree', 'mTLS'],
+        arch: [
+            { step: '01', title: 'Host Agent', sub: 'Periodic Snapshot' },
+            { step: '02', title: 'mTLS Transport', sub: 'Secure Heartbeat' },
+            { step: '03', title: 'Event Ingestion', sub: 'FastAPI Async Server' },
+            { step: '04', title: 'Dashboard Alerts', sub: 'WebSocket Push' }
+        ],
+        terminal: [
+            { prompt: '$', cmd: 'python -m basilisk.server --port 8443' },
+            { type: 'muted', text: '[C2] Listening for agent telemetry over TLS 1.3 on :8443' },
+            { type: 'emerald', text: '[AGENT_01] Heartbeat received from host-linux-01 (Uptime: 48h)' },
+            { type: 'cyan', text: '[FIM] Clean: 0 modified system binaries in /bin, /usr/bin' }
+        ]
+    },
+    {
+        id: 'cript',
+        num: '07',
+        title: 'Cript',
+        categoryFilter: 'crypto',
+        categoryTag: isEn ? 'Cryptography // Protocols' : 'Criptografía // Protocolos',
+        categoryChip: 'emerald',
+        badgeFront: 'Double Ratchet',
+        sub: 'E2EE Simulation',
+        tagline: isEn
+            ? 'Didactic framework simulating secure communication channels & Double Ratchet algorithm.'
+            : 'Framework didáctico de simulación de canales seguros y Double Ratchet E2EE.',
+        specs: [
+            { k: 'Algorithm', v: 'Double Ratchet' },
+            { k: 'PFS', v: 'Forward Secrecy' },
+            { k: 'KDF', v: 'HKDF Chains' }
+        ],
+        github: 'https://github.com/alvarofdezr/cript',
+        overview: isEn
+            ? 'Mathematical simulation and implementation of End-to-End Encrypted (E2EE) protocols based on the Double Ratchet algorithm (as utilized in Signal). Enforces Perfect Forward Secrecy (PFS) and Post-Compromise Security (PCS) via continuous HKDF key ratchet chains.'
+            : 'Framework didáctico de simulación e implementación de canales seguros extremo a extremo (E2EE) basado en el algoritmo Double Ratchet (utilizado en Signal). Implementa Perfect Forward Secrecy (PFS) y Post-Compromise Security (PCS).',
+        tags: ['Double Ratchet', 'HKDF', 'PFS / PCS', 'Diffie-Hellman', 'Cryptography'],
+        arch: [
+            { step: '01', title: 'X3DH Handshake', sub: 'Initial Shared Secret' },
+            { step: '02', title: 'DH Ratchet', sub: 'Asymmetric Step' },
+            { step: '03', title: 'Symmetric KDF', sub: 'Message Key Chain' },
+            { step: '04', title: 'PFS Zeroing', sub: 'Instant Key Erase' }
+        ],
+        terminal: [
+            { prompt: '$', cmd: 'python -m cript.simulate --alice --bob --ratchet-steps 10' },
+            { type: 'muted', text: '[X3DH] Prekey bundle exchange verified between Alice & Bob' },
+            { type: 'cyan', text: '[DH-RATCHET] Stepping curve25519 root key... New epoch' },
+            { type: 'emerald', text: '[E2EE] 10/10 messages delivered with PFS. Zero plaintext leakage.' }
+        ]
+    }
+];
+---
+
+<div class="project-vignettes-wrapper" data-vignette-root>
+    <!-- ── 1. CABECERA DEL ESTANTE 3D ── -->
+    <div class="deck-header-row">
+        <div class="deck-indicator">
+            <span class="beacon-dot"></span>
+            <span class="deck-indicator-label">{isEn ? 'Project Collection' : 'Colección de proyectos'}</span>
+        </div>
+        <div class="deck-nav-buttons">
+            <button class="deck-arrow-btn prev-btn" data-shelf-prev title={isEn ? 'Previous project' : 'Proyecto anterior'}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <span class="deck-counter" data-shelf-counter>01 / 07</span>
+            <button class="deck-arrow-btn next-btn" data-shelf-next title={isEn ? 'Next project' : 'Proyecto siguiente'}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- ── 2. ESTANTE 3D (SOLO 3 VIÑETAS VISIBLES CON GIRO 180° Y LOGOS OFICIALES) ── -->
+    <div class="shelf-3d-viewport" data-shelf-viewport>
+        <div class="shelf-ambient-glow"></div>
+
+        <div class="shelf-3d-stage" data-shelf-stage>
+            {projects.map((proj, idx) => {
+                let initialPos = 'hidden';
+                if (idx === 0) initialPos = 'center';
+                else if (idx === 1) initialPos = 'right';
+                else if (idx === projects.length - 1) initialPos = 'left';
+
+                return (
+                    <div 
+                        class={`vignette-card ${idx === 0 ? 'is-selected' : ''}`} 
+                        data-project-id={proj.id} 
+                        data-category={proj.categoryFilter}
+                        data-index={idx}
+                        data-pos={initialPos}
+                        tabindex="0"
+                        role="button"
+                        aria-label={`${proj.title} - ${proj.sub}`}
+                    >
+                        <div class="vignette-inner">
+                            <!-- CARA FRONTAL (LOGO OFICIAL + IDENTIFICACIÓN) -->
+                            <div class="vignette-face vignette-front">
+                                <div class="vignette-face-top">
+                                    <div class="vignette-id-group">
+                                        <span class="vignette-num">{proj.num}</span>
+                                        <span class={`vignette-chip ${proj.categoryChip}`}>{proj.badgeFront}</span>
+                                    </div>
+                                    <button class="flip-trigger-btn" type="button" title={isEn ? 'Flip card 180°' : 'Girar viñeta 180°'} aria-label={isEn ? 'Flip card' : 'Girar viñeta'}>
+                                        <span>↻</span>
+                                    </button>
+                                </div>
+
+                                <div class="vignette-logo-zone">
+                                    <div class="logo-pedestal-ring"></div>
+                                    {proj.logoImg ? (
+                                        <img 
+                                            src={proj.logoImg} 
+                                            alt={`${proj.title} official logo`} 
+                                            class={`vignette-logo-img logo-${proj.id}`}
+                                            loading="eager"
+                                        />
+                                    ) : (
+                                        <>
+                                            {proj.id === 'securechain' && (
+                                                <svg viewBox="0 0 48 48" fill="none" class="vignette-svg securechain-svg">
+                                                    <path d="M24 5L8 12V22C8 32 15 41 24 43C33 41 40 32 40 22V12L24 5Z" stroke="#10b981" stroke-width="2.2" fill="rgba(16,185,129,0.08)"/>
+                                                    <path d="M19 22L24 17L29 22M24 17V31" stroke="#00f0ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <circle cx="24" cy="17" r="3" fill="#00f0ff"/>
+                                                    <circle cx="19" cy="27" r="2.5" fill="#10b981"/>
+                                                    <circle cx="29" cy="27" r="2.5" fill="#10b981"/>
+                                                </svg>
+                                            )}
+
+                                            {proj.id === 'aegis' && (
+                                                <svg viewBox="0 0 48 48" fill="none" class="vignette-svg aegis-svg">
+                                                    <circle cx="24" cy="24" r="17" stroke="#00f0ff" stroke-width="1.8" stroke-dasharray="3 3"/>
+                                                    <circle cx="24" cy="24" r="10" stroke="#00f0ff" stroke-width="1.5" opacity="0.6"/>
+                                                    <circle cx="24" cy="24" r="4" fill="#00f0ff"/>
+                                                    <path d="M24 7V11M24 37V41M7 24H11M37 24H41" stroke="#00f0ff" stroke-width="2" stroke-linecap="round"/>
+                                                    <path d="M24 24L32 16" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                                                </svg>
+                                            )}
+
+                                            {proj.id === 'cript' && (
+                                                <svg viewBox="0 0 48 48" fill="none" class="vignette-svg cript-svg">
+                                                    <circle cx="18" cy="24" r="9" stroke="#00f0ff" stroke-width="2" stroke-dasharray="4 2"/>
+                                                    <circle cx="30" cy="24" r="9" stroke="#10b981" stroke-width="2" stroke-dasharray="4 2"/>
+                                                    <circle cx="18" cy="24" r="3" fill="#00f0ff"/>
+                                                    <circle cx="30" cy="24" r="3" fill="#10b981"/>
+                                                </svg>
+                                            )}
+                                        </>
+                                    )}
+                                </div>
+
+                                <div class="vignette-face-bottom">
+                                    <h4 class="vignette-title">{proj.title}</h4>
+                                    <span class="vignette-sub">{proj.sub}</span>
+                                </div>
+                            </div>
+
+                            <!-- CARA TRASERA (GIRADA 180° — SPECS & ACCIÓN) -->
+                            <div class="vignette-face vignette-back">
+                                <div class="vignette-face-top">
+                                    <span class="vignette-chip cyan">{proj.title} // Specs</span>
+                                    <button class="flip-trigger-btn" type="button" title={isEn ? 'Flip card back' : 'Volver a girar'} aria-label={isEn ? 'Flip card back' : 'Volver a girar'}>
+                                        <span>↻</span>
+                                    </button>
+                                </div>
+
+                                <div class="vignette-specs-list">
+                                    {proj.specs.map((s) => (
+                                        <div class="vignette-spec-row">
+                                            <span class="spec-k">{s.k}</span>
+                                            <span class="spec-v">{s.v}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div class="vignette-back-action">
+                                    <span class="vignette-action-hint">{isEn ? 'Active in showcase below' : 'Activo en ficha inferior'} ↓</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                );
+            })}
+        </div>
+
+        <!-- Base física del estante y puntos de posición -->
+        <div class="shelf-ledge-bar">
+            <div class="shelf-ledge-reflection"></div>
+            <div class="shelf-dots" data-shelf-dots>
+                {projects.map((proj, idx) => (
+                    <button 
+                        type="button"
+                        class={`shelf-dot ${idx === 0 ? 'active' : ''}`} 
+                        data-dot-index={idx}
+                        title={proj.title}
+                        aria-label={proj.title}
+                    >
+                        <span class="dot-num">{proj.num}</span>
+                        <span class="dot-name">{proj.title}</span>
+                    </button>
+                ))}
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 3. ACTIVE PROJECT STAGE SHOWCASE ── -->
+    <div class="active-stage-container" data-project-stage>
+        {projects.map((proj, idx) => (
+            <article 
+                class={`project-multi-card spotlight-card ${idx === 0 ? 'is-active-card' : 'is-hidden-card'}`} 
+                data-project-card={proj.id}
+            >
+                <div class="card-head">
+                    <div class="head-left">
+                        <div class="title-row">
+                            {proj.logoImg && (
+                                <img src={proj.logoImg} alt={proj.title} class="stage-proj-logo" />
+                            )}
+                            <span class="stage-proj-num">{proj.num}</span>
+                            <h3>{proj.title}</h3>
+                            <span class={`badge-chip ${proj.categoryChip}`}>{proj.categoryTag}</span>
+                        </div>
+                        <p class="project-tagline">{proj.tagline}</p>
+                    </div>
+                    <div class="head-actions">
+                        <a href={proj.github} target="_blank" rel="noopener noreferrer" class="btn-tactile btn-ghost" title={isEn ? 'Repository' : 'Repositorio'}>
+                            <span class="btn-text">GitHub</span>
+                            <span class="arrow-up">↗</span>
+                        </a>
+                        {proj.extraLink && (
+                            <a href={proj.extraLink.url} target="_blank" rel="noopener noreferrer" class="btn-tactile btn-ghost" title={proj.extraLink.text}>
+                                <span class="btn-text">{proj.extraLink.text}</span>
+                                <span class="arrow-up">↗</span>
+                            </a>
+                        )}
+                    </div>
+                </div>
+
+                <div class="view-tabs" role="tablist">
+                    <button class="tab-btn active" data-tab="overview">{isEn ? 'Overview' : 'Ficha Técnica'}</button>
+                    <button class="tab-btn" data-tab="architecture">{isEn ? 'Architecture & Flow' : 'Arquitectura & Flujo'}</button>
+                    <button class="tab-btn" data-tab="terminal">{isEn ? 'Console Run' : 'Simulación Consola'}</button>
+                </div>
+
+                <!-- PANEL 1: FICHA TÉCNICA -->
+                <div class="tab-content active" data-panel="overview">
+                    <p class="tab-desc">{proj.overview}</p>
+                    <div class="tech-tag-row">
+                        {proj.tags.map((t) => (
+                            <span class="tech-tag">{t}</span>
+                        ))}
+                    </div>
+                </div>
+
+                <!-- PANEL 2: ARQUITECTURA -->
+                <div class="tab-content" data-panel="architecture">
+                    <div class="arch-flow">
+                        {proj.arch.map((a, aIdx) => (
+                            <>
+                                <div class="arch-node">
+                                    <span class="node-step">{a.step}</span>
+                                    <span class="node-title">{a.title}</span>
+                                    <span class="node-sub">{a.sub}</span>
+                                </div>
+                                {aIdx < proj.arch.length - 1 && <span class="arch-arrow">→</span>}
+                            </>
+                        ))}
+                    </div>
+                </div>
+
+                <!-- PANEL 3: TERMINAL -->
+                <div class="tab-content" data-panel="terminal">
+                    <div class="terminal-snippet">
+                        {proj.terminal.map((item) => (
+                            item.prompt ? (
+                                <div class="term-line"><span class="term-prompt">{item.prompt}</span> {item.cmd}</div>
+                            ) : (
+                                <div class={`term-line text-${item.type}`}>{item.text}</div>
+                            )
+                        ))}
+                    </div>
+                </div>
+            </article>
+        ))}
+    </div>
+</div>
+
+<style>
+    .project-vignettes-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+    }
+
+    /* Deck Header & Navigation */
+    .deck-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .deck-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+    }
+
+    .deck-indicator-label {
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        color: var(--text-primary);
+    }
+
+    .deck-nav-buttons {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .deck-counter {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--accent-cyan);
+        min-width: 54px;
+        text-align: center;
+    }
+
+    .deck-arrow-btn {
+        width: 2.1rem;
+        height: 2.1rem;
+        border-radius: var(--radius-sm);
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 140ms var(--ease-out), background-color 140ms var(--ease-out), border-color 140ms var(--ease-out), color 140ms var(--ease-out);
+    }
+
+    .deck-arrow-btn:hover {
+        color: var(--accent-cyan);
+        border-color: var(--border-medium);
+        background: var(--bg-surface-hover);
+    }
+
+    .deck-arrow-btn:active {
+        transform: scale(0.92);
+    }
+
+    /* ── 3D STORE SHELF / COVERFLOW VIEWPORT (SOLO 3 VISIBLES) ── */
+    .shelf-3d-viewport {
+        position: relative;
+        width: 100%;
+        padding: 1.5rem 0 1rem;
+        background: radial-gradient(ellipse 70% 60% at 50% 45%, rgba(0, 240, 255, 0.055), transparent 75%);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    .shelf-ambient-glow {
+        position: absolute;
+        width: 320px;
+        height: 180px;
+        left: 50%;
+        top: 42%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, rgba(0, 240, 255, 0.14) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .shelf-3d-stage {
+        position: relative;
+        width: 100%;
+        height: 240px;
+        perspective: 1200px;
+        transform-style: preserve-3d;
+        z-index: 2;
+    }
+
+    /* Vignette Card on the 3D Shelf */
+    .vignette-card {
+        position: absolute;
+        width: 265px;
+        height: 210px;
+        left: 50%;
+        top: 50%;
+        margin-left: -132.5px;
+        margin-top: -105px;
+        perspective: 1100px;
+        transform-style: preserve-3d;
+        cursor: pointer;
+        outline: none;
+        border-radius: var(--radius-md);
+        transition: 
+            transform 460ms cubic-bezier(0.16, 1, 0.3, 1),
+            opacity 360ms cubic-bezier(0.23, 1, 0.32, 1),
+            filter 360ms cubic-bezier(0.23, 1, 0.32, 1);
+        will-change: transform, opacity;
+    }
+
+    /* 1. CENTER SLOT — Frente en primer plano */
+    .vignette-card[data-pos="center"] {
+        transform: translate3d(0px, -4px, 65px) rotateY(0deg) scale(1.04);
+        opacity: 1;
+        z-index: 10;
+        pointer-events: auto;
+        filter: brightness(1.05);
+    }
+
+    /* 2. LEFT SLOT — Inclinado en el estante izquierdo */
+    .vignette-card[data-pos="left"] {
+        transform: translate3d(-265px, 6px, -45px) rotateY(34deg) scale(0.86);
+        opacity: 0.72;
+        z-index: 5;
+        pointer-events: auto;
+        filter: brightness(0.75);
+    }
+
+    .vignette-card[data-pos="left"]:hover {
+        opacity: 0.92;
+        filter: brightness(0.95);
+    }
+
+    /* 3. RIGHT SLOT — Inclinado en el estante derecho */
+    .vignette-card[data-pos="right"] {
+        transform: translate3d(265px, 6px, -45px) rotateY(-34deg) scale(0.86);
+        opacity: 0.72;
+        z-index: 5;
+        pointer-events: auto;
+        filter: brightness(0.75);
+    }
+
+    .vignette-card[data-pos="right"]:hover {
+        opacity: 0.92;
+        filter: brightness(0.95);
+    }
+
+    /* 4. HIDDEN SLOTS — Fuera de las 3 posiciones del estante */
+    .vignette-card[data-pos="far-left"] {
+        transform: translate3d(-470px, 18px, -170px) rotateY(50deg) scale(0.68);
+        opacity: 0;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .vignette-card[data-pos="far-right"],
+    .vignette-card[data-pos="hidden"] {
+        transform: translate3d(470px, 18px, -170px) rotateY(-50deg) scale(0.68);
+        opacity: 0;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* Inner 3D Flip Container (Cara frontal / Cara trasera) */
+    .vignette-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s var(--ease-out);
+        border-radius: var(--radius-md);
+    }
+
+    .vignette-card.is-flipped .vignette-inner {
+        transform: rotateY(180deg);
+    }
+
+    .vignette-card[data-pos="center"] .vignette-inner {
+        box-shadow: 
+            0 0 0 1.5px var(--accent-cyan),
+            0 18px 40px -10px rgba(0, 0, 0, 0.75),
+            0 0 28px -4px rgba(0, 240, 255, 0.25);
+    }
+
+    .vignette-card[data-pos="left"] .vignette-inner,
+    .vignette-card[data-pos="right"] .vignette-inner {
+        box-shadow: 0 14px 28px -10px rgba(0, 0, 0, 0.65);
+    }
+
+    .vignette-face {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: var(--radius-md);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        padding: 1rem 1.15rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border-medium);
+        overflow: hidden;
+    }
+
+    /* Front Face */
+    .vignette-front {
+        z-index: 2;
+        transform: rotateY(0deg);
+        background: linear-gradient(160deg, var(--bg-surface-elevated) 0%, var(--bg-surface) 100%);
+    }
+
+    .vignette-face-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.4rem;
+    }
+
+    .vignette-id-group {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+    }
+
+    .vignette-num {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        font-weight: 700;
+        color: var(--text-muted);
+    }
+
+    .vignette-chip {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        font-weight: 600;
+        padding: 0.15rem 0.45rem;
+        border-radius: 4px;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+    }
+
+    .vignette-chip.emerald {
+        background: rgba(16, 185, 129, 0.12);
+        color: var(--accent-emerald);
+        border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .vignette-chip.cyan {
+        background: rgba(0, 240, 255, 0.1);
+        color: var(--accent-cyan);
+        border: 1px solid rgba(0, 240, 255, 0.25);
+    }
+
+    .vignette-chip.amber {
+        background: rgba(245, 158, 11, 0.12);
+        color: var(--accent-amber);
+        border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+
+    .flip-trigger-btn {
+        width: 1.55rem;
+        height: 1.55rem;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-muted);
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: color 140ms var(--ease-out), border-color 140ms var(--ease-out), background-color 140ms var(--ease-out);
+    }
+
+    .flip-trigger-btn:hover {
+        color: var(--accent-cyan);
+        background: var(--bg-surface-hover);
+        border-color: var(--accent-cyan);
+    }
+
+    .vignette-logo-zone {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        padding: 0.25rem 0;
+    }
+
+    .logo-pedestal-ring {
+        position: absolute;
+        width: 74px;
+        height: 74px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(0, 240, 255, 0.12) 0%, transparent 70%);
+        border: 1px dashed rgba(255, 255, 255, 0.08);
+        pointer-events: none;
+    }
+
+    .vignette-logo-img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        border-radius: 14px;
+        position: relative;
+        z-index: 1;
+        filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
+    }
+
+    .vignette-logo-img.logo-ares,
+    .vignette-logo-img.logo-harpocrates {
+        object-fit: cover;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .vignette-svg {
+        width: 56px;
+        height: 56px;
+        filter: drop-shadow(0 4px 12px rgba(0, 240, 255, 0.2));
+        position: relative;
+        z-index: 1;
+    }
+
+    .vignette-face-bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+        text-align: center;
+    }
+
+    .vignette-title {
+        font-family: var(--font-display);
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+    }
+
+    .vignette-sub {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--text-muted);
+    }
+
+    /* Back Face */
+    .vignette-back {
+        transform: rotateY(180deg);
+        background: #06080c;
+        border-color: rgba(0, 240, 255, 0.4);
+    }
+
+    .vignette-specs-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+        margin: auto 0;
+    }
+
+    .vignette-spec-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding-bottom: 0.25rem;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+    }
+
+    .spec-k {
+        font-family: var(--font-mono);
+        font-size: 0.64rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+    }
+
+    .spec-v {
+        font-family: var(--font-mono);
+        font-size: 0.74rem;
+        color: var(--accent-cyan);
+        font-weight: 600;
+    }
+
+    .vignette-back-action {
+        padding-top: 0.25rem;
+        text-align: center;
+    }
+
+    .vignette-action-hint {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        color: var(--accent-emerald);
+        font-weight: 500;
+    }
+
+    /* Physical Shelf Ledge & Quick Index Bar */
+    .shelf-ledge-bar {
+        position: relative;
+        z-index: 3;
+        margin-top: 0.65rem;
+        padding: 0.75rem 1.25rem 0.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.65rem;
+    }
+
+    .shelf-ledge-reflection {
+        width: 72%;
+        max-width: 620px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent 0%, rgba(0, 240, 255, 0.5) 50%, transparent 100%);
+        box-shadow: 0 2px 16px rgba(0, 240, 255, 0.45);
+        border-radius: 999px;
+    }
+
+    .shelf-dots {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        flex-wrap: wrap;
+    }
+
+    .shelf-dot {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.25rem 0.6rem;
+        border-radius: var(--radius-pill);
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-subtle);
+        color: var(--text-muted);
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        cursor: pointer;
+    }
+
+    .shelf-dot:hover {
+        color: var(--text-primary);
+        border-color: var(--border-medium);
+    }
+
+    .shelf-dot.active {
+        color: var(--accent-cyan);
+        border-color: rgba(0, 240, 255, 0.4);
+        background: rgba(0, 240, 255, 0.08);
+        font-weight: 600;
+    }
+
+    .dot-num {
+        opacity: 0.65;
+    }
+
+    /* Active Stage Visibility */
+    .active-stage-container {
+        position: relative;
+        min-height: 440px;
+    }
+
+    .project-multi-card.is-hidden-card {
+        display: none !important;
+    }
+
+    .project-multi-card.is-active-card {
+        display: block !important;
+    }
+
+    /* Multi-card inner styles */
+    .project-multi-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-medium);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+    }
+
+    .card-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .title-row {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.35rem;
+        flex-wrap: wrap;
+    }
+
+    .stage-proj-logo {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 1px solid var(--border-subtle);
+    }
+
+    .stage-proj-num {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--accent-cyan);
+        background: rgba(0, 240, 255, 0.08);
+        border: 1px solid rgba(0, 240, 255, 0.25);
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+    }
+
+    .title-row h3 {
+        font-size: 1.6rem;
+        margin: 0;
+    }
+
+    .project-tagline {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        margin: 0;
+    }
+
+    .head-actions {
+        display: flex;
+        gap: 0.5rem;
+        flex-shrink: 0;
+    }
+
+    .btn-text {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+    }
+
+    .arrow-up {
+        font-size: 0.8rem;
+    }
+
+    .view-tabs {
+        display: flex;
+        gap: 0.5rem;
+        border-bottom: 1px solid var(--border-subtle);
+        padding-bottom: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .tab-btn {
+        background: transparent;
+        border: 1px solid transparent;
+        padding: 0.35rem 0.75rem;
+        border-radius: var(--radius-sm);
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        cursor: pointer;
+    }
+
+    .tab-btn:hover {
+        color: var(--text-primary);
+        background: var(--bg-surface-elevated);
+    }
+
+    .tab-btn.active {
+        color: var(--accent-cyan);
+        background: rgba(0, 240, 255, 0.08);
+        border-color: rgba(0, 240, 255, 0.25);
+        font-weight: 500;
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    .tab-desc {
+        font-size: 0.98rem;
+        color: var(--text-secondary);
+        line-height: 1.7;
+        margin-bottom: 1.25rem;
+        max-width: 900px;
+    }
+
+    .tech-tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .tech-tag {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        padding: 0.2rem 0.55rem;
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border-subtle);
+        border-radius: 4px;
+        color: var(--text-secondary);
+    }
+
+    .arch-flow {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        overflow-x: auto;
+        padding: 1rem 0;
+    }
+
+    .arch-node {
+        flex: 1;
+        min-width: 140px;
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-sm);
+        padding: 0.85rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .node-step {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        color: var(--accent-cyan);
+        font-weight: 600;
+    }
+
+    .node-title {
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .node-sub {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        font-family: var(--font-mono);
+    }
+
+    .arch-arrow {
+        color: var(--accent-cyan);
+        font-weight: bold;
+        opacity: 0.6;
+        flex-shrink: 0;
+    }
+
+    .terminal-snippet {
+        background: #040507;
+        border: 1px solid var(--border-medium);
+        border-radius: var(--radius-sm);
+        padding: 1.25rem;
+        font-family: var(--font-mono);
+        font-size: 0.82rem;
+        line-height: 1.8;
+        overflow-x: auto;
+    }
+
+    .term-prompt {
+        color: var(--accent-cyan);
+        font-weight: bold;
+        margin-right: 0.5rem;
+    }
+
+    .text-muted { color: var(--text-muted); }
+    .text-emerald { color: var(--accent-emerald); }
+    .text-cyan { color: var(--accent-cyan); }
+    .text-amber { color: var(--accent-amber); }
+
+    @media (max-width: 820px) {
+        .vignette-card {
+            width: 220px;
+            height: 190px;
+            margin-left: -110px;
+            margin-top: -95px;
+        }
+        .vignette-card[data-pos="left"] {
+            transform: translate3d(-165px, 6px, -60px) rotateY(36deg) scale(0.82);
+        }
+        .vignette-card[data-pos="right"] {
+            transform: translate3d(165px, 6px, -60px) rotateY(-36deg) scale(0.82);
+        }
+        .dot-name {
+            display: none;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .card-head {
+            flex-direction: column;
+        }
+        .arch-flow {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .arch-arrow {
+            text-align: center;
+            transform: rotate(90deg);
+        }
+    }
+</style>
+
+<script>
+    function setupVignetteShelf() {
+        const roots = document.querySelectorAll<HTMLElement>('[data-vignette-root]');
+
+        roots.forEach((root) => {
+            if (root.dataset.initialized === 'true') return;
+            root.dataset.initialized = 'true';
+
+            const viewport = root.querySelector<HTMLElement>('[data-shelf-viewport]');
+            const cards = Array.from(root.querySelectorAll<HTMLElement>('.vignette-card'));
+            const dots = Array.from(root.querySelectorAll<HTMLElement>('.shelf-dot'));
+            const articles = Array.from(root.querySelectorAll<HTMLElement>('.project-multi-card[data-project-card]'));
+            const counterEl = root.querySelector<HTMLElement>('[data-shelf-counter]');
+            const prevBtn = root.querySelector<HTMLElement>('[data-shelf-prev]');
+            const nextBtn = root.querySelector<HTMLElement>('[data-shelf-next]');
+
+            const total = cards.length;
+            if (!total || !articles.length) return;
+
+            let currentIndex = 0;
+            let lastStepTime = 0;
+            let lastPointerX: number | null = null;
+            let lastPointerY: number | null = null;
+            let accumDx = 0;
+
+            function updateShelfPositions(newIndex: number, playSound = true) {
+                currentIndex = ((newIndex % total) + total) % total;
+
+                cards.forEach((card, idx) => {
+                    let diff = idx - currentIndex;
+                    if (diff > total / 2) diff -= total;
+                    if (diff < -total / 2) diff += total;
+
+                    card.classList.toggle('is-selected', diff === 0);
+                    if (diff !== 0) {
+                        card.classList.remove('is-flipped');
+                    }
+
+                    if (diff === 0) {
+                        card.setAttribute('data-pos', 'center');
+                    } else if (diff === -1) {
+                        card.setAttribute('data-pos', 'left');
+                    } else if (diff === 1) {
+                        card.setAttribute('data-pos', 'right');
+                    } else if (diff < -1) {
+                        card.setAttribute('data-pos', 'far-left');
+                    } else {
+                        card.setAttribute('data-pos', 'far-right');
+                    }
+                });
+
+                dots.forEach((dot, idx) => {
+                    dot.classList.toggle('active', idx === currentIndex);
+                });
+
+                if (counterEl) {
+                    const numStr = String(currentIndex + 1).padStart(2, '0');
+                    const totStr = String(total).padStart(2, '0');
+                    counterEl.innerText = `${numStr} / ${totStr}`;
+                }
+
+                const targetId = cards[currentIndex].getAttribute('data-project-id');
+                articles.forEach((art) => {
+                    if (art.getAttribute('data-project-card') === targetId) {
+                        art.classList.remove('is-hidden-card');
+                        art.classList.add('is-active-card');
+                    } else {
+                        art.classList.remove('is-active-card');
+                        art.classList.add('is-hidden-card');
+                    }
+                });
+
+                if (playSound && (window as any).soundEngine) {
+                    (window as any).soundEngine.playClick(640, 0.025);
+                }
+            }
+
+            if (viewport) {
+                viewport.addEventListener('pointermove', (e: PointerEvent) => {
+                    if (lastPointerX !== null && lastPointerY !== null) {
+                        const dx = e.clientX - lastPointerX;
+                        const dy = e.clientY - lastPointerY;
+
+                        if (Math.abs(dx) > Math.abs(dy) * 1.25) {
+                            accumDx += dx;
+                            const now = performance.now();
+                            if (Math.abs(accumDx) >= 115 && now - lastStepTime > 210) {
+                                const step = accumDx > 0 ? 1 : -1;
+                                updateShelfPositions(currentIndex + step);
+                                accumDx = 0;
+                                lastStepTime = now;
+                            }
+                        } else if (Math.abs(dy) > Math.abs(dx) * 1.5) {
+                            accumDx = 0;
+                        }
+                    }
+
+                    lastPointerX = e.clientX;
+                    lastPointerY = e.clientY;
+                });
+
+                viewport.addEventListener('pointerleave', () => {
+                    lastPointerX = null;
+                    lastPointerY = null;
+                    accumDx = 0;
+                });
+
+                viewport.addEventListener('wheel', (e: WheelEvent) => {
+                    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+                    if (Math.abs(delta) > 12) {
+                        e.preventDefault();
+                        const now = performance.now();
+                        if (now - lastStepTime > 200) {
+                            updateShelfPositions(currentIndex + (delta > 0 ? 1 : -1));
+                            lastStepTime = now;
+                        }
+                    }
+                }, { passive: false });
+            }
+
+            cards.forEach((card, idx) => {
+                card.addEventListener('click', (e) => {
+                    const flipBtn = (e.target as HTMLElement).closest('.flip-trigger-btn');
+                    if (flipBtn) {
+                        e.stopPropagation();
+                        if (idx !== currentIndex) {
+                            updateShelfPositions(idx);
+                        }
+                        card.classList.toggle('is-flipped');
+                        if ((window as any).soundEngine) {
+                            (window as any).soundEngine.playClick(850, 0.02);
+                        }
+                        return;
+                    }
+
+                    if (idx !== currentIndex) {
+                        updateShelfPositions(idx);
+                    } else {
+                        card.classList.toggle('is-flipped');
+                        if ((window as any).soundEngine) {
+                            (window as any).soundEngine.playClick(820, 0.02);
+                        }
+                    }
+                });
+
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        if (idx !== currentIndex) {
+                            updateShelfPositions(idx);
+                        } else {
+                            card.classList.toggle('is-flipped');
+                        }
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        updateShelfPositions(currentIndex + 1);
+                    } else if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        updateShelfPositions(currentIndex - 1);
+                    }
+                });
+            });
+
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => updateShelfPositions(idx));
+            });
+
+            prevBtn?.addEventListener('click', () => updateShelfPositions(currentIndex - 1));
+            nextBtn?.addEventListener('click', () => updateShelfPositions(currentIndex + 1));
+
+            articles.forEach((art) => {
+                const tabBtns = art.querySelectorAll('.tab-btn');
+                const panels = art.querySelectorAll('.tab-content');
+
+                tabBtns.forEach((btn) => {
+                    btn.addEventListener('click', () => {
+                        const targetTab = btn.getAttribute('data-tab');
+                        tabBtns.forEach((b) => b.classList.remove('active'));
+                        panels.forEach((p) => p.classList.remove('active'));
+
+                        btn.classList.add('active');
+                        const targetPanel = art.querySelector(`[data-panel="${targetTab}"]`);
+                        targetPanel?.classList.add('active');
+                    });
+                });
+            });
+
+            updateShelfPositions(0, false);
+        });
+    }
+
+    setupVignetteShelf();
+    document.addEventListener('astro:after-swap', setupVignetteShelf);
+</script>

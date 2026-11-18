@@ -7,154 +7,238 @@ const lang = Astro.currentLocale || 'es';
 const t = useTranslations(lang as any);
 ---
 
-<footer class="bento-footer container">
-    <div class="footer-grid">
-        <div class="footer-block main-block bezel-outer reveal-up">
-            <div class="bezel-inner">
-                <h2>{t('footer.connect')}</h2>
-                <p>{t('footer.connect.desc')}</p>
-                <div class="contact-actions">
-                    <a href="mailto:alvarofdezr@example.com" class="btn-magnetic">
-                        {t('footer.connect.btn')}
-                        <div class="icon-wrapper">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M200 216h-40M56 216h40m104-56v56M56 160v56m164-88H36a16 16 0 0 1-16-16V64a16 16 0 0 1 16-16h184a16 16 0 0 1 16 16v48a16 16 0 0 1-16 16ZM20 64l108 72L236 64"/></svg>
-                        </div>
-                    </a>
-                </div>
+<footer class="tactical-footer container">
+    <div class="footer-terminal-banner spotlight-card reveal-up">
+        <div class="terminal-header">
+            <div class="terminal-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+            </div>
+            <div class="terminal-title">contact // handshake.init</div>
+            <div class="terminal-status">
+                <span class="beacon-dot"></span>
+                <span>SEVILLA, ES</span>
             </div>
         </div>
 
-        <div class="footer-block side-block bezel-outer reveal-up" style="transition-delay: 0.1s;">
-            <div class="bezel-inner social-inner">
-                <h3>{t('footer.social')}</h3>
-                <div class="social-list">
-                    <a href="https://github.com/alvarofdezr" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <span class="social-name">GitHub</span>
-                        <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M64 192L192 64M88 64h104v104"/></svg>
+        <div class="terminal-body">
+            <div class="terminal-main">
+                <h2>{lang === 'es' ? '¿Construimos algo grande?' : 'Let’s Build Something Great'}</h2>
+                <p>
+                    {lang === 'es' 
+                        ? 'Desarrollo de aplicaciones full-stack, ingeniería de sistemas, automatizaciones, apps Android y arquitecturas seguras. Si tienes un proyecto o buscas un perfil técnico versátil, hablemos.' 
+                        : 'Full-stack software engineering, systems design, automations, Android apps, and robust architectures. If you have a project or need a versatile technical engineer, let’s talk.'}
+                </p>
+                
+                <div class="terminal-actions">
+                    <button class="btn-tactile btn-primary" data-copy="alvarofdezr@gmail.com" data-copy-label={lang === 'es' ? 'Email copiado: alvarofdezr@gmail.com' : 'Email copied: alvarofdezr@gmail.com'}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <span>{lang === 'es' ? 'Copiar email directo' : 'Copy direct email'}</span>
+                    </button>
+
+                    <a href="mailto:alvarofdezr@gmail.com" class="btn-tactile btn-secondary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>{lang === 'es' ? 'Abrir cliente de correo' : 'Open mail client'}</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/%C3%A1lvaro-fern%C3%A1ndez-71b25a404" target="_blank" rel="noopener noreferrer" class="social-link">
-                        <span class="social-name">LinkedIn</span>
-                        <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M64 192L192 64M88 64h104v104"/></svg>
-                    </a>
+                </div>
+            </div>
+
+            <div class="terminal-meta">
+                <div class="meta-item">
+                    <span class="meta-label">SOCIAL // PROFILES</span>
+                    <div class="social-pills">
+                        <a href="https://github.com/alvarofdezr" target="_blank" rel="noopener noreferrer" class="social-pill">
+                            <span>GitHub</span>
+                            <span class="arrow-up">↗</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/%C3%A1lvaro-fern%C3%A1ndez-71b25a404" target="_blank" rel="noopener noreferrer" class="social-pill">
+                            <span>LinkedIn</span>
+                            <span class="arrow-up">↗</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <div class="footer-bottom">
-        <p>&copy; {today.getFullYear()} {t('footer.rights')}</p>
-        <p class="tagline">{t('footer.tagline')}</p>
+    <div class="footer-legal">
+        <p class="copyright">&copy; {today.getFullYear()} Álvaro Fernández Ramos · <span class="tag-loc">Sevilla, Spain</span></p>
     </div>
+
+    <MotionEngine />
 </footer>
 
 <style>
-    .bento-footer {
+    .tactical-footer {
         padding-top: var(--macro-gap);
-        padding-bottom: 2rem;
+        padding-bottom: 2.5rem;
     }
 
-    .footer-grid {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 1.5rem;
-        margin-bottom: 4rem;
+    .footer-terminal-banner {
+        padding: 0;
+        background: var(--bg-surface);
+        border: 1px solid var(--border-medium);
+        border-radius: var(--radius-md);
+        overflow: hidden;
     }
 
-    .main-block .bezel-inner {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 1.5rem;
-        padding: 4rem;
-    }
-
-    .main-block h2 {
-        font-size: clamp(2.5rem, 5vw, 4rem);
-        color: var(--text-primary);
-        margin: 0;
-    }
-
-    .main-block p {
-        color: var(--text-secondary);
-        font-size: 1.1rem;
-        max-width: 500px;
-        line-height: 1.8;
-    }
-
-    .contact-actions {
-        margin-top: 1rem;
-    }
-
-    .side-block .bezel-inner {
-        padding: 4rem 2.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-    }
-
-    .side-block h3 {
-        font-size: 1.5rem;
-        color: var(--text-primary);
-    }
-
-    .social-list {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    .social-link {
+    .terminal-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid var(--border-inner);
-        text-decoration: none;
-        color: var(--text-secondary);
-        font-size: 1.1rem;
-        transition: color 0.4s var(--ease-spring);
-    }
-
-    .social-link:last-child {
-        border-bottom: none;
-    }
-
-    .social-link:hover {
-        color: var(--accent);
-    }
-
-    .social-link .arrow {
-        transition: transform 0.4s var(--ease-spring);
-    }
-
-    .social-link:hover .arrow {
-        transform: translate(4px, -4px);
-    }
-
-    .footer-bottom {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-top: 1px solid var(--border-outer);
-        padding-top: 2rem;
+        padding: 0.75rem 1.25rem;
+        background: var(--bg-surface-elevated);
+        border-bottom: 1px solid var(--border-subtle);
         font-family: var(--font-mono);
-        font-size: 0.85rem;
+        font-size: 0.75rem;
         color: var(--text-muted);
     }
 
-    @media (max-width: 900px) {
-        .footer-grid {
+    .terminal-dots {
+        display: flex;
+        gap: 6px;
+    }
+
+    .terminal-dots .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+
+    .dot.red { background: #ef4444; opacity: 0.8; }
+    .dot.yellow { background: #f59e0b; opacity: 0.8; }
+    .dot.green { background: #10b981; opacity: 0.8; }
+
+    .terminal-status {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        color: var(--accent-cyan);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+    }
+
+    .terminal-body {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr;
+        gap: 2rem;
+        padding: 2.5rem;
+    }
+
+    .terminal-main h2 {
+        font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+        margin-bottom: 0.75rem;
+    }
+
+    .terminal-main p {
+        font-size: 1rem;
+        max-width: 520px;
+        margin-bottom: 1.75rem;
+    }
+
+    .terminal-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .terminal-meta {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.25rem;
+        padding-left: 2rem;
+        border-left: 1px solid var(--border-subtle);
+    }
+
+    .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+    }
+
+    .meta-label {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        color: var(--text-muted);
+        letter-spacing: 0.08em;
+    }
+
+    .social-pills {
+        display: flex;
+        gap: 0.6rem;
+    }
+
+    .social-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        padding: 0.45rem 0.85rem;
+        background: var(--bg-surface-elevated);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-sm);
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        transition: transform 140ms var(--ease-out), color 140ms var(--ease-out), background-color 140ms var(--ease-out), border-color 140ms var(--ease-out);
+    }
+
+    .social-pill:hover {
+        color: var(--text-primary);
+        border-color: var(--border-medium);
+        background: var(--bg-surface-hover);
+    }
+
+    .social-pill:active {
+        transform: scale(0.96);
+    }
+
+    .social-pill .arrow-up {
+        font-size: 0.75rem;
+        transition: transform 0.2s ease;
+    }
+
+    .social-pill:hover .arrow-up {
+        transform: translate(2px, -2px);
+    }
+
+    .footer-legal {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 2rem;
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        color: var(--text-muted);
+    }
+
+    .tag-loc {
+        color: var(--text-secondary);
+    }
+
+    @media (max-width: 860px) {
+        .terminal-body {
             grid-template-columns: 1fr;
+            padding: 1.5rem;
         }
-        .main-block .bezel-inner {
-            padding: 2.5rem 2rem;
+
+        .terminal-meta {
+            padding-left: 0;
+            border-left: none;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 1.5rem;
         }
-        .footer-bottom {
+
+        .footer-legal {
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.75rem;
             text-align: center;
         }
     }
 </style>
-
-<MotionEngine />

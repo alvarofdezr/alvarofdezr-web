@@ -3,8 +3,8 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
-const title = "Profile | Álvaro Fernández Ramos";
-const description = "Career path, security philosophy, and professional goals.";
+const title = "Profile & Background | Álvaro Fernández Ramos";
+const description = "Professional profile: full-stack software engineer, web & Android development, backend architectures, databases, and systems.";
 ---
 
 <!DOCTYPE html>
@@ -13,112 +13,168 @@ const description = "Career path, security philosophy, and professional goals.";
     <BaseHead title={title} description={description} />
 </head>
 <body>
-    <div class="mesh-bg"></div>
     <Header />
 
     <main class="container layout-wrapper">
-        <a href="/en" class="btn-magnetic back-btn reveal-up">
-            <div class="icon-wrapper">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M216 128H40m72-72l-72 72l72 72"/></svg>
+        <div class="page-top-nav reveal-up">
+            <a href="/en" class="back-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+                <span>Back to home</span>
+            </a>
+        </div>
+
+        <header class="page-header reveal-up">
+            <div class="badge-chip cyan">PROFILE // SOFTWARE & SYSTEMS ENGINEER</div>
+            <h1 class="page-title">
+                Background & <br>
+                <span class="text-cyan" data-scramble="engineering mindset.">engineering mindset.</span>
+            </h1>
+            <p class="page-desc">
+                Computer engineer and full-stack builder: delivering production web SPAs, Android mobile applications, performant backend APIs, automated pipelines, and low-level systems.
+            </p>
+
+            <div class="profile-actions-bar">
+                <button class="btn-tactile btn-primary" data-copy="alvarofdezr@gmail.com" data-copy-label="Email copied to clipboard">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    <span>Copy direct email</span>
+                </button>
+
+                <a href="https://github.com/alvarofdezr" target="_blank" rel="noopener noreferrer" class="btn-tactile btn-secondary">
+                    <span>GitHub: @alvarofdezr</span>
+                    <span class="arrow-up">↗</span>
+                </a>
+
+                <a href="https://www.linkedin.com/in/%C3%A1lvaro-fern%C3%A1ndez-71b25a404" target="_blank" rel="noopener noreferrer" class="btn-tactile btn-ghost">
+                    <span>LinkedIn</span>
+                    <span class="arrow-up">↗</span>
+                </a>
             </div>
-            Back
-        </a>
+        </header>
 
-        <div class="editorial-split">
-            <!-- Left Sticky Column -->
-            <aside class="sticky-aside">
-                <div class="aside-content reveal-up" style="transition-delay: 0.1s;">
-                    <span class="eyebrow">Journey</span>
-                    <h1 class="page-title">Profile</h1>
-                    <p class="lead-text">
-                        Computer engineer, security researcher, and tool builder.
-                    </p>
+        <div class="profile-split-layout">
+            <aside class="profile-aside reveal-up">
+                <div class="spec-card spotlight-card">
+                    <div class="spec-header">
+                        <span class="beacon-dot"></span>
+                        <span class="spec-title">TELEMETRY // PROFILE</span>
+                    </div>
+                    <div class="spec-list">
+                        <div class="spec-item">
+                            <span class="spec-k">LOCATION:</span>
+                            <span class="spec-v">Seville, Spain</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-k">ROLE:</span>
+                            <span class="spec-v text-cyan">Software Engineer // Full-Stack, Mobile & Systems</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-k">EXPERTISE:</span>
+                            <span class="spec-v">Web SPAs, Android (APK), Python, Go, C, SQLite, Automation</span>
+                        </div>
+                    </div>
+                </div>
 
-                    <div class="timeline bezel-outer">
-                        <div class="bezel-inner timeline-inner">
-                            <div class="timeline-item">
-                                <span class="time-dot"></span>
-                                <span class="time-date">Present</span>
-                                <h3>Bachelor's thesis</h3>
-                                <p>Dependency security (Go) in SecureChain. Z3, FastAPI, Dagster.</p>
+                <div class="timeline-box spotlight-card">
+                    <h3 class="timeline-heading">Key Milestones & Projects</h3>
+                    
+                    <div class="timeline-events">
+                        <div class="event-item">
+                            <span class="event-dot emerald"></span>
+                            <div class="event-meta">
+                                <span class="event-date">LATEST RELEASE</span>
+                                <h4>ARQMED Studio</h4>
+                                <p>Interactive web editor and native Android app for architectural budgets (.BC3). Universal Python parser (0 deps), cascade recalculations, and SQLite/JSON exports.</p>
                             </div>
-                            <div class="timeline-item">
-                                <span class="time-dot"></span>
-                                <span class="time-date">Sep 2024 – Jun 2025</span>
-                                <h3>Erasmus+ — Germany</h3>
-                                <p>Academic exchange to improve technical English and get a broader view of software development.</p>
+                        </div>
+
+                        <div class="event-item">
+                            <span class="event-dot cyan"></span>
+                            <div class="event-meta">
+                                <span class="event-date">CURRENT</span>
+                                <h4>Bachelor Thesis (TFG) — SecureChain</h4>
+                                <p>Multi-ecosystem dependency graph resolution via Z3 SMT Solver, Go AST parsing, and Dagster/FastAPI data pipelines.</p>
                             </div>
-                            <div class="timeline-item">
-                                <span class="time-dot"></span>
-                                <span class="time-date">2022 – 2026</span>
-                                <h3>ETSII — University of Seville</h3>
-                                <p>Degree in Computer Engineering. Systems, algorithms, and secure software.</p>
+                        </div>
+
+                        <div class="event-item">
+                            <span class="event-dot cyan"></span>
+                            <div class="event-meta">
+                                <span class="event-date">SEP 2024 – JUN 2025</span>
+                                <h4>Erasmus+ International Stay — Germany</h4>
+                                <p>International academic immersion in technical English. Focused on concurrent systems, distributed design, and European research teamwork.</p>
+                            </div>
+                        </div>
+
+                        <div class="event-item">
+                            <span class="event-dot"></span>
+                            <div class="event-meta">
+                                <span class="event-date">2022 – 2026</span>
+                                <h4>B.S. in Computer Engineering — ETSII Univ. of Seville</h4>
+                                <p>Core computer science curriculum: software engineering, frontend & mobile development, relational databases, kernel/POSIX systems, and networking.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </aside>
 
-            <!-- Right Scroll Column -->
-            <section class="scroll-content">
-                
-                <div class="content-block reveal-up" style="transition-delay: 0.2s;">
-                    <h2 class="block-title">Philosophy</h2>
-                    <div class="philosophy-quote bezel-outer">
-                        <div class="bezel-inner">
-                            <blockquote>
-                                I believe in breaking to defend. Understanding flaws is just as important as building things right.
-                            </blockquote>
-                            <p class="quote-body">
-                                My passion has always been tied to one question: <em>how does this work inside?</em>. Developing my own tools (EDRs, password managers, offensive toolkits) gives me an understanding that no tutorial can provide. Every project is an experiment.
-                            </p>
-                        </div>
+            <section class="profile-main-content reveal-up">
+                <div class="narrative-card spotlight-card">
+                    <span class="badge-chip emerald">ENGINEERING VISION</span>
+                    <h2>End-to-end software craftsmanship</h2>
+                    <blockquote>
+                        "A solid engineer isn't confined to a single label. If a project requires a reactive interface, it gets built; if on-site operations need an Android tablet APK, it gets shipped; and if low-level performance or kernel security matters, it gets debugged down to bare metal."
+                    </blockquote>
+                    <p>
+                        I love building comprehensive, practical tools. From real-world industrial software like <strong>ARQMED Studio</strong> (combining web SPA, Android APK, and a zero-dependency Python parser) to automated analysis pipelines like <strong>SecureChain</strong> and systems detection platforms like <strong>Aegis Sentinel</strong>.
+                    </p>
+                </div>
+
+                <div class="pillars-grid">
+                    <div class="pillar-card spotlight-card">
+                        <span class="pillar-num">01</span>
+                        <h3>Full-Stack & Mobile</h3>
+                        <p>Designing and shipping production-ready web apps (SPAs with IndexedDB), concurrent APIs, and native Android mobile apps crafted for real-world user workflows.</p>
+                    </div>
+
+                    <div class="pillar-card spotlight-card">
+                        <span class="pillar-num">02</span>
+                        <h3>Databases & Automation</h3>
+                        <p>Efficient schema modeling in SQLite and PostgreSQL, data pipelines with Dagster, and automated CLI tools that eliminate manual friction.</p>
+                    </div>
+
+                    <div class="pillar-card spotlight-card">
+                        <span class="pillar-num">03</span>
+                        <h3>Formal Logic & Algorithms</h3>
+                        <p>Leveraging advanced computational solvers (such as Z3 SMT) to resolve non-trivial constraint problems where traditional heuristics fall short.</p>
+                    </div>
+
+                    <div class="pillar-card spotlight-card">
+                        <span class="pillar-num">04</span>
+                        <h3>Systems & Native Security</h3>
+                        <p>Deep familiarity with Linux kernel syscalls, memory layouts, and wire packets to write software that is inherently robust and secure by design.</p>
                     </div>
                 </div>
 
-                <div class="content-block reveal-up">
-                    <h2 class="block-title">Languages</h2>
-                    <div class="lang-grid">
-                        <div class="lang-card bezel-outer">
-                            <div class="bezel-inner">
-                                <span class="lang-name">Spanish</span>
-                                <span class="lang-level">Native</span>
-                            </div>
+                <div class="languages-block spotlight-card">
+                    <h3>Languages & Communication</h3>
+                    <div class="lang-row">
+                        <div class="lang-item">
+                            <span class="lang-title">Spanish</span>
+                            <span class="badge-chip emerald">Native</span>
+                            <p class="lang-desc">Clear communication, technical writing, and collaborative specifications.</p>
                         </div>
-                        <div class="lang-card bezel-outer">
-                            <div class="bezel-inner">
-                                <span class="lang-name">English</span>
-                                <span class="lang-level">Professional (B2/C1)</span>
-                            </div>
+                        <div class="lang-item">
+                            <span class="lang-title">English</span>
+                            <span class="badge-chip cyan">Professional (B2 / C1)</span>
+                            <p class="lang-desc">Proven during international Erasmus exchange in Germany, documentation, and technical codebases.</p>
                         </div>
-                        <div class="lang-card bezel-outer">
-                            <div class="bezel-inner">
-                                <span class="lang-name">German</span>
-                                <span class="lang-level">Basic (A2)</span>
-                            </div>
+                        <div class="lang-item">
+                            <span class="lang-title">German</span>
+                            <span class="badge-chip">Basic (A2)</span>
+                            <p class="lang-desc">Basic conversational competence acquired during the Erasmus academic stay.</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="content-block reveal-up">
-                    <h2 class="block-title">Connect</h2>
-                    <div class="contact-bento bezel-outer">
-                        <div class="bezel-inner">
-                            <p>Got an interesting project or want to talk security? Reach out on social media.</p>
-                            <div class="contact-links">
-                                <a href="https://www.linkedin.com/in/%C3%A1lvaro-fern%C3%A1ndez-71b25a404" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
-                                    LinkedIn
-                                    <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M64 192L192 64M88 64h104v104"/></svg></div>
-                                </a>
-                                <a href="https://github.com/alvarofdezr" target="_blank" rel="noopener noreferrer" class="btn-magnetic outline-btn">
-                                    GitHub
-                                    <div class="icon-wrapper"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" d="M64 192L192 64M88 64h104v104"/></svg></div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </section>
         </div>
     </main>
@@ -126,225 +182,98 @@ const description = "Career path, security philosophy, and professional goals.";
     <Footer />
 
     <style>
-        .layout-wrapper {
-            padding-top: clamp(8rem, 20vh, 14rem);
+        .layout-wrapper { padding-top: clamp(6.5rem, 14vh, 9.5rem); padding-bottom: var(--macro-gap); }
+        .page-top-nav { margin-bottom: 2rem; }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            transition: color 0.2s ease;
         }
+        .back-link:hover { color: var(--accent-cyan); }
 
-        .back-btn {
-            background: transparent;
-            color: var(--text-secondary);
-            padding-left: 0.5rem;
-            margin-bottom: 3rem;
-            flex-direction: row-reverse;
-        }
+        .page-header { max-width: 900px; margin-bottom: 3rem; }
+        .page-title { margin-top: 0.75rem; margin-bottom: 1.25rem; font-size: clamp(2.4rem, 5.5vw, 4.2rem); line-height: 1.1; }
+        .text-cyan { color: var(--accent-cyan); }
+        .page-desc { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem; }
 
-        .back-btn .icon-wrapper { background: transparent; }
-        .back-btn:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); }
-        .back-btn:hover .icon-wrapper { transform: translateX(-4px); }
+        .profile-actions-bar { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .arrow-up { font-size: 0.8rem; }
 
-        .editorial-split {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: clamp(4rem, 8vw, 8rem);
-            padding-bottom: 6rem;
-            align-items: start;
-        }
+        .profile-split-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 2rem; }
+        .profile-aside { display: flex; flex-direction: column; gap: 2rem; }
 
-        /* ── Left Column ── */
-        .sticky-aside {
-            position: sticky;
-            top: 8rem;
-        }
+        .spec-card { padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; }
+        .spec-header { display: flex; align-items: center; gap: 0.5rem; }
+        .spec-title { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; color: var(--text-muted); font-weight: 600; }
+        .spec-list { display: flex; flex-direction: column; gap: 0.85rem; }
+        .spec-item { display: flex; flex-direction: column; gap: 0.2rem; }
+        .spec-k { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); }
+        .spec-v { font-size: 0.88rem; color: var(--text-primary); }
 
-        .page-title {
-            font-size: clamp(3rem, 5vw, 4.5rem);
-            color: var(--text-primary);
-            margin: 0.5rem 0 1.5rem;
-            line-height: 1;
-        }
-
-        .lead-text {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 3rem;
-            max-width: 90%;
-        }
-
-        .timeline-inner {
-            padding: 2.5rem;
+        .timeline-box { padding: 1.75rem; display: flex; flex-direction: column; gap: 1.5rem; }
+        .timeline-heading { font-size: 1.15rem; margin: 0; }
+        .timeline-events {
             display: flex;
             flex-direction: column;
-            gap: 2.5rem;
-        }
-
-        .timeline-item {
+            gap: 1.75rem;
             position: relative;
-            padding-left: 1.5rem;
-            border-left: 1px solid var(--border-inner);
+            padding-left: 1.25rem;
+            border-left: 1px solid var(--border-medium);
         }
-
-        .time-dot {
+        .event-item { position: relative; }
+        .event-dot {
             position: absolute;
-            left: -5px;
-            top: 0;
+            left: -1.6rem;
+            top: 0.35rem;
             width: 9px;
             height: 9px;
             border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 10px var(--accent-glow);
+            background: var(--text-muted);
+            border: 2px solid var(--bg-surface);
         }
+        .event-dot.emerald { background: var(--accent-emerald); }
+        .event-dot.cyan { background: var(--accent-cyan); }
+        .event-meta { display: flex; flex-direction: column; gap: 0.25rem; }
+        .event-date { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-muted); letter-spacing: 0.05em; }
+        .event-meta h4 { font-size: 0.98rem; margin: 0; color: var(--text-primary); }
+        .event-meta p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; margin: 0; }
 
-        .time-date {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            letter-spacing: 0.05em;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-item h3 {
-            font-size: 1.2rem;
-            color: var(--text-primary);
-            margin: 0 0 0.5rem;
-        }
-
-        .timeline-item p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin: 0;
-            line-height: 1.6;
-        }
-
-        /* ── Right Column ── */
-        .scroll-content {
-            display: flex;
-            flex-direction: column;
-            gap: 5rem;
-            padding-top: 2rem;
-        }
-
-        .block-title {
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .block-title::after {
-            content: '';
-            height: 1px;
-            flex-grow: 1;
-            background: var(--border-outer);
-        }
-
-        .philosophy-quote .bezel-inner {
-            padding: 3.5rem;
-        }
-
-        blockquote {
-            font-family: var(--font-display);
-            font-size: clamp(1.5rem, 3vw, 2.2rem);
-            color: var(--text-primary);
-            line-height: 1.3;
-            margin: 0 0 2rem;
-            border-left: 4px solid var(--accent);
-            padding-left: 1.5rem;
-        }
-
-        .quote-body {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin: 0;
-        }
-
-        .quote-body em {
-            color: var(--accent);
+        .profile-main-content { display: flex; flex-direction: column; gap: 2rem; }
+        .narrative-card { padding: 2.25rem; display: flex; flex-direction: column; gap: 1.25rem; }
+        .narrative-card h2 { font-size: 1.8rem; margin: 0; }
+        .narrative-card blockquote {
             font-style: italic;
-        }
-
-        .lang-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .lang-card .bezel-inner {
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .lang-name {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
+            border-left: 2px solid var(--accent-cyan);
+            padding-left: 1.25rem;
             color: var(--text-primary);
-            font-weight: 500;
-        }
-
-        .lang-level {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--accent);
-        }
-
-        .contact-bento .bezel-inner {
-            padding: 3rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .contact-bento p {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin: 0;
-            max-width: 80%;
+            font-size: 1.05rem;
             line-height: 1.6;
+            margin: 0;
         }
+        .narrative-card p { font-size: 0.98rem; line-height: 1.7; margin: 0; }
+        .narrative-card strong { color: var(--text-primary); }
 
-        .contact-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
+        .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .pillar-card { padding: 1.75rem; display: flex; flex-direction: column; gap: 0.6rem; }
+        .pillar-num { font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700; color: var(--accent-cyan); }
+        .pillar-card h3 { font-size: 1.15rem; margin: 0; }
+        .pillar-card p { font-size: 0.88rem; line-height: 1.6; margin: 0; }
 
-        .outline-btn {
-            background: transparent;
-            border: 1px solid var(--border-inner);
-            color: var(--text-secondary);
-        }
+        .languages-block { padding: 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
+        .languages-block h3 { font-size: 1.25rem; margin: 0; }
+        .lang-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        .lang-item { display: flex; flex-direction: column; gap: 0.4rem; }
+        .lang-title { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--text-primary); }
+        .lang-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin: 0; }
 
-        .outline-btn:hover {
-            background: var(--text-primary);
-            color: var(--bg-base);
-        }
-
-        @media (max-width: 1024px) {
-            .editorial-split {
-                grid-template-columns: 1fr;
-                gap: 4rem;
-            }
-            .sticky-aside {
-                position: relative;
-                top: 0;
-            }
-            .scroll-content {
-                padding-top: 0;
-            }
-        }
-        @media (max-width: 768px) {
-            .philosophy-quote .bezel-inner, .contact-bento .bezel-inner { padding: 2rem; }
-            .timeline-inner { padding: 1.5rem; }
-            .contact-bento p { max-width: 100%; }
+        @media (max-width: 960px) {
+            .profile-split-layout { grid-template-columns: 1fr; }
+            .pillars-grid { grid-template-columns: 1fr; }
+            .lang-row { grid-template-columns: 1fr; }
         }
     </style>
 </body>
